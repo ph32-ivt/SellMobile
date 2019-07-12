@@ -9,9 +9,9 @@ class Image extends Model
     protected $table = 'images';
     protected $fillable = 
     [
-    	'name','path','color_id'
+    	'name','path','color_id','product_id'
     ];
-    public function color(){
-    	return $this->belongsTo('App\Color')
+    public function product(){
+    	return $this->belongsTo('App\Product')
     }
 }
