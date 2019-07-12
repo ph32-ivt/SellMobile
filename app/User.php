@@ -7,7 +7,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
-{
+{   use SoftDeletes;
     use Notifiable;
 
     /**
@@ -16,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','gender','phone','address'
     ];
 
     /**
@@ -36,4 +36,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+     public function order(){
+        return $this->belongsTo('App\Order');
+    }
+    public function Roles(){
+        return $this->belongsToMany('App\Role','user_roles');
+    }
 }
