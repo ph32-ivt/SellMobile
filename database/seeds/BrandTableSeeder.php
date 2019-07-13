@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-
+use App\Brand;
 class BrandTableSeeder extends Seeder
 {
     /**
@@ -13,18 +13,16 @@ class BrandTableSeeder extends Seeder
     {
         DB::table('brands')->insert([
 
-        		['name'=>'Samsung','des'=>'sam-sung'],
-        		['name'=>'Apple','des'=>'apple'],
-        		['name'=>'Oppo','des'=>'oppo'],
-        		['name'=>'Sony','des'=>'sony'],
-        		['name'=>'Xiaomi','des'=>'xiaomi'],
-        		['name'=>'Huawei','des'=>'huawei'],
-        		['name'=>'Vivo','des'=>'vivo'],
-        		['name'=>'Nokia','des'=>'nokia'],
-        		['name'=>'Asus','des'=>'asus']
-
-
-
+        		['name'=>'Samsung','description'=>'sam-sung'],
+        		['name'=>'Apple','description'=>'apple'],
+        		['name'=>'Oppo','description'=>'oppo'],
+        		['name'=>'Sony','description'=>'sony'],
+        		['name'=>'Xiaomi','description'=>'xiaomi'],
+        		['name'=>'Huawei','description'=>'huawei'],
+        		['name'=>'Vivo','description'=>'vivo'],
+        		['name'=>'Nokia','description'=>'nokia'],
+        		['name'=>'Asus','description'=>'asus'],
+                ['name'=>'mobile','description'=>'mobile'],
         ]);
     }
 }
