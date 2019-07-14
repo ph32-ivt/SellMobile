@@ -8,55 +8,55 @@
           <ul class="nav">
             <li class="nav-item active">
               <a class="nav-link" href="index.html">
-                <img src="images/icons/1.png" alt="">
+                <img src="{{asset('admin/images/icons/1.png')}}" alt="">
                 <span class="menu-title">Tổng quan</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="{{route('index-category')}}">
-                <img src="images/icons/2.png" alt="">
+                <img src="{{asset('admin/images/icons/2.png')}}" alt="">
                 <span class="menu-title">Thể loại</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/forms/index.html">
-                <img src="images/icons/005-forms.png" alt="">
+                <img src="{{asset('admin/images/icons/005-forms.png')}}" alt="">
                 <span class="menu-title">Sản phẩm</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/ui-elements/buttons.html">
-                <img src="images/icons/4.png" alt="">
+                <img src="{{asset('admin/images/icons/4.png')}}" alt="">
                 <span class="menu-title">Order</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/tables/index.html">
-                <img src="images/icons/5.png" alt="">
+                <img src="{{asset('admin/images/icons/5.png')}}" alt="">
                 <span class="menu-title">Hình ảnh</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/charts/index.html">
-                <img src="images/icons/6.png" alt="">
+                <img src="{{asset('admin/images/icons/6.png')}}" alt="">
                 <span class="menu-title">Quản Trị</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/icons/index.html">
-                <img src="images/icons/7.png" alt="">
+                <img src="{{asset('admin/images/icons/7.png')}}" alt="">
                 <span class="menu-title">User</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="pages/ui-elements/typography.html">
-                <img src="images/icons/8.png" alt="">
+                <img src="{{asset('admin/images/icons/8.png')}}" alt="">
                 <span class="menu-title">Typography</span>
               </a>
             </li>
             <li class="nav-item">
               <a class="nav-link" data-toggle="collapse" href="#sample-pages" aria-expanded="false" aria-controls="sample-pages">
-                <img src="images/icons/9.png" alt="">
+                <img src="{{asset('admin/images/icons/9.png')}}" alt="">
                 <span class="menu-title">Lịch sử<i class="fa fa-sort-down"></i></span>
               </a>
               <div class="collapse" id="sample-pages">
@@ -91,7 +91,7 @@
             </li>
             <li class="nav-item">
               <a class="nav-link" href="#">
-                <img src="images/icons/10.png" alt="">
+                <img src="{{asset('admin/images/icons/10.png')}}" alt="">
                 <span class="menu-title">Settings</span>
               </a>
             </li>
