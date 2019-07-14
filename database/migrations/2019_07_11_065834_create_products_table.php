@@ -19,8 +19,8 @@ class CreateProductsTable extends Migration
             $table->string('pro_slug');
             $table->text('description');
             $table->string('image');
-            $table->tinyInteger('status')->length(1)->unsigned();
-            $table->tinyInteger('pro_hot')->length(1)->unsigned(); 
+            $table->tinyInteger('status')->length(1)->unsigned()->default(1);
+            $table->tinyInteger('pro_hot')->length(1)->unsigned()->default(1); 
             $table->integer('category_id')->unsigned();
             $table->integer('brand_id')->unsigned();
             $table->softDeletes();
