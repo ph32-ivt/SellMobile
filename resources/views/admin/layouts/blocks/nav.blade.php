@@ -19,13 +19,13 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/forms/index.html">
+              <a class="nav-link" href="{{route('index-product')}}">
                 <img src="{{asset('admin/images/icons/005-forms.png')}}" alt="">
                 <span class="menu-title">Sản phẩm</span>
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/ui-elements/buttons.html">
+              <a class="nav-link" href="{{route('index-order')}}">
                 <img src="{{asset('admin/images/icons/4.png')}}" alt="">
                 <span class="menu-title">Order</span>
               </a>
@@ -43,7 +43,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="pages/icons/index.html">
+              <a class="nav-link" href="{{route('index-user')}}">
                 <img src="{{asset('admin/images/icons/7.png')}}" alt="">
                 <span class="menu-title">User</span>
               </a>

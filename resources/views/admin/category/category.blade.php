@@ -9,7 +9,7 @@
 						<h5 class="card-title">Thể loại</h5>
 					</div>
 					<div class="col-md-2">
-						<button id="showModal" class=" btn btn-outline-primary mb-2 " data-toggle="modal" data-target="#exampleModal"><i class="fas fa-plus-circle"></i>Thêm mới</button>					
+						<button class="btn btn-primary"><a href="{{route('create-category')}}">Thêm mới</a></button>			
 					</div>
 				</div>
 				<div class="table-responsive">
@@ -24,7 +24,29 @@
 							</tr>
 						</thead>
 						<tbody id="dataCategory">
-							
+							@foreach($category as $category)
+							<tr class="">
+								<td>{{$category->id}}</td>
+								<td>{{$category->name}}</td>
+								<td>
+									@if(empty($category->parent_id) )
+									{{'[N/A]'}}
+									@else
+									<?php 
+									$parent = \DB::table('categories')->where('id',$category->parent_id)->first();
+									echo $parent->name;
+									?>
+									@endif
+
+								</td>
+								<td>
+									<a href=""><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+									<a href="{{route('edit-category',$category->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
+									<a href=""><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+								</td>    
+							</tr>
+							@endforeach
+
 						</tbody>
 					</table>
 				</div>
@@ -32,8 +54,8 @@
 		</div>
 	</div>
 </div>
-					<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- Modal save category-->
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -43,7 +65,17 @@
 				</button>
 			</div>
 			<div class="modal-body form-modal">
-				
+				<form id="form-cate" action="" method="">
+					@csrf
+					<select class="form-control" name="parent" id="parent">
+						<option value="1">Điện Thoại</option>
+						<option value="10">Ốp lưng</option>
+					</select>
+					<div  class="form-group">
+						<label for="">Tên thể loại</label>
+						<input id="name" name="name" type="text" class="form-control">
+					</div>
+				</form>
 			</div>
 			<div class="modal-footer">
 				<button  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -52,7 +84,63 @@
 			</div>
 		</div>
 	</div>
-</div>
+</div> -->
+<!-- Modal edit Category -->
+<!-- <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel">Tiêu đề</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body form-modal2">
+				
+			</div>
+			<div class="modal-footer">
+				<button  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+				<button id="editCate" class="btn btn-primary ">Save</button>
+				
+			</div>
+		</div>
+	</div>
+</div> -->
+<!-- <script  type="text/javascript">
+	
+	$('#showModal').click(function(){
+		// alert('đ');
+		var modal= $(this).attr('data-target');
+		console.log(modal);
+		$( '#form-cate' ).attr({
+			action : '/categories',
+			method : 'POST'
+		}
+		);
+
+		$.ajax({
+			url : 'api/categories',
+			type : 'GET',
+			data : {},
+			success : function(result) {
+				console.log(result);
+			},
+			error: function(error)
+			{
+				console.log(error);
+			}
+
+		});
+	});
+	$('#editCate').click(function(event) {
+		/* Act on the event */
+		$('#form-cate').attr({
+			action: '/categories/'+cateId,
+			method: 'POST'
+		});
+		
+	});
+</script> -->
 @endsection
 
 

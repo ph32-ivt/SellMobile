@@ -1,29 +1,34 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Category;
-
+use DB;
 class CategoryController extends Controller
 {
-	public function index(){
-		$category = Category::all();	
+	public function index()
+	{
+		$category = Category::all();
 		return view('admin.category.category',compact('category'));
 	}
-
-	public function getDataCategory(){
-		$category = Category::all();	
-		return view('admin.category.dataCategory',compact('category'));
+	public function create()
+	{	
+		$category = Category::all();
+		return view('admin.category.formAddCategory',compact('category'));
 	}
-	public function formCategory(){
-		return view('admin.category.formCategory');
-	}
-	public function createCategory(Request $request){
+	public function store(Request $request)
+	{
 		$category = new Category();
-		$category->parent_id = $request->parent;
 		$category->name = $request->name;
-		$category->cate_slug = str_slug($category->name);
+		$category->parent_id = $request->parent;
+		$category->cate_slug = $request->name;
 		$category->save();
-		return 'true';
+		return redirect()->route('index-category');
+	}
+	public function edit(Request $request,$id)
+	{
+		$category = Category::find($id);
+		return view('admin.category.formEditCategory',compact('category'));
 	}
 }
