@@ -4,8 +4,8 @@
 	
 	<thead>
 		<tr>
-		<td> <a href="" class="btn btn-info">Add new parent category</a></td>
-		<td> <a href="" class="btn btn-info">Add new child category</a></td>
+		<td colspan="4"> <a href="{{route('add-new-cate')}}" class="btn btn-info">Add new </a></td>
+		
 	</tr>
 		<tr>
 			<th>Id</th>
@@ -18,8 +18,8 @@
 		<tr>
 			<td>{{$cate->id}}</td>
 			<td>{{$cate->name}}</td>
-			<td><a href="">Edit</a></td>
-			<td><a href="">Delete</a></td>
+			<td class="text-center"><a href="">Edit</a></td>
+			<td class="text-center"><a href="">Delete</a></td>
 		</tr>
 		@endforeach
 	</tbody>

@@ -19,5 +19,6 @@ Route::post('admin/login', 'AdminController@postLoginAdmin')->name('postlogin');
 Route::group(['prefix'=>'admin'],function(){
 	Route::group(['prefix'=>'category'], function(){
 		Route::get('index', 'CategoryController@index')->name('list-cate');
+		Route::get('create', 'CategoryController@create')->name('add-new-cate');
 	});
 });
