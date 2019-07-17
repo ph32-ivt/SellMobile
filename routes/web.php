@@ -17,6 +17,7 @@
 // });
 Route::get('/','HomeController@index')->name('home');
 Route::get('/admin/login','HomeController@getLoginAdmin')->name('admin-login');
+Route::post('admin/login', 'HomeController@postLoginAdmin')->name('post-login');
 Route::prefix('admin')->group(function(){
 
 	Route::prefix('category')->group(function(){	
