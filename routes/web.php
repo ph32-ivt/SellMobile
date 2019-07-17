@@ -13,6 +13,7 @@
 // Route::get('/', function () {
 // 	return view('welcome');
 
+
 // });
 Route::get('/','HomeController@index')->name('home');
 Route::get('/admin/login','HomeController@getLoginAdmin')->name('admin-login');
@@ -63,5 +64,6 @@ Route::prefix('admin')->group(function(){
 	});
 
 });
+
 
 

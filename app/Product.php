@@ -11,6 +11,7 @@ class Product extends Model
 	[
 		'name','pro_slug','description','image','status','pro_hot','category_id','brand_id'
 	];
+	
 	public function category(){
 		return $this->belongsTo('App\Category');
 	}
@@ -30,4 +31,5 @@ class Product extends Model
 	{
 		return $this->hasMany('App\Image');
 	}
+
 }

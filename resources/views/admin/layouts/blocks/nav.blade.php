@@ -1,6 +1,6 @@
  <nav class="bg-white sidebar sidebar-offcanvas" id="sidebar">
           <div class="user-info">
-            <img src="images/face.jpg" alt="">
+            <!-- <img src="images/face.jpg" alt=""> -->
             <p class="name">Richard V.Welsh</p>
             <p class="designation">Manager</p>
             <span class="online"></span>
@@ -13,8 +13,10 @@
               </a>
             </li>
             <li class="nav-item">
+
               <a class="nav-link" href="{{route('index-category')}}">
                 <img src="{{asset('admin/images/icons/2.png')}}" alt="">
+
                 <span class="menu-title">Thể loại</span>
               </a>
             </li>

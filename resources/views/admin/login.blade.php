@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -21,12 +22,14 @@
           <div class="col-lg-4 mx-auto">
             <div class="auto-form-wrapper">
               @if ($errors->any())
+
                 <div class="alert alert-danger">
                   @foreach($errors->all() as $err)
                     {{$err}}<br>
                   @endforeach
                 </div>
               @endif
+
               @if (session('thongbao'))
                 <div class="alert alert-success">
                   {{session('thongbao')}}
@@ -68,5 +71,6 @@
   <script src="Admin_Asset/js/misc.js"></script>
   <!-- endinject -->
 </body>
+
 
 </html>

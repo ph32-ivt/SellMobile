@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+
 use DB;
 class CategoryController extends Controller
 {
@@ -31,4 +32,5 @@ class CategoryController extends Controller
 		$category = Category::find($id);
 		return view('admin.category.formEditCategory',compact('category'));
 	}
+
 }
