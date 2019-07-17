@@ -54,69 +54,18 @@
 		</div>
 	</div>
 </div>
-<!-- Modal save category-->
-<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Tiêu đề</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body form-modal">
-				<form id="form-cate" action="" method="">
-					@csrf
-					<select class="form-control" name="parent" id="parent">
-						<option value="1">Điện Thoại</option>
-						<option value="10">Ốp lưng</option>
-					</select>
-					<div  class="form-group">
-						<label for="">Tên thể loại</label>
-						<input id="name" name="name" type="text" class="form-control">
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<button  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button id="saveCategory" class="btn btn-primary ">Save</button>
-				
-			</div>
-		</div>
-	</div>
-</div> -->
-<!-- Modal edit Category -->
-<!-- <div class="modal fade" id="exampleModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" >
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Tiêu đề</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body form-modal2">
-				
-			</div>
-			<div class="modal-footer">
-				<button  type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-				<button id="editCate" class="btn btn-primary ">Save</button>
-				
-			</div>
-		</div>
-	</div>
-</div> -->
-<!-- <script  type="text/javascript">
+
+<script  type="text/javascript">
 	
 	$('#showModal').click(function(){
 		// alert('đ');
-		var modal= $(this).attr('data-target');
-		console.log(modal);
-		$( '#form-cate' ).attr({
-			action : '/categories',
-			method : 'POST'
-		}
-		);
+		// var modal= $(this).attr('data-target');
+		// console.log(modal);
+		// $( '#form-cate' ).attr({
+		// 	action : '/categories',
+		// 	method : 'POST'
+		// }
+		// );
 
 		$.ajax({
 			url : 'api/categories',
@@ -132,15 +81,15 @@
 
 		});
 	});
-	$('#editCate').click(function(event) {
-		/* Act on the event */
-		$('#form-cate').attr({
-			action: '/categories/'+cateId,
-			method: 'POST'
-		});
+	// $('#editCate').click(function(event) {
+	// 	/* Act on the event */
+	// 	$('#form-cate').attr({
+	// 		action: '/categories/'+cateId,
+	// 		method: 'POST'
+	// 	});
 		
-	});
-</script> -->
+	// });
+</script>
 @endsection
 
 

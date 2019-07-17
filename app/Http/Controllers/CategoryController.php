@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use DB;
+use App\Http\Requests\CategoryRequest;
 class CategoryController extends Controller
 {
 	public function index()
@@ -14,10 +15,10 @@ class CategoryController extends Controller
 	}
 	public function create()
 	{	
-		$category = Category::all();
-		return view('admin.category.formAddCategory',compact('category'));
+		
+		return view('admin.category.formAddCategory');
 	}
-	public function store(Request $request)
+	public function store(CategoryRequest $request)
 	{
 		$category = new Category();
 		$category->name = $request->name;
