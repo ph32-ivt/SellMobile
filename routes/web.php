@@ -13,6 +13,7 @@
 // Route::get('/', function () {
 // 	return view('welcome');
 
+<<<<<<< HEAD
 // });
 Route::get('/','HomeController@index')->name('home');
 Route::get('/admin/login','HomeController@getLoginAdmin')->name('admin-login');
@@ -65,3 +66,15 @@ Route::prefix('admin')->group(function(){
 });
 
 
+=======
+// Route::get('/','HomeController@index')->name('home');
+
+// Route::get('/category','CategoryController@index')->name('index-category');
+Route::get('admin/login', 'AdminController@getLoginAdmin')->name('getlogin');
+Route::post('admin/login', 'AdminController@postLoginAdmin')->name('postlogin');
+Route::group(['prefix'=>'admin'],function(){
+	Route::group(['prefix'=>'category'], function(){
+		Route::get('index', 'CategoryController@index')->name('list-cate');
+	});
+});
+>>>>>>> aa28f99eee99286bdfba0c9410df05996e708782

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Category;
+<<<<<<< HEAD
 use DB;
 use App\Http\Requests\CategoryRequest;
 class CategoryController extends Controller
@@ -32,4 +33,12 @@ class CategoryController extends Controller
 		$category = Category::find($id);
 		return view('admin.category.formEditCategory',compact('category'));
 	}
+=======
+class CategoryController extends Controller
+{
+	public function index(){
+		$category= Category::all();
+    return view('admin.category.category',compact('category'));
+}
+>>>>>>> aa28f99eee99286bdfba0c9410df05996e708782
 }
