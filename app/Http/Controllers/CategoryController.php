@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Category;
 class CategoryController extends Controller
 {
 	public function index(){
-    return view('admin.category.category');
+		$category= Category::all();
+    return view('admin.category.category',compact('category'));
 }
 }
