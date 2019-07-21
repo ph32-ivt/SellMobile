@@ -26,8 +26,11 @@ Route::prefix('admin')->group(function(){
 		Route::get('/create','CategoryController@create')->name('create-category');
 		Route::post('/store','CategoryController@store')->name('store-category');
 		Route::get('/edit/{id}','CategoryController@edit')->name('edit-category');
-		Route::put('/update{id}','CategoryController@update')->name('update-category');
-		Route::delete('/delete/{id}','CategoryController@update')->name('delete-category');
+		Route::get('/show/{id}','CategoryController@show')->name('show-category');
+		Route::put('/update/{id}','CategoryController@update')->name('update-category');
+		Route::get('/delete/{id}','CategoryController@destroy')->name('delete-category');
+		Route::get('/history','CategoryController@history')->name('history-category');
+		Route::get('/forceDelete/{id}','CategoryController@forceDelete')->name('forceDelete-category');
 
 	});
 
@@ -38,7 +41,7 @@ Route::prefix('admin')->group(function(){
 		Route::post('/store','ProductController@store')->name('store-product');
 		Route::get('/edit/{id}','ProductController@edit')->name('edit-product');
 		Route::put('/update{id}','ProductController@update')->name('update-product');
-		Route::delete('/delete/{id}','ProductController@update')->name('delete-product');
+		Route::delete('/delete/{id}','ProductController@destroy')->name('delete-product');
 		
 	});
 
@@ -49,7 +52,7 @@ Route::prefix('admin')->group(function(){
 		Route::post('/store','UserController@store')->name('store-user');
 		Route::get('/edit/{id}','UserController@edit')->name('edit-user');
 		Route::put('/update{id}','UserController@update')->name('update-user');
-		Route::delete('/delete/{id}','UserController@update')->name('delete-user');
+		Route::delete('/delete/{id}','UserController@destroy')->name('delete-user');
 		
 	});
 
@@ -60,7 +63,7 @@ Route::prefix('admin')->group(function(){
 		Route::post('/store','OrderController@store')->name('store-order');
 		Route::get('/edit/{id}','OrderController@edit')->name('edit-order');
 		Route::put('/update{id}','OrderController@update')->name('update-order');
-		Route::delete('/delete/{id}','OrderController@update')->name('delete-order');
+		Route::delete('/delete/{id}','OrderController@destroy')->name('delete-order');
 		
 	});
 

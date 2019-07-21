@@ -16,7 +16,7 @@
 					<table class="table center-aligned-table">
 						<thead>
 							<tr class="text-primary">
-								<th>STT</th>
+								<th>ID</th>
 								<th>Tên Sản Phẩm</th>
 								<th>Mô Tả</th>
 								<th>Hình Ảnh</th>
@@ -30,24 +30,34 @@
 							</tr>
 						</thead>
 						<tbody id="dataCategory">
-							<td>â</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
+							
+							@foreach($products as $product)
+							<tr>
+								<td>{{$product->id}}</td>
+								<td>{{$product->name}}</td>
+								<td>{{$product->description}}</td>
+								<td><img style="width: 80px" src="{{asset("images/$product->image")}}" alt=""></td>
+								<td>{{$product->category_id}}</td>
+								<td>{{$product->brand_id}}</td>
+								<td>{{$product->status}}</td>
+								<td>{{$product->pro_hot}}</td>
+
+								<td>
+									<?php 
+									echo Carbon\Carbon::createFromTimeStamp(strtotime($product->created_at))->diffForHumans();;
+									?>
+								</td>
 								<td>
 									<a href=""><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-									<a href="#"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
+									<a href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
 									<a href=""><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>
+				{{ $products->links() }}
 			</div>
 		</div>
 	</div>

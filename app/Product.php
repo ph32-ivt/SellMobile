@@ -9,7 +9,7 @@ class Product extends Model
 	protected $table = 'products';
 	protected $fillable = 
 	[
-		'name','pro_slug','description','image','status','pro_hot','category_id','brand_id'
+		'name','pro_slug','description','content','image','status','pro_hot','category_id','brand_id'
 	];
 	
 	public function category(){
@@ -27,9 +27,6 @@ class Product extends Model
 	public function orderDetails(){
 		return $this->hasMany('App\OrderDetail');
 	}
-	public function image()
-	{
-		return $this->hasMany('App\Image');
-	}
+
 
 }
