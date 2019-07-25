@@ -9,9 +9,10 @@
 				<div class="row">
 					<div class="col-md-8">
 						<h5 class="card-title">Thể loại</h5>
+						<a href="{{route('history-category')}}">Lịch sử xóa</a>
 					</div>
 					<div class="col-md-2">
-						<button class="btn btn-primary"><a href="{{route('create-category')}}">Thêm mới</a></button>			
+						<button class="mb-2 btn btn-primary"><a href="{{route('create-category')}}">Thêm mới</a></button>			
 					</div>
 				</div>
 				<div class="table-responsive">
@@ -20,7 +21,7 @@
 							<tr class="text-primary">
 								<th>ID</th>
 								<th>Tên thể loại</th>
-								<th>Parent</th>
+								<th>Ngày đăng</th>
 								<th class="pl-5">Action</th>
 
 							</tr>
@@ -31,20 +32,14 @@
 								<td>{{$category->id}}</td>
 								<td>{{$category->name}}</td>
 								<td>
-									@if(empty($category->parent_id) )
-									{{'[N/A]'}}
-									@else
 									<?php 
-									$parent = \DB::table('categories')->where('id',$category->parent_id)->first();
-									echo $parent->name;
-									?>
-									@endif
-
+										echo Carbon\Carbon::createFromTimeStamp(strtotime($category->created_at))->diffForHumans();;
+									 ?>
 								</td>
 								<td>
-									<a href=""><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+									<a href="{{route('show-category',$category->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
 									<a href="{{route('edit-category',$category->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
-									<a href=""><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+									<a onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-category',$category->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
 							@endforeach
