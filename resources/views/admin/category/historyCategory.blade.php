@@ -26,8 +26,9 @@
 						<tbody id="dataCategory">
 							<?php 
 							$stt = 1;
-							?>
-							@foreach($category as $category)
+							?>				
+							@foreach($categories as $category)
+
 							<tr class="">
 								<td>{{$stt++}}</td>
 								<td>{{$category->name}}</td>
@@ -41,7 +42,7 @@
 								</td>    
 							</tr>
 							@endforeach
-
+						
 						</tbody>
 					</table>
 				</div>
@@ -50,41 +51,7 @@
 	</div>
 </div>
 
-<!-- <script  type="text/javascript">
-	
-	$('#showModal').click(function(){
-		// alert('đ');
-		var modal= $(this).attr('data-target');
-		console.log(modal);
-		$( '#form-cate' ).attr({
-			action : '/categories',
-			method : 'POST'
-		}
-		);
 
-		$.ajax({
-			url : 'api/categories',
-			type : 'GET',
-			data : {},
-			success : function(result) {
-				console.log(result);
-			},
-			error: function(error)
-			{
-				console.log(error);
-			}
-
-		});
-	});
-	$('#editCate').click(function(event) {
-		/* Act on the event */
-		$('#form-cate').attr({
-			action: '/categories/'+cateId,
-			method: 'POST'
-		});
-		
-	});
-</script> -->
 @endsection
 
 

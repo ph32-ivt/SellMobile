@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Http\Requests\CategroyRequest;
+use App\Product;
 
 use DB;
 class CategoryController extends Controller
@@ -23,16 +24,15 @@ class CategoryController extends Controller
 
 	public function show($id)
 	{
-		$category = Category::find($id);
-		$data = $category->with('products')->where('id',$id)->first();
-		  // dd($data);
+		
+		$data = Category::with('products')->where('id',$id)->first();
 		return view('admin.category.getByProductInCategry',compact('data'));
 	}
 
 	public function store(CategroyRequest $request)
 	{
 		$category = new Category();
-		$category->name = $request->name;
+		$category->name = strtoupper($request->name);
 		$category->cate_slug = $request->name;
 		$category->save();
 		return redirect()->route('index-category');
@@ -59,8 +59,9 @@ class CategoryController extends Controller
 
 	public function history()
 	{
-		$category = Category::onlyTrashed()->get();
-		return view('admin.history.category.historyCategory',compact('category'));
+		$categories = Category::onlyTrashed()->get();
+
+		return view('admin.category.historyCategory',compact('categories'));
 	}
 
 	public function forceDelete($id)

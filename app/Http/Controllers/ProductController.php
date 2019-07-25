@@ -5,11 +5,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Database\Query\Builder;
-use App\Http\Requests\ProductDetailRequest;
+
 use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\Category;
 use App\ProductDetail;
+use App\Brand;
 class ProductController extends Controller
 {
     /**
@@ -18,9 +19,12 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {   $products = Product::orderBy('id','DESC')->paginate(10);
-    return view('admin.product.index',compact('products'));
-}
+    { 
+     $products = Product::with('category','brand')->orderBy('id','DESC')->paginate(5);
+     // dd( $products);
+     return view('admin.product.index',compact('products'));
+
+ }
 
     /**
      * Show the form for creating a new resource.
@@ -29,9 +33,10 @@ class ProductController extends Controller
      */
     public function create()
     {
-        $category = Category::all();
-        return view('admin.product.formAddProduct',compact('category'));
-    }
+      $category = Category::all();
+      $brands = Brand::all();
+      return view('admin.product.formAddProduct',compact('category','brands'));
+  }
 
     /**
      * Store a newly created resource in storage.
@@ -39,59 +44,32 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductDetailRequest $request)
+    public function store(ProductRequest $request)
     {
-        //thêm thông tin vào product 
-
-        $product = New Product();
-        $product->name = $request->name;
-        $product->pro_slug = $request->name;
-        $product->image = $request->image;
-        $product->description = $request->description;
-        $product->content = $request->content;
-        $product->pro_hot = $request->pro_hot ? $request->pro_hot :0;
-        $product->status = $request->status ? $request->status : 0;
-        $product->brand_id = 1;
-        $product->category_id = $request->categoryID;
+        $data = $request->except('_token');
+        $data['pro_slug'] = str_slug($request->name);
+        $data['pro_hot'] =$request->pro_hot ? $request->pro_hot :0;
+        $data['status'] =$request->status ? $request->status : 0;
 
         if($request->hasFile('image'))
         {
             $file = $request->file('image');
-            $tailFile = $file->getClientOriginalExtension();
-            if($tailFile != "jpg" && $tailFile != "jpeg" && $tailFile != "png"){
-                return redirect('admin.product.formAddProduct')->with('fail','Vui lòng chọn hình có đuôi *jpg,jpeg,png');
-            } 
-
             $NameImage = $file->getClientOriginalName();
             $NameImage = str_random(4)."-".$NameImage;
             while(file_exists("/images/".$NameImage)){
                 $NameImage = str_radom(4)."-".$NameImage;
             }
-            $file->move("./images/",$NameImage);
-            $product->image = $NameImage;
+            $file->move(public_path('/images/'),$NameImage);
+            $data['image'] = $NameImage;
         }else{
-            $product->image = "";
+            $data['image'] = "";
         }
 
-        $product->save();
-
-        //thêm thông tin vào product_dateil
-
-        $product_dateil = new ProductDetail();
-        $product_dateil->cpu = $request->cpu;
-        $product_dateil->memory = $request->menory;
-        $product_dateil->display = $request->display;
-        $product_dateil->pin = $request->pin;
-        $product_dateil->sim = $request->sim;
-        $product_dateil->camera = $request->camera;
-        $product_dateil->price = $request->price;
-        $product_dateil->option = $request->option;
-        $product_dateil->quantity = 1;
-        $product_dateil->product_id = $product->id;
-        $product_dateil->save();
-
+        $data = Product::create($data);
+        $dataDetail = $request->only('cpu','memory', 'display', 'pin', 'sim', 'camera', 'price');
+        $dataDetail['product_id'] = $data->id;
+        $dataDetail = ProductDetail::create($dataDetail);
         return redirect()->route('index-product');
-
     }
 
     /**
@@ -102,7 +80,9 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        //
+        $product = Product::with('category','brand','productDetail')->where('id',$id)->first();
+       
+        return view('admin.product.productDeteil',compact('product'));
     }
 
     /**
@@ -113,9 +93,11 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::find($id);
-        $data = $product->with('productDetails')->where('id',$id)->first();
-        dd($data);
+        $category = Category::all();
+        $brands = Brand::all();
+        $data = Product::with('productDetail','category','brand')->where('id',$id)->first();
+
+        return view('admin.product.formEditProduct',compact('data','brands','category'));
     }
 
     /**
@@ -125,9 +107,34 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
-        //
+        $product = Product::find($id);
+        $data = $request->except('_token');
+        $data['pro_slug'] = str_slug($request->name);
+        $data['pro_hot'] =$request->pro_hot ? $request->pro_hot :0;
+        $data['status'] =$request->status ? $request->status : 0;
+
+        if($request->hasFile('image'))
+        {
+            $file = $request->file('image');
+            $NameImage = $file->getClientOriginalName();
+            $NameImage = str_random(4)."-".$NameImage;
+            while(file_exists("/images/".$NameImage)){
+                $NameImage = str_radom(4)."-".$NameImage;
+            }
+            $file->move(public_path('/images/'),$NameImage);
+            $data['image'] = $NameImage;
+        }else{
+            $data['image'] = $product->image;
+        }
+
+        $product->update($data);
+
+        $dataDetail = $request->only('cpu','memory', 'display', 'pin', 'sim', 'camera', 'price');
+        $dataDetail = ProductDetail::where('product_id',$id)->update($dataDetail);
+        return redirect()->route('index-product');
+
     }
 
     /**
@@ -137,7 +144,26 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {
-
+    {  $product = Product::find($id);
+        ProductDetail::where('product_id',$id)->delete();
+        $product->destroy($id);
+        return redirect()->route('index-product')->with('sussecc','Bạn đã xóa thành công');
     }
+
+    public function action($action,$id){
+        if($action){
+         $product = Product::find($id);
+         switch ($action) {
+            case 'status':
+            $product->status = $product->status ? 0 : 1;
+            break;
+            case 'pro_hot':
+            $product->pro_hot = $product->pro_hot ? 0 : 1;
+            break;
+        }
+        $product->save();
+    }
+    return redirect()->back();
+
+}
 }

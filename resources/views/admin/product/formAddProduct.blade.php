@@ -1,20 +1,38 @@
 @extends('admin.layouts.master')
 @section('content')
 
-
+<!-- @if(count($errors->all()))
+	@php 
+	dd($errors->all());
+	@endphp
+@endif -->
 <form action="{{route('store-product')}}" method="POST" enctype="multipart/form-data">
 	@csrf
 	<div class=" row">
 		<div class="col-md-6">
 			<div  class="form-group">
-				<label for="">Thể loại</label>
-				<select class="form-control" name="categoryID" id="">
-					<option value="">--Chọn thể loại--</option>
-					@foreach($category as $category)
-					<option value="{{$category->id}}">{{$category->name}}</option>
-					@endforeach
-				</select>
-				<span style="color:red">{{$errors->first('categoryID')}}</span>
+				<div class="row">
+					<div class="col-md-6">
+						<label for="">Thể loại</label>
+						<select class="form-control" name="category_id" id="">
+							<option value="">--Chọn thể loại--</option>
+							@foreach($category as $category)
+							<option value="{{$category->id}}">{{$category->name}}</option>
+							@endforeach
+						</select>
+						<span style="color:red">{{$errors->first('category_id')}}</span>
+					</div>
+					<div class="col-md-6">
+						<label for="">Thương hiệu</label>
+						<select class="form-control" name="brand_id" id="">
+							<option value="">--Chọn Nhà Sản Xuất--</option>
+							@foreach($brands as $brand)
+							<option value="{{$brand->id}}">{{$brand->name}}</option>
+							@endforeach
+						</select>
+					
+					</div>
+				</div>
 			</div>
 			<div class="form-group">
 				<label for="">Tên sản phẩm</label>
@@ -27,20 +45,20 @@
 			</div>
 			<div class="form-group">
 				<label for="">Mô tả</label>
-				<textarea name="description" id="input" class="form-control" rows="3" value="{{old('description')}}"></textarea>
+				<textarea name="description" id="description" class="form-control cheditor" rows="3" value="{{old('description')}}"></textarea>
 			</div>
 			<div class="form-group">
 				<label for="">Nội dung</label>
-				<textarea name="content" class="form-control cheditor"  id="content" ></textarea>
+				<textarea name="content" class="form-control cheditor"  id="content" value="{{old('content')}}" ></textarea>
 			</div>
-			<div class="form-group">
+			<div class="form-group ml-2">
 				<div class="custom-control custom-switch">
 					<input name="pro_hot" type="checkbox" class="custom-control-input" id="customSwitch1" value="1">
-					<label class="custom-control-label" for="customSwitch1">Nổi Bật</label>
+					<label class="custom-control-label" for="customSwitch1">NỔI BẬT</label>
 				</div>
 				<div class="custom-control custom-switch">
 					<input name="status" type="checkbox" class="custom-control-input" id="customSwitch2" value="1">
-					<label class="custom-control-label" for="customSwitch2">Hiện</label>
+					<label class="custom-control-label" for="customSwitch2">HIỆN</label>
 				</div>
 			</div>
 		</div>
@@ -53,8 +71,8 @@
 			</div>
 			<div class="form-group">
 				<label for="">Ram</label>
-				<input name="menory" class="form-control" type="text" value="{{old('menory')}}">
-				<span style="color:red">{{$errors->first('menory')}}</span>
+				<input name="memory" class="form-control" type="text" value="{{old('memory')}}">
+				<span style="color:red">{{$errors->first('memory')}}</span>
 			</div>
 			<div class="form-group">
 				<label for="">Màn hình</label>
@@ -98,4 +116,5 @@
 
 @section('js')
 <script type="text/javascript"> CKEDITOR.replace('content'); </script>
+<script type="text/javascript"> CKEDITOR.replace('description'); </script>
 @endsection

@@ -8,7 +8,8 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-8">
-						<h5 class="card-title">Thể loại{{$data->name}}</h5>
+						<h1 class="card-title">{{isset($data->name)?$data->name :''}}</h1>
+						<h4>Sản phẩm ({{!empty($data->products)?$data->products->count():'0'}})</h4>
 					</div>
 				</div>
 				<div class="table-responsive">
@@ -27,27 +28,28 @@
 							</tr>
 						</thead>
 						<tbody id="dataCategory">
+							@if(!empty($data->products) > 0 )
 							@foreach($data->products as $product)
 							<tr class="">
 								<td>{{$product->id}}</td>
 								<td>{{$product->name}}</td>
 								<td>{{$product->description}}</td>
 								<td><img style="width: 80px" src="{{asset("images/$product->image")}}" alt=""></td>
-								<td>{{$product->status}}</td>
-								<td>{{$product->pro_hot}}</td>
+								<td><a href="{{route('get-action-product',['status',$product->id])}}" class="btn {{$product->getStatuts($product->status)['class']}}">{{$product->getStatuts($product->status)['name']}}</a></td>
+								<td><a href="{{route('get-action-product',['pro_hot',$product->id])}}" class="btn {{$product->getHot($product->pro_hot)['class']}}">{{$product->getHot($product->pro_hot)['name']}}</a></td>
 								<td>
 									<?php 
 									echo Carbon\Carbon::createFromTimeStamp(strtotime($product->created_at))->diffForHumans();;
 									?>
 								</td>
 								<td>
-									<a href="{{route('show-category',$product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-									<a href="{{route('edit-category',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
-									<a href="{{route('delete-category',$product->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+									<a href="{{route('show-product',$product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+									<a href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
+									<a onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-product',$product->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
 							@endforeach
-
+							@endif
 						</tbody>
 					</table>
 				</div>
@@ -55,7 +57,6 @@
 		</div>
 	</div>
 </div>
-
 @endsection
 
 

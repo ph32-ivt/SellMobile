@@ -17,26 +17,54 @@
 						<thead>
 							<tr class="text-primary">
 								<th>STT</th>
-								<th>Nhóm</th>
+								<th>Tên User</th>
+								<th>Giới tính</th>
+								<th>Email</th>
+								<th>Số Điện thoại</th>
+								<th>Địa chỉ</th>
 								<th class="pl-5">Action</th>
 							</tr>
 						</thead>
 						<tbody id="data">
-							@if(!empty($groupUser))
-							@foreach($groupUser as $groupUser)
-							@if(!empty($groupUser->id))
-							<td>{{$groupUser->id}}</td>
+							@if(!empty($users))
+							@foreach($users as $user)
+							@if(!empty($user->id))
+							<td>{{$user->id}}</td>
+							@else
+							<td></td>
+							@endif
+														
+							@if(!empty($user->name))
+							<td>{{$user->name}}</td>
 							@else
 							<td></td>
 							@endif
 
-							@if(!empty($groupUser->name))
-							<td>{{$groupUser->name}}({{!empty($groupUser->users)?$groupUser->users->count():'0'}})</td>
+							@if(!empty($user->gender))
+							<td>{{$user->getGender($user->gender)['name']}}</td>
+							@else
+							<td></td>
+							@endif
+
+							@if(!empty($user->email))
+							<td>{{$user->email}}</td>
+							@else
+							<td></td>
+							@endif
+
+							@if(!empty($user->phone))
+							<td>{{$user->phone}}</td>
+							@else
+							<td></td>
+							@endif
+
+							@if(!empty($user->address))
+							<td>{{$user->address}}</td>
 							@else
 							<td></td>
 							@endif
 								<td>
-									<a href="{{route('show-user',$groupUser->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+									<a href="{{route('show-user',$user->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
 									<a href="#"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
 									<a href=""><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
@@ -51,41 +79,6 @@
 	</div>
 </div>
 
-<!-- <script  type="text/javascript">
-	
-	$('#showModal').click(function(){
-		// alert('đ');
-		var modal= $(this).attr('data-target');
-		console.log(modal);
-		$( '#form-cate' ).attr({
-			action : '/categories',
-			method : 'POST'
-		}
-		);
-
-		$.ajax({
-			url : 'api/categories',
-			type : 'GET',
-			data : {},
-			success : function(result) {
-				console.log(result);
-			},
-			error: function(error)
-			{
-				console.log(error);
-			}
-
-		});
-	});
-	$('#editCate').click(function(event) {
-		/* Act on the event */
-		$('#form-cate').attr({
-			action: '/categories/'+cateId,
-			method: 'POST'
-		});
-		
-	});
-</script> -->
 @endsection
 
 

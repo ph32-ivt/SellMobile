@@ -37,7 +37,7 @@ CKEDITOR.editorConfig = function( config ) {
 	config.removeDialogTabs = 'image:advanced;link:advanced';
 
 
-	config.filebrowserImageBrowseUrl= 'http://localhost/SellMobile/public/ckfinder/ckfinder.html';
+	config.filebrowserImageBrowseUrl= 'http://minhhai.com/ckfinder/ckfinder.html';
     config.filebrowserUploadUrl= '/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files';
     config.filebrowserWindowWidth= '1000';
     config.filebrowserWindowHeight= '700'

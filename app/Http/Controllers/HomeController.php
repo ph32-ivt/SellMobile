@@ -12,10 +12,6 @@ class HomeController extends Controller
 	public function index(){
 		return view('admin.layouts.master');
 	}
-    // public function getLoginAdmin()
-    // {
-    // 	return view('admin.login');
-    // }
     public function getLoginAdmin()
     {
         return view('admin.login');

@@ -37,14 +37,25 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    const GENDER_FEMALE = 0;
+    const GENDER_MALE = 1;
+
+    protected $gender2 = [
+        1 =>[
+            'name' => 'Nam'
+        ],
+        0 =>[
+            'name' => 'Nữ'
+        ]
+    ];
+   public function getGender(){
+        return array_get($this->gender2,$this->gender,'[N\A]');
+    }
      public function order(){
         return $this->belongsTo('App\Order');
     }
-    public function user_role()
-    {
-        return $this->belongsTo('App\UserRole');
-    }
+
     public function roles(){
-        return $this->belongsToMany('App\Role','user_id');
+        return $this->belongsToMany('App\Role','user_roles');
     }
 }
