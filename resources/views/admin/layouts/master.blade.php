@@ -5,7 +5,9 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Admin SellMobile</title>
+
+  <title>Star Admin</title>
+
   <link rel="stylesheet" href="{{ asset('admin/node_modules/font-awesome/css/font-awesome.min.css')}}" />
 
    <link rel="stylesheet" href="{{ asset('admin/fontasome/css/all.css')}}" />
