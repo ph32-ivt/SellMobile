@@ -30,21 +30,24 @@
 							</tr>
 						</thead>
 						<tbody id="dataCategory">
-							<td>â</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
+							@foreach($products as $product)							
+							<tr>
+							<td>{{$product->id}}</td>
+							<td>{{$product->name}}</td>
+							<td>{{$product->description}}</td>
+							<td> <img src="{{asset($product->image)}}" width="50px" height="50px" alt=""></td>
+							<td>{{$product->category->name}}</td>
+							<td>{{$product->brand->name}}</td>
+							<td>{{$product->status}}</td>
+							<td>{{$product->pro_hot}}</td>
+							<td>{{$product->created_at}}</td>
 								<td>
 									<a href=""><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
 									<a href="#"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
 									<a href=""><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
+							@endforeach
 						</tbody>
 					</table>
 				</div>

@@ -68,3 +68,13 @@ Route::prefix('admin')->group(function(){
 
 
 
+Route::get('contact', 'ContactController@formContact')->name('form-contact');
+Route::post('contact', 'ContactController@sendMail')->name('send-contact');
+
+
+Route::get('products/{id}','HomeController@show')->name('show-product');
+Route::get('probycate/{id}','HomeController@show_product_by_category')->name('showbycate');
+Route::get('/register', 'HomeController@register')->name('register-user');
+Route::post('/register', 'HomeController@postRegister')->name('postRegister');
+Route::get('/login','HomeController@login')->name('login');
+Route::post('/login','HomeController@postLogin')->name('postLogin');		
