@@ -17,10 +17,11 @@ class CreateProductsTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('pro_slug');
-            $table->text('description');
-            $table->string('image');
-            $table->tinyInteger('status')->length(1)->unsigned()->default(1);
-            $table->tinyInteger('pro_hot')->length(1)->unsigned()->default(1); 
+            $table->text('description')->nullable();
+            $table->text('content')->nullable();
+            $table->string('image')->nullable();
+            $table->integer('status')->default(0);
+            $table->integer('pro_hot')->default(0); 
             $table->integer('category_id')->unsigned();
             $table->integer('brand_id')->unsigned();
             $table->softDeletes();

@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>Star Admin</title>
-
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="{{ asset('admin/node_modules/font-awesome/css/font-awesome.min.css')}}" />
 
-   <link rel="stylesheet" href="{{ asset('admin/fontasome/css/all.css')}}" />
-     
+  <link rel="stylesheet" href="{{ asset('admin/fontasome/css/all.css')}}" />
+
 
   <link rel="stylesheet" href="{{ asset('admin/node_modules/perfect-scrollbar/dist/css/perfect-scrollbar.min.css')}}" />
   <link rel="stylesheet" href="{{ asset('admin/node_modules/flag-icon-css/css/flag-icon.min.css')}}" />
@@ -31,7 +31,8 @@
   <script src="{{ asset('admin/fontasome/js/all.js')}}"></script>
   
   <script src="{{ asset('admin/js/jquery-3.4.1.js') }}"></script>
-</head>
+  
+</head >
 
 <body>
   <div class=" container-scroller">
@@ -41,23 +42,24 @@
     <!-- partial -->
     <div class="container-fluid">
       <div class="row row-offcanvas row-offcanvas-right">
- 
+
         @include('admin.layouts.blocks.nav')
         <!-- partial -->
-         <div class="content-wrapper">
-               @yield('content')
-          </div>
-<!--        @include('admin.layouts.blocks.partial') -->
-      
-        @include('admin.layouts.blocks.footer')  
-        <!-- partial -->
- 
-      </div>
-    </div>
+        <div class="content-wrapper">
+         @yield('content')
+       </div>
+       <!--        @include('admin.layouts.blocks.partial') -->
+       
+       @include('admin.layouts.blocks.footer')  
+       <!-- partial -->
+       
+     </div>
+   </div>
 
-  </div>
+ </div>
 
-  
+  <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+  @yield('js')
 </body>
 
 </html>
