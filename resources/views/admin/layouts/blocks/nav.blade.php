@@ -64,7 +64,7 @@
               <div class="collapse" id="sample-pages">
                 <ul class="nav flex-column sub-menu">
                   <li class="nav-item">
-                    <a class="nav-link" href="pages/samples/blank_page.html">
+                    <a class="nav-link" href="{{route('history-category')}}">
                       Thể loại
                     </a>
                   </li>

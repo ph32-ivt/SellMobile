@@ -96,19 +96,6 @@ class HomeController extends Controller
     }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-    
     public function getLoginAdmin()
     {
         return view('admin.login');

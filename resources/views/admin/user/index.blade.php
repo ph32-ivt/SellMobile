@@ -6,7 +6,7 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-10">
-						<h5 class="card-title">Sản Phẩm</h5>
+						<h5 class="card-title">Quản trị user</h5>
 					</div>
 					<div class="col-md-2">
 						<button class="mb-2 btn btn-primary"><a href="{{route('create-user')}}">Thêm mới</a></button>			
@@ -17,31 +17,32 @@
 						<thead>
 							<tr class="text-primary">
 								<th>STT</th>
-								<th>Tên User</th>
-								<th>Email</th>
-								<th>Giới Tính</th>
-								<th>Số Điện Thoại</th>
-								<th>Địa chỉ</th>
-								<th>Trạng Thái</th>
-								<th>Ngày Đăng kí</th>
+								<th>Nhóm</th>
 								<th class="pl-5">Action</th>
 							</tr>
 						</thead>
-						<tbody id="dataCategory">
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
+						<tbody id="data">
+							@if(!empty($groupUser))
+							@foreach($groupUser as $groupUser)
+							@if(!empty($groupUser->id))
+							<td>{{$groupUser->id}}</td>
+							@else
+							<td></td>
+							@endif
+
+							@if(!empty($groupUser->name))
+							<td>{{$groupUser->name}}({{!empty($groupUser->users)?$groupUser->users->count():'0'}})</td>
+							@else
+							<td></td>
+							@endif
 								<td>
-									<a href=""><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+									<a href="{{route('show-user',$groupUser->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
 									<a href="#"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
 									<a href=""><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
+							@endforeach
+							@endif
 						</tbody>
 					</table>
 				</div>

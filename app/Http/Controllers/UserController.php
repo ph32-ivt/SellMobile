@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -13,17 +15,11 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('admin.user.index');
+        $groupUser = Role::with('users')->get();
+        return view('admin.user.index',compact('groupUser'));
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
     }
 
     /**
@@ -45,7 +41,8 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+       $users = User::with('roles')->where('id',$id)->get();
+       return view('admin.user.showUser',compact('users'));
     }
 
     /**

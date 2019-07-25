@@ -11,16 +11,15 @@ class CategoriesTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('categories')->insert([
-            /*phone*/
-        		['name'=>'Điện thoại di động','parent_id'=>'0','cate_slug'=>'dien-thoai-di-dong'],
-                ['name'=>'Samsung','parent_id'=>'1','cate_slug'=>'sam-sung'],
-                ['name'=>'Iphone','parent_id'=>'1', 'cate_slug'=>'iphone'],
-                ['name'=>'Oppo','parent_id'=>'1', 'cate_slug'=>'oppo'],
-                ['name'=>'Xiaomi','parent_id'=>'1', 'cate_slug'=>'xiaomi'],
-                ['name'=>'Huawai','parent_id'=>'1', 'cate_slug'=>'huawai'],
-                ['name'=>'Nokia','parent_id'=>'1', 'cate_slug'=>'nokia'],
-                ['name'=>'Mobile','parent_id'=>'1', 'cate_slug'=>'mobile']
+      DB::table('categories')->insert([
+        /*phone*/
+        ['name'=>'Samsung','cate_slug'=>'sam-sung','created_at' => now(),'updated_at' => now()],
+        ['name'=>'Iphone', 'cate_slug'=>'iphone','created_at' => now(),'updated_at' => now()],
+        ['name'=>'Oppo', 'cate_slug'=>'oppo','created_at' => now(),'updated_at' => now()],
+        ['name'=>'Xiaomi', 'cate_slug'=>'xiaomi','created_at' => now(),'updated_at' => now()],
+        ['name'=>'Huawai', 'cate_slug'=>'huawai','created_at' => now(),'updated_at' => now()],
+        ['name'=>'Nokia', 'cate_slug'=>'nokia','created_at' => now(),'updated_at' => now()],
+        ['name'=>'Mobile', 'cate_slug'=>'mobile','created_at' => now(),'updated_at' => now()]
                 /*
                 */
 
@@ -30,6 +29,6 @@ class CategoriesTableSeeder extends Seeder
         		// ['name'=>'Ốp lưng','cate_slug'=>'op-lung'],
           //       ['name'=>'Ốp lưng da','cate_slug'=>'op-lung-da'],
           //       ['name'=>'Ốp lưng vải','cate_slug'=>'op-lung-vai']
-        ]);
+              ]);
     }
-}
+  }

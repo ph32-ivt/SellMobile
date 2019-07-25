@@ -16,19 +16,19 @@
 					<table class="table center-aligned-table">
 						<thead>
 							<tr class="text-primary">
-								<th>STT</th>
+								<th>ID</th>
 								<th>Tên Sản Phẩm</th>
-								<th>Mô Tả</th>
+								<th >Mô Tả</th>
 								<th>Hình Ảnh</th>
 								<th>Thể Loại</th>
-								<th>Nhà Sản Xuất</th>
 								<th>Trạng Thái</th>
 								<th>Nổi Bật</th>
 								<th>Ngày Đăng</th>
-								<th class="pl-5">Action</th>
+								<th colspan="2">Action</th>
 
 							</tr>
 						</thead>
+<<<<<<< HEAD
 						<tbody id="dataCategory">
 							@foreach($products as $product)							
 							<tr>
@@ -41,56 +41,52 @@
 							<td>{{$product->status}}</td>
 							<td>{{$product->pro_hot}}</td>
 							<td>{{$product->created_at}}</td>
+=======
+						<tbody id="dataProduct">
+							@if(!empty($products)==true)
+
+							@foreach($products as $product)
+							
+
+							<tr>
+								<td>{{$product->id}}</td>
+								<td>{{$product->name}}</td>
+								<td >{!!$product->description!!}</td>
+								<td><img style="width: 80px" src="{{asset("images/$product->image")}}" alt=""></td>
+								@if (!empty($product->category))
+								<td>{{$product->category->name}}</td>
+								@else
 								<td>
-									<a href=""><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-									<a href="#"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
-									<a href=""><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+								</td>
+								@endif
+								
+								<td><a href="{{route('get-action-product',['status',$product->id])}}" class="btn {{$product->getStatuts($product->status)['class']}}">{{$product->getStatuts($product->status)['name']}}</a></td>
+								<td><a href="{{route('get-action-product',['pro_hot',$product->id])}}" class="btn {{$product->getHot($product->pro_hot)['class']}}">{{$product->getHot($product->pro_hot)['name']}}</a></td>
+
+								<td>
+									<?php 
+									echo Carbon\Carbon::createFromTimeStamp(strtotime($product->created_at))->diffForHumans();;
+									?>
+								</td>
+>>>>>>> 9b36f4662068f2ec6232b0728e0654e03dd8d7d4
+								<td>
+									<a href="{{route('show-product',$product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+									<a href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
+									<a onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-product',$product->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
 							@endforeach
+<<<<<<< HEAD
+=======
+							@endif
+>>>>>>> 9b36f4662068f2ec6232b0728e0654e03dd8d7d4
 						</tbody>
 					</table>
 				</div>
+				{{ $products->links() }}
 			</div>
 		</div>
 	</div>
 </div>
 
-<!-- <script  type="text/javascript">
-	
-	$('#showModal').click(function(){
-		// alert('đ');
-		var modal= $(this).attr('data-target');
-		console.log(modal);
-		$( '#form-cate' ).attr({
-			action : '/categories',
-			method : 'POST'
-		}
-		);
-
-		$.ajax({
-			url : 'api/categories',
-			type : 'GET',
-			data : {},
-			success : function(result) {
-				console.log(result);
-			},
-			error: function(error)
-			{
-				console.log(error);
-			}
-
-		});
-	});
-	$('#editCate').click(function(event) {
-		/* Act on the event */
-		$('#form-cate').attr({
-			action: '/categories/'+cateId,
-			method: 'POST'
-		});
-		
-	});
-</script> -->
 @endsection
-
-

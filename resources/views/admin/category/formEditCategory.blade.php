@@ -5,9 +5,6 @@
 		<form action="{{route('update-category',$category->id)}}" method="POST">
 			@csrf
 			@method('PUT')
-			<select class="form-control" name="parent" id="parent">
-				
-			</select>
 			<div  class="form-group">
 				<label for="">Tên thể loại</label>
 				<input id="name" name="name" type="text" class="form-control" value="{{$category->name}}">

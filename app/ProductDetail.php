@@ -9,10 +9,10 @@ class ProductDetail extends Model
 	protected $table = 'product_details';
 	protected $fillable = 
 	[
-		'cpu','display','pin','sim','memory','camera','price','option','quantity','product_id'
+		'cpu','display','pin','sim','memory','camera','price','product_id'
 	];
 	public function product(){
-		return $this->belongsTo('App\Product');
+		return $this->hasOne('App\Product');
 	}
 	
 }
