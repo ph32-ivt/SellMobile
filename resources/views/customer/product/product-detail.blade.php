@@ -35,7 +35,7 @@
                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                     <div class="product-single">
                                         <h2>{{$product->name}} </h2>                                    
-                                        <p class="product-price" style="font-size: 38px;">{{number_format($product->productDetail->price)}} VND </p>
+                                        <p class="product-price" style="font-size: 38px;">{{number_format($product->productDetail['price'])}} VND </p>
 
                                         <form method="POST" action="{{route('addCart',$product->id)}}">
                                             <span>
@@ -93,12 +93,12 @@
                                             </div>
                                             <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb30">
                                                 <ul>
-                                                    <li style="color: #1c1e1e;">{{$product->productDetail->cpu}}</li>
-                                                    <li style="color: #1c1e1e;">{{$product->productDetail->display}}</li>
-                                                    <li style="color: #1c1e1e;">{{$product->productDetail->pin}}</li>
-                                                    <li style="color: #1c1e1e;">{{$product->productDetail->sim}}</li>
-                                                    <li style="color: #1c1e1e;">{{$product->productDetail->memory}}</li>
-                                                    <li style="color: #1c1e1e;">{{$product->productDetail->camera}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail['cpu']}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail['display']}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail['pin']}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail['sim']}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail['memory']}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail['camera']}}</li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -180,7 +180,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="form-group">
                                             <label class="control-label sr-only " for="email"></label>
-                                            <input id="email" type="text" class="form-control" placeholder="Email"  title="email">
+                                            <input id="email" type="text" class="form-control" placeholder="Email"  title="email" name="email">
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

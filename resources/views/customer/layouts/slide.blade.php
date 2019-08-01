@@ -4,7 +4,7 @@
         @foreach($slide as $item)
             <div class="item">
                 <div class="slider-img">
-                    <img src="{{$item->path}}" alt="" style="width: 90%;height: 480px; margin: 0 auto"></div>
+                    <img src="images/slides/{{$item->image}}" alt="" style="width: 90%;height: 480px; margin: 0 auto"></div>
                     <div class="container">
                         <div class="row">
                             <div class="col-lg-5 col-md-8 col-sm-6 col-xs-12">

@@ -13,16 +13,14 @@
             <div class="row">
                 <div class="owl-carousel owl-two owl-theme">
                     <!-- product -->
-                    @foreach($pro as $prohot)
-                    @foreach($prodels as $prodel)
-                    @if($prohot->id==$prodel->product_id)
+                    @foreach($pro as $prohot)                    
                     <div class="item">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="product-block">
                                 <div class="product-img"><a href="{{route('show-product',$prohot->id)}}"><img src="images/{{$prohot->image}}" alt="" /></a></div>
                                 <div class="product-content">
                                     <h5><a href="#" class="product-title">{{$prohot->name}} </a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">{{number_format($prodel->price,2,'.',',')." VNĐ"}}</a>
+                                    <div class="product-meta"><a href="#" class="product-price">{{number_format($prohot->productDetail['price'],2,'.',',')." VNĐ"}}</a>
 
                                     </div>
                                     <div class="shopping-btn">
@@ -39,9 +37,7 @@
                         </div>
                     </div>
                     <!-- /.product -->
-                </div>
-                @endif
-                @endforeach
+                </div>                
                 @endforeach
                 <!-- product -->
 

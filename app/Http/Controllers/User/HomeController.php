@@ -24,13 +24,11 @@ class HomeController extends Controller
     {
         
         $categories=Category::all();
-        $products_hot=Product::where('pro_hot','0')->get();
-        $products=Product::where('pro_hot','<>','0')->paginate(8);
-        // $products=Product::paginate(6);
-        $prodels=ProductDetail::all();
-        $slides=Slide::all();
-
-        return view('customer.product.list-product',compact('categories','products','prodels','products_hot','slides'));
+        $products_hot=Product::with('productDetail')->where('pro_hot','0')->get();
+        $products=Product::with('productDetail')->where('pro_hot','<>','0')->paginate(8);
+        // $products=Product::paginate(6);       
+        $slides=Slide::all();        
+        return view('customer.product.list-product',compact('categories','products','products_hot','slides'));
     }
     public function show($id)
     {

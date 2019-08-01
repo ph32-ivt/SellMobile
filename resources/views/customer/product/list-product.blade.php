@@ -1,7 +1,7 @@
 @extends('customer.layouts.master')
 @section('content')
 @include('customer.layouts.slide',['slide'=>$slides])
-@include('customer.layouts.product_hot',['pro'=>$products_hot,'prodels'=>$prodels])
+@include('customer.layouts.product_hot',['pro'=>$products_hot])
 <div class="container">
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -12,15 +12,13 @@
                 <div class="box-body">
                     <div class="row">
                         <!-- product -->
-                        @foreach($products as $product)
-                        @foreach($prodels as $prodel)
-                        @if($product->id==$prodel->product_id)
+                        @foreach($products as $product)                        
                         <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                             <div class="product-block">
                                 <div class="product-img"> <a href="{{route('show-product',$product->id)}}"><img src="images/{{$product->image}}" alt="" /></a></div>
                                 <div class="product-content">
                                     <h5><a href="#" class="product-title">{{$product->name}}</a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">{{number_format($prodel->price,2,'.',',')." VNĐ"}}</a>
+                                    <div class="product-meta"><a href="#" class="product-price">{{number_format($product->productDetail['price'],2,'.',',')." VNĐ"}}</a>
 
                                     </div>
                                     <div class="shopping-btn">
@@ -37,8 +35,6 @@
                                 </div>
                             </div>
                         </div>
-                        @endif
-                        @endforeach
                         @endforeach
 
                     </div>

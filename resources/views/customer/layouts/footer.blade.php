@@ -8,13 +8,11 @@
                                         <h3 class="footer-title">Contact Info </h3>
                                         <div class="contact-info">
                                             <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
-                                            <span class="contact-text">1683 Pickens Way Sherman,<br>
-                                                Bird Street Albuquerque 
-                                            Us 75090</span>
+                                            <span class="contact-text">92 Quang Trung ,Hải Châu ,Đà Nẵng</span>
                                         </div>
                                         <div class="contact-info">
                                             <span class="contact-icon"><i class="fa fa-phone"></i></span>
-                                            <span class="contact-text">+180-123-4567 / 89</span>
+                                            <span class="contact-text">0905003456</span>
                                         </div>
                                         <div class="contact-info">
                                             <span class="contact-icon"><i class="fa fa-envelope"></i></span>
@@ -27,29 +25,13 @@
                                     <div class="footer-widget">
                                         <h3 class="footer-title">Quick Links</h3>
                                         <ul class="arrow">
-                                            <li><a href="#">Home </a></li>
+                                            <li><a href="{{route('home')}}">Home </a></li>
+                                            <li><a href="{{route('form-contact')}}">Contact</a></li>
                                             <li><a href="#">About</a></li>
-                                            <li><a href="#">Mobiles</a></li>
-                                            <li><a href="#">Blog</a></li>
-                                            <li><a href="#">Contact</a></li>
                                         </ul>
                                     </div>
                                 </div>
-                                <!-- /.footer-useful-links -->
-                                <!-- footer-policy-list-links -->
-                                <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
-                                    <div class="footer-widget">
-                                        <h3 class="footer-title">Policy Info</h3>
-                                        <ul class="arrow">
-                                            <li><a href="#">Payments</a></li>
-                                            <li><a href="#">Cancellation &amp; Returns</a></li>
-                                            <li><a href="#">Shipping and Delivery</a></li>
-                                            <li><a href="#">Privacy Policy</a></li>
-                                            <li><a href="#">T &amp; C</a></li>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <!-- /.footer-policy-list-links -->
+                                <!-- /.footer-useful-links -->                              
                                 <!-- footer-social links -->
                                 <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <div class="footer-widget">

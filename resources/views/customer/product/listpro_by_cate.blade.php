@@ -17,7 +17,7 @@
                                 <div class="product-img"> <a href="{{route('show-product',$product->id)}}"><img src="../images/{{$product->image}}" alt="" /></a></div>
                                 <div class="product-content">
                                     <h5><a href="#" class="product-title">{{$product->name}}</a></h5>
-                                    <div class="product-meta"><a href="#" class="product-price">{{number_format($product->productDetail->price,2,'.',',')." VNĐ"}}</a>
+                                    <div class="product-meta"><a href="#" class="product-price">{{number_format($product->productDetail['price'],2,'.',',')." VNĐ"}}</a>
 
                                     </div>
                                     <div class="shopping-btn">

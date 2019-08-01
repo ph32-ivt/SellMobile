@@ -34,6 +34,8 @@ class CommentController extends Controller
             'product_id'=>$request->product_id
 
             ];
-            dd($data);
+            
+            $comment=Comment::create($data);
+            return redirect()->back()->with('success','Create comments successfull!');
     }
 }
