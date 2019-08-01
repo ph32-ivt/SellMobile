@@ -10,7 +10,7 @@
 		<div class="row">
 			<div class="col-md-7">
 				<h1>Tên sản phẩm:<i>{{!empty($product->name)?$product->name:''}}</i></h1>
-				<h2>Giá : <i style="color:red">{{!empty($product->productDetail->price)?$product->productDetail->price:''}}</i></h2>
+				<h2>Giá : <i style="color:red">{{!empty($product->productDetail->price)?number_format($product->productDetail->price):''}} VND</i></h2>
 			</div>
 			<div class="col-md-4 text-right">
 				
@@ -56,6 +56,10 @@
 					<tr>
 						<th>Sim :</th>
 						<td>{{!empty($product->productDetail->sim) ? $product->productDetail->sim:''}}</td>
+					</tr>
+					<tr>
+						<th>Option :</th>
+						<td>{{!empty($product->productDetail->option) ? $product->productDetail->option:''}}</td>
 					</tr>
 				</table>
 			</div>

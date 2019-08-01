@@ -20,7 +20,7 @@
                                     <button type="button" class="btn btn-default get">Get it now</button>
                                 </div>
                                 <div class="col-sm-6">
-                                    <img src="{{$slide->path}}" class="girl img-responsive" alt="" />
+                                    <img src="{{$slide->image}}" class="girl img-responsive" alt="" />
                                     
                                 </div>
                             </div>

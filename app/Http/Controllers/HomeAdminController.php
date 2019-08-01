@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use App\User;
-use Illuminate\Support\Facades\Auth;
-class AdminController extends Controller
+use App\Product;
+use App\Order;
+use App\Comment;
+class HomeAdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +16,20 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+
+        $sumUser = User::all()->count();
+        $sumOrder = Order::all()->count();
+        $sumProduct = Product::all()->count();
+        $sumComment = Comment::all()->count();
+
+
+        $dataView = [
+            'sumUser' => $sumUser,
+            'sumOrder' => $sumOrder,
+            'sumProduct'=>$sumProduct,
+            'sumComment'=>$sumComment
+        ];
+        return view('admin.index',$dataView);
     }
 
     /**
@@ -83,5 +97,4 @@ class AdminController extends Controller
     {
         //
     }
-    
 }

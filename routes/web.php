@@ -10,76 +10,147 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-// Route::get('/', function () {
-// 	return view('welcome');
+
+Route::get('/', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::group([
+	'middleware' => ['auth','is.Admin'],
+	'prefix'     => 'admin',
+], function () {
+	Route::get('/home','HomeAdminController@index')->name('home-admin');
+
+	Route::get('/category/','CategoryController@index')->middleware('CheckAcl:view-category')->name('index-category');
+
+	Route::get('/category/create','CategoryController@create')->middleware('CheckAcl:create-category')->name('create-category');
+	
+	Route::post('/category','CategoryController@store')->name('store-category');
+	
+	Route::get('/category/{id}/edit','CategoryController@edit')->middleware('CheckAcl:edit-category')->name('edit-category');
+	
+	Route::get('/category/{id}','CategoryController@show')->name('show-category');
+	
+	Route::put('/category/{id}','CategoryController@update')->name('update-category');
+	
+	Route::get('/category/{id}/delete','CategoryController@destroy')->middleware('CheckAcl:delete-category')->name('delete-category');
+	
+	Route::get('/category/show/history/','CategoryController@history')->middleware('CheckAcl:history-category')->name('history-category');
+	
+	Route::get('/category/forceDelete/{id}','CategoryController@forceDelete')->name('forceDelete-category');
+	
+	Route::get('/category/{id}/restore','CategoryController@restore')->name('restore-category');
 
 
-// });
-Route::get('/','HomeController@index')->name('home');
-Route::get('/admin/login','HomeController@getLoginAdmin')->name('admin-login');
-Route::post('/admin/login', 'HomeController@postLoginAdmin')->name('post-login');
-Route::prefix('admin')->group(function(){
 
-	Route::prefix('category')->group(function(){	
 
-		Route::get('/','CategoryController@index')->name('index-category');
-		Route::get('/create','CategoryController@create')->name('create-category');
-		Route::post('/','CategoryController@store')->name('store-category');
-		Route::get('/{id}/edit','CategoryController@edit')->name('edit-category');
-		Route::get('/{id}','CategoryController@show')->name('show-category');
-		Route::put('/{id}','CategoryController@update')->name('update-category');
-		Route::get('/{id}/delete','CategoryController@destroy')->name('delete-category');
-		Route::get('/history/category/','CategoryController@history')->name('history-category');
-		Route::get('/forceDelete/{id}','CategoryController@forceDelete')->name('forceDelete-category');
 
-	});
 
-	Route::prefix('product')->group(function(){	
-		Route::get('/','ProductController@index')->name('index-product');
-		Route::get('/create','ProductController@create')->name('create-product');
-		Route::post('/','ProductController@store')->name('store-product');
-		Route::get('/{id}/edit','ProductController@edit')->name('edit-product');
-		Route::put('/{id}','ProductController@update')->name('update-product');
-		Route::get('/delete/{id}','ProductController@destroy')->name('delete-product');
-		Route::get('/{action}/{id}','ProductController@action')->name('get-action-product');		
-		Route::get('/{id}','ProductController@show')->name('show-product');
-		
-	});
+	Route::get('/product/','ProductController@index')->middleware('CheckAcl:view-product')->name('index-product');
 
-	Route::prefix('user')->group(function(){	
+	Route::get('/product/create','ProductController@create')->middleware('CheckAcl:create-product')->name('create-product');
 
-		Route::get('/','UserController@index')->name('index-user');
-		Route::get('/create','UserController@create')->name('create-user');
-		Route::post('/','UserController@store')->name('store-user');
-		Route::get('/{id}','UserController@show')->name('show-user');
-		Route::get('/edit/{id}','UserController@edit')->name('edit-user');
-		Route::put('/update{id}','UserController@update')->name('update-user');
-		Route::delete('/delete/{id}','UserController@destroy')->name('delete-user');
-		
-	});
+	Route::post('/product/','ProductController@store')->name('store-product');
 
-	Route::prefix('order')->group(function(){	
+	Route::get('/product/{id}/edit','ProductController@edit')->middleware('CheckAcl:edit-product')->name('edit-product');
 
-		Route::get('/','OrderController@index')->name('index-order');
-		Route::get('/create','OrderController@create')->name('create-order');
-		Route::post('/store','OrderController@store')->name('store-order');
-		Route::get('/edit/{id}','OrderController@edit')->name('edit-order');
-		Route::put('/update{id}','OrderController@update')->name('update-order');
-		Route::delete('/delete/{id}','OrderController@destroy')->name('delete-order');
-		
-	});
+	Route::put('/product/{id}','ProductController@update')->name('update-product');
+
+	Route::get('/product/delete/{id}','ProductController@destroy')->middleware('CheckAcl:delete-product')->name('delete-product');
+
+	Route::get('/product/{action}/{id}','ProductController@action')->middleware('CheckAcl:action-product')->name('get-action-product');
+
+	Route::get('/product/{id}','ProductController@show')->name('show-product');
+
+
+
+
+
+
+	Route::get('/user/','UserController@index')->name('index-user');
+
+	Route::get('/user/create','UserController@create')->middleware('CheckAcl:create-user')->name('create-user');
+
+	Route::post('/user/','UserController@store')->name('store-user');
+
+	Route::get('/user/{id}','UserController@show')->middleware('CheckAcl:view-user')->name('show-user');
+
+	Route::get('/user/edit/{id}','UserController@edit')->middleware('CheckAcl:edit-user')->name('edit-user');
+
+	Route::put('/user/update{id}','UserController@update')->name('update-user');
+
+	Route::get('/user/{id}/delete','UserController@destroy')->middleware('CheckAcl:delete-user')->name('delete-user');
+
+	
+
+
+	
+
+	Route::get('/role/create/','RoleController@create')->middleware('CheckAcl:create-role')->name('create-role');
+
+	Route::post('/role/','RoleController@store')->name('store-role');
+
+	Route::get('/role/{id}/edit/','RoleController@edit')->middleware('CheckAcl:edit-role')->name('edit-role');
+
+	Route::put('/role/{id}/','RoleController@update')->name('update-role');
+
+	Route::get('/role/{id}/','RoleController@destroy')->middleware('CheckAcl:delete-role')->name('destroy-role');
+
+
+
+
+
+	Route::get('/order/','OrderController@index')->middleware('CheckAcl:view-order')->name('index-order');
+
+	Route::get('/order/{id}/delete','OrderController@destroy')->middleware('CheckAcl:delete-order')->name('delete-order');
+
+	Route::get('/order/argee','OrderController@getAgree')->middleware('CheckAcl:view-category')->name('order-da-duyet');
+
+	Route::get('/order/disAgree','OrderController@getDisAgree')->middleware('CheckAcl:view-category')->name('order-disAgree');
+
+	Route::get('/order/{id}/duyet','OrderController@browseOrder')->middleware('CheckAcl:browser-order')->name('duyet.don.hang');
+
+	Route::get('/order/{id}','OrderController@show')->middleware('CheckAcl:view-category')->name('show-order-detail');
+
+	Route::get('/order/show/history','OrderController@showHistoryOrder')->middleware('CheckAcl:history-order')->name('order-show-history');
+
+	Route::get('/order/{id}/history-order-detail','OrderController@showHistoryOrderDetail')->name('history-order-detail');
+
+	Route::get('/order/{id}/restore','OrderController@restore')->name('restore-history-order');
+
+	Route::get('/order/{id}/forceDelete','OrderController@forceDelete')->name('forceDelete-history-order');		
+
+
+
+
+
+	Route::get('/silder/','SlidesController@index')->name('index-silder');
+
+	Route::get('/silder/create','SlidesController@create')->middleware('CheckAcl:create-slide')->name('create-slider');
+
+	Route::post('/silder/','SlidesController@store')->name('store-slider');
+
+	Route::get('/slider/{id}/update/status','SlidesController@upadateStatusSlide')->middleware('CheckAcl:view-category')->name('update-status-slide');
+
+	Route::get('/silder/{id}','SlidesController@destroy')->middleware('CheckAcl:delete-slide')->name('destroy-silder');
 
 });
 
 
 
-Route::get('contact', 'ContactController@formContact')->name('form-contact');
-Route::post('contact', 'ContactController@sendMail')->name('send-contact');
 
 
-Route::get('products/{id}','HomeController@show')->name('show-product');
-Route::get('probycate/{id}','HomeController@show_product_by_category')->name('showbycate');
-Route::get('/register', 'HomeController@register')->name('register-user');
-Route::post('/register', 'HomeController@postRegister')->name('postRegister');
-Route::get('/login','HomeController@login')->name('login');
-Route::post('/login','HomeController@postLogin')->name('postLogin');		
+
+
+ Route::get('contact', 'ContactController@formContact')->name('form-contact');
+ Route::post('contact', 'ContactController@sendMail')->name('send-contact');
+
+
+ Route::get('/{id}','HomeController@show')->name('show-product-home');
+ Route::get('probycate/{id}','HomeController@show_product_by_category')->name('showbycate');
+ Route::get('/register', 'HomeController@register')->name('register-user');
+ Route::post('/register', 'HomeController@postRegister')->name('postRegister');
+
+
+
+

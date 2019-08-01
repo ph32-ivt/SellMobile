@@ -8,11 +8,11 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-8">
-						<h5 class="card-title">Thể loại</h5>
+						<h5 class="card-title">DANH MỤC</h5>
 						<a href="{{route('history-category')}}">Lịch sử xóa</a>
 					</div>
 					<div class="col-md-2">
-						<button class="mb-2 btn btn-primary"><a href="{{route('create-category')}}">Thêm mới</a></button>			
+						<button class="mb-2 btn btn-primary"><a href="{{route('create-category')}}" style="color:#ffffff;">Thêm mới</a></button>			
 					</div>
 				</div>
 				<div class="table-responsive">
@@ -20,7 +20,7 @@
 						<thead>
 							<tr class="text-primary">
 								<th>ID</th>
-								<th>Tên thể loại</th>
+								<th>Tên danh mục</th>
 								<th>Ngày đăng</th>
 								<th class="pl-5">Action</th>
 
@@ -37,9 +37,9 @@
 									 ?>
 								</td>
 								<td>
-									<a href="{{route('show-category',$category->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-									<a href="{{route('edit-category',$category->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
-									<a onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-category',$category->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+									<a title="xem sản phẩm" href="{{route('show-category',$category->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+									<a title="Sửa danh mục" href="{{route('edit-category',$category->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
+									<a title="Xóa danh mục" onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-category',$category->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
 							@endforeach

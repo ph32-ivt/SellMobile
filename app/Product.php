@@ -9,9 +9,8 @@ class Product extends Model
 	protected $table = 'products';
 	protected $fillable = 
 	[
-		'name','pro_slug','description','content','image','status','pro_hot','category_id','brand_id'
+		'name','pro_slug','description','content','image','status','pro_hot','category_id'
 	];
-	
 	const STATUS_PUBLIC = 1;
 	const STATUS_PRIVATE = 0;
 
@@ -50,9 +49,7 @@ class Product extends Model
 	public function category(){
 		return $this->belongsTo('App\Category');
 	}
-	public function brand(){
-		return $this->belongsTo('App\Brand');
-	}
+
 	public function productDetail(){
 		return $this->hasOne('App\ProductDetail');
 	}
@@ -60,7 +57,7 @@ class Product extends Model
 		return $this->hasMany('App\Comment');
 	}
 	public function orderDetails(){
-		return $this->hasMany('App\OrderDetail');
+		return $this->belongsTo('App\OrderDetail');
 	}
 
 

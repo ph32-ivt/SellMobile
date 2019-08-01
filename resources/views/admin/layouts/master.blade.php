@@ -31,7 +31,8 @@
   <script src="{{ asset('admin/fontasome/js/all.js')}}"></script>
   
   <script src="{{ asset('admin/js/jquery-3.4.1.js') }}"></script>
-  
+  <script src="{{ asset('admin/js/admin.js') }}"></script>
+
 </head >
 
 <body>
@@ -48,7 +49,7 @@
         <div class="content-wrapper">
          @yield('content')
        </div>
-       <!--        @include('admin.layouts.blocks.partial') -->
+
        
        @include('admin.layouts.blocks.footer')  
        <!-- partial -->
@@ -58,8 +59,31 @@
 
  </div>
 
-  <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
-  @yield('js')
+ <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
+ @if(session('fail'))
+ <script>
+   alert('{{session('fail')}}');
+ </script>
+ @endif
+ @yield('js')
+
+ <script>
+   function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        $('.out_image').attr('src', e.target.result);
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  $(".input_image").change(function() {
+    readURL(this);
+  });
+</script>
 </body>
 
 </html>

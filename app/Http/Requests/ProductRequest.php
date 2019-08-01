@@ -33,7 +33,8 @@ class ProductRequest extends FormRequest
             'sim'=>'required',
             'camera'=>'required',
             'price'=>'required|integer',
-            'image' => 'mimes:jpeg,jpg,png,gif'
+            'image' => 'mimes:jpeg,jpg,png,gif',
+            'quantity'=>'required'
         ];
     }
     public function messages(){
@@ -48,8 +49,8 @@ class ProductRequest extends FormRequest
            'camera.required'=>'**Vui lòng nhập Camera',
            'price.required'=>'**Vui lòng nhập giá',
            'price.integer'=>'Vui lòng nhập kiểu số',
-           'price.max'=>'Vui lòng nhập lại không quá 10 chữ số',
-           'image.mimes' => 'Vui lòng chọn hình có đuôi *jpg,jpeg,png'
+           'image.mimes' => 'Vui lòng chọn hình có đuôi *jpg,jpeg,png',
+           'quantity.required'=>'Vui long nhập'
        ];
    }
 }

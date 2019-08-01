@@ -14,7 +14,6 @@ class RoleTableSeeder extends Seeder
         DB::table('roles')->insert([
         	['name'=>'Quản trị viên'],//full quyền 
         	['name'=>'Nhân viên'],// chỉ thêm và sửa ko được xóa 
-        	['name'=>'Khách hàng'],
         	['name'=>'Nhân viên kho']
 
         ]);

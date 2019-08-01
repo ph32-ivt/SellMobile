@@ -1,7 +1,10 @@
 @extends('admin.layouts.master')
 @section('content')
-
-
+@if(session('sussecc'))
+<div class="alert alert-info">
+	{{session('sussecc')}}
+</div>
+@endif
 <div class="container">
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
@@ -9,6 +12,7 @@
 				<div class="row">
 					<div class="col-md-8">
 						<h5 class="card-title">Lịch sử xóa Thể loại</h5>
+						<a href="{{route('index-category')}}" class="mr-2 btn btn-info"> Quay lại</a>
 					</div>
 					
 				</div>
@@ -38,11 +42,11 @@
 									?>
 								</td>
 								<td>
-									<a href="{{route('forceDelete-category',$category->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+									<a title="Lấy lại dữ liệu" href="{{route('restore-category',$category->id)}}"><button class="btn btn-outline-info"><i class="fas fa-sync-alt"></i></button></a>
+									<a title="Xóa" href="{{route('forceDelete-category',$category->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
-							@endforeach
-						
+							@endforeach				
 						</tbody>
 					</table>
 				</div>

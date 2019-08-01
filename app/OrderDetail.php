@@ -12,7 +12,7 @@ class OrderDetail extends Model
 		'quantity','price','order_id','product_id'
 	];
 	public function product(){
-		return $this->belongsTo('App\Product');
+		return $this->hasMany('App\Product');
 	}
 
 	public function order(){

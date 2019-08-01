@@ -1,47 +1,36 @@
 @extends('admin.layouts.master')
 @section('content')
 
-<!-- @if(count($errors->all()))
-	@php 
-	dd($errors->all());
-	@endphp
-@endif -->
+
 <form action="{{route('store-product')}}" method="POST" enctype="multipart/form-data">
 	@csrf
-	<div class=" row">
+	<h2 class="text-center">Thêm Sản Phẩm Mới</h2>
+	<div class="row">
 		<div class="col-md-6">
 			<div  class="form-group">
 				<div class="row">
 					<div class="col-md-6">
-						<label for="">Thể loại</label>
+						<label for="">Danh mục</label>
 						<select class="form-control" name="category_id" id="">
-							<option value="">--Chọn thể loại--</option>
+							<option value="">--Chọn thương hiệu--</option>
 							@foreach($category as $category)
-							<option value="{{$category->id}}">{{$category->name}}</option>
+							<option value="{{$category->id}}" {{old('category_id') == $category->id ? 'selected' : ''}}>{{$category->name}}</option>
 							@endforeach
 						</select>
 						<span style="color:red">{{$errors->first('category_id')}}</span>
 					</div>
-					<div class="col-md-6">
-						<label for="">Thương hiệu</label>
-						<select class="form-control" name="brand_id" id="">
-							<option value="">--Chọn Nhà Sản Xuất--</option>
-							@foreach($brands as $brand)
-							<option value="{{$brand->id}}">{{$brand->name}}</option>
-							@endforeach
-						</select>
-					
-					</div>
+
 				</div>
 			</div>
 			<div class="form-group">
-				<label for="">Tên sản phẩm</label>
+				<label for="">Tên sản phẩm <span style="color: red">**</span></label>
 				<input name="name" class="form-control" type="text" value="{{old('name')}}">
 				<span style="color:red">{{$errors->first('name')}}</span>
 			</div>
 			<div class="form-group">
 				<label for="">Hình ảnh</label>
-				<input name="image" class="form-control" type="file" value="{{old('image')}}">
+				<img width="300" class="out_image" src="" alt="">
+				<input class="input_image" name="image" class="form-control" type="file" value="{{old('image')}}">
 			</div>
 			<div class="form-group">
 				<label for="">Mô tả</label>
@@ -65,42 +54,50 @@
 		<!--  -->
 		<div class="col-md-6">
 			<div class="form-group">
-				<label for="">Chíp CPU</label>
+				<label for="">Chíp CPU <span style="color: red">**</span></label>
 				<input name="cpu" class="form-control" type="text" value="{{old('cpu')}}">
 				<span style="color:red">{{$errors->first('cpu')}}</span>
 			</div>
 			<div class="form-group">
-				<label for="">Ram</label>
+				<label for="">Ram <span style="color: red">**</span></label>
 				<input name="memory" class="form-control" type="text" value="{{old('memory')}}">
 				<span style="color:red">{{$errors->first('memory')}}</span>
 			</div>
 			<div class="form-group">
-				<label for="">Màn hình</label>
+				<label for="">Màn hình <span style="color: red">**</span></label>
 				<input name="display" class="form-control" type="text" value="{{old('display')}}">
 				<span style="color:red">{{$errors->first('display')}}</span>
 			</div>
 			<div class="form-group">
-				<label for="">Pin</label>
+				<label for="">Pin <span style="color: red">**</span></label>
 				<input name="pin" class="form-control" type="text" value="{{old('pin')}}">
 				<span style="color:red">{{$errors->first('pin')}}</span>
 			</div>
 			<div class="form-group">
-				<label for="">Loại sim</label>
+				<label for="">Loại sim <span style="color: red">**</span></label>
 				<input class="form-control" name="sim" type="text" value="{{old('sim')}}">
 				<span style="color:red">{{$errors->first('sim')}}</span>
 			</div>
 			<div class="form-group">
-				<label for="">Camera</label>
+				<label for="">Camera <span style="color: red">**</span></label>
 				<input name="camera" class="form-control" type="text" value="{{old('camera')}}">
 				<span style="color:red">{{$errors->first('camera')}}</span>
 			</div>
+			
 			<div class="form-group">
-				<label for="">Option</label>
+				<label for="">Option <span style="color: red">**</span></label>
 				<input name="option" class="form-control" type="text" value="{{old('option')}}">
-
+				<span style="color:red">{{$errors->first('option')}}</span>
 			</div>
+
 			<div class="form-group">
-				<label for="">Giá</label>
+				<label for="">Số lượng <span style="color: red">**</span></label>
+				<input name="quantity" class="form-control" type="text" value="{{old('quantity')}}">
+				<span style="color:red">{{$errors->first('quantity')}}</span>
+			</div>
+
+			<div class="form-group">
+				<label for="">Giá <span style="color: red">**</span></label>
 				<input name="price" class="form-control" type="text" value="{{old('price')}}">
 				<span style="color:red">{{$errors->first('price')}}</span>
 			</div>
@@ -108,8 +105,8 @@
 	</div>
 
 	<div class="form-group">
-		<button type="submit" class="mr-2 btn btn-info">Lưu lại</button>
-		<button class="btn btn-outline-primary">Quay lại</button>
+		<button title="Lưu sản phẩm" type="submit" class="mr-2 btn btn-info">Lưu lại</button>
+		<a title="Quya lại" href="{{route('index-product')}}" class="btn btn-outline-info">Quay lại</a>
 	</div>
 </form>
 @endsection

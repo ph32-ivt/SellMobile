@@ -9,7 +9,9 @@ use App\Http\Requests\ProductRequest;
 use App\Product;
 use App\Category;
 use App\ProductDetail;
-use App\Brand;
+use App\OrderDetail;
+use DB;
+use File;
 class ProductController extends Controller
 {
     /**
@@ -17,14 +19,15 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
 
     { 
-     $products = Product::with('category','brand')->orderBy('id','DESC')->paginate(5);
-     // dd( $products);
-     return view('admin.product.index',compact('products'));
+       $products = Product::with('category','productDetail')->withTrashed()->orderBy('id','DESC')->paginate(5);
+       if($request->name) $products = Product::where('name' ,'like','%'.$request->name.'%')->paginate(5);
 
- }
+       return view('admin.product.index',compact('products'));
+
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -34,8 +37,7 @@ class ProductController extends Controller
     public function create()
     {
       $category = Category::all();
-      $brands = Brand::all();
-      return view('admin.product.formAddProduct',compact('category','brands'));
+      return view('admin.product.formAddProduct',compact('category'));
   }
 
     /**
@@ -64,12 +66,13 @@ class ProductController extends Controller
         }else{
             $data['image'] = "";
         }
-
+        dd($file);
         $data = Product::create($data);
-        $dataDetail = $request->only('cpu','memory', 'display', 'pin', 'sim', 'camera', 'price');
+
+        $dataDetail = $request->only('cpu','memory', 'display', 'pin', 'sim', 'camera', 'option','quantity','price');
         $dataDetail['product_id'] = $data->id;
         $dataDetail = ProductDetail::create($dataDetail);
-        return redirect()->route('index-product');
+        return redirect()->route('index-product')->with('sussecc','Thêm mới sản phẩm mới thành công');
     }
 
     /**
@@ -80,8 +83,8 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        $product = Product::with('category','brand','productDetail')->where('id',$id)->first();
-       
+        $product = Product::with('category','productDetail')->where('id',$id)->first();
+
         return view('admin.product.productDeteil',compact('product'));
     }
 
@@ -94,10 +97,9 @@ class ProductController extends Controller
     public function edit($id)
     {
         $category = Category::all();
-        $brands = Brand::all();
-        $data = Product::with('productDetail','category','brand')->where('id',$id)->first();
+        $data = Product::with('productDetail','category')->where('id',$id)->first();
 
-        return view('admin.product.formEditProduct',compact('data','brands','category'));
+        return view('admin.product.formEditProduct',compact('data','category'));
     }
 
     /**
@@ -108,12 +110,17 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(ProductRequest $request, $id)
+
     {
+
+       try {
+        DB::beginTransaction();
         $product = Product::find($id);
-        $data = $request->except('_token');
-        $data['pro_slug'] = str_slug($request->name);
-        $data['pro_hot'] =$request->pro_hot ? $request->pro_hot :0;
-        $data['status'] =$request->status ? $request->status : 0;
+
+        $dataProduct = $request->except('_token');
+        $dataProduct['pro_slug'] = str_slug($request->name);
+        $dataProduct['pro_hot'] =$request->pro_hot ? $request->pro_hot :0;
+        $dataProduct['status'] =$request->status ? $request->status : 0;
 
         if($request->hasFile('image'))
         {
@@ -124,18 +131,22 @@ class ProductController extends Controller
                 $NameImage = str_radom(4)."-".$NameImage;
             }
             $file->move(public_path('/images/'),$NameImage);
-            $data['image'] = $NameImage;
+            $dataProduct['image'] = $NameImage;
         }else{
-            $data['image'] = $product->image;
+            $dataProduct['image'] = $product->image;
         }
+        $product->update($dataProduct);
 
-        $product->update($data);
 
-        $dataDetail = $request->only('cpu','memory', 'display', 'pin', 'sim', 'camera', 'price');
-        $dataDetail = ProductDetail::where('product_id',$id)->update($dataDetail);
-        return redirect()->route('index-product');
+        $dataDetail = $request->only('cpu','memory', 'display', 'pin', 'sim','camera','option','quantity','price');
 
-    }
+        $productDetail = \DB::table('product_details')->where('product_id',$id)->update($dataDetail);
+        DB::commit();
+        return redirect()->route('index-product')->with('sussecc','Update Thành công');
+    } catch (Exception $e) {
+      return redirect()->back();
+  }
+}
 
     /**
      * Remove the specified resource from storage.
@@ -144,26 +155,43 @@ class ProductController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {  $product = Product::find($id);
+    {  
+     try {
+        DB::beginTransaction();
+        $product = Product::find($id);
+
+        if(!empty($product->image)){
+            $image_path = public_path('/images/'.$product->image);
+            if(File::exists($image_path)){
+                File::delete($image_path);
+            }
+        }
+
+        // File::delete(public_path('/images/'.$product->image));
+
         ProductDetail::where('product_id',$id)->delete();
         $product->destroy($id);
+        DB::commit();
         return redirect()->route('index-product')->with('sussecc','Bạn đã xóa thành công');
-    }
+    } catch (Exception $e) {
+      return redirect()->back();
+  }
+}
 
-    public function action($action,$id){
-        if($action){
-         $product = Product::find($id);
-         switch ($action) {
-            case 'status':
-            $product->status = $product->status ? 0 : 1;
-            break;
-            case 'pro_hot':
-            $product->pro_hot = $product->pro_hot ? 0 : 1;
-            break;
-        }
-        $product->save();
+public function action($action,$id){
+    if($action){
+       $product = Product::find($id);
+       switch ($action) {
+        case 'status':
+        $product->status = $product->status ? 0 : 1;
+        break;
+        case 'pro_hot':
+        $product->pro_hot = $product->pro_hot ? 0 : 1;
+        break;
     }
-    return redirect()->back();
+    $product->save();
+}
+return redirect()->back();
 
 }
 }

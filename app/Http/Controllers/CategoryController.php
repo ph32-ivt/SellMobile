@@ -10,6 +10,7 @@ use App\Product;
 use DB;
 class CategoryController extends Controller
 {
+
 	public function index()
 	{	
 		$category = Category::all();
@@ -62,6 +63,10 @@ class CategoryController extends Controller
 		$categories = Category::onlyTrashed()->get();
 
 		return view('admin.category.historyCategory',compact('categories'));
+	}
+	public function restore($id){
+		Category::onlyTrashed()->find($id)->restore();
+		return redirect()->back()->with('sussecc','Thành công');
 	}
 
 	public function forceDelete($id)

@@ -9,7 +9,7 @@
         <div class="product-image-wrapper">
             <div class="single-products">
                 <div class="productinfo text-center">
-                    <a href="{{route('show-product',$product->id)}}"><img src="images/{{$product->image}}" alt="" /></a>                    
+                    <a href="{{route('show-product-home',$product->id)}}"><img src="images/{{$product->image}}" alt="" /></a>                    
                     <h2>{{number_format($prodel->price,2,'.',',')." VNĐ"}}</h2>                    
                     <p>{{$product->name}}</p>
                     <form method="POST" action="">

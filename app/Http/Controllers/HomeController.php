@@ -1,7 +1,5 @@
 <?php
-
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
@@ -13,26 +11,24 @@ use App\Comment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
-
 class HomeController extends Controller
 {
-	public function index()
+    public function index()
     {
         
-        $categories=Category::where('parent_id','<>','0')->get();
+        $categories=Category::all();
         $products_hot=Product::where('pro_hot','0')->get();
         $products=Product::where('pro_hot','<>','0')->paginate(6);
         $prodels=ProductDetail::all();
-
         return view('customer.product.list-product',compact('categories','products','prodels','products_hot'));
     }
     public function show($id)
     {
         $product=Product::find($id);
         $product_del=ProductDetail::where('product_id',$id)->first();
-        $image=Image::where('product_id',$id)->first();
+    
         $comments=Comment::where('product_id',$id)->get();
-        return view('customer.product.product-detail',compact('product','product_del','image','comments'));
+        return view('customer.product.product-detail',compact('product','product_del','comments'));
     }
     public function show_product_by_category($id)
     {
@@ -62,8 +58,6 @@ class HomeController extends Controller
             return redirect()->route('home');
         }
         return redirect()->back()->with('fail', 'Register fail');
-
-
     }
     public function login()
     {
@@ -94,8 +88,6 @@ class HomeController extends Controller
             return redirect()->route('login')->with('mess','thatbai');
         }
     }
-
-
     public function getLoginAdmin()
     {
         return view('admin.login');

@@ -2,7 +2,7 @@
                         <h2>Category</h2>
                         <div class="panel-group category-products" id="accordian"><!--category-productsr-->
 
-                            <?php $categories = \DB::table('categories')->where('parent_id','<>','0')->get()?>
+                            <?php $categories = \DB::table('categories')->get()?>
                            @foreach($categories as $cate)
                             <div class="panel panel-default">
                                 <div class="panel-heading">
@@ -11,9 +11,7 @@
                             </div>
                             @endforeach
                         </div><!--/category-products-->
-                    
-                        
-                        
+                                     
                         <div class="price-range"><!--price-range-->
                             <h2>Giá</h2>
                             <div class="well text-center">

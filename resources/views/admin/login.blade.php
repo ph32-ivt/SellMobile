@@ -21,20 +21,7 @@
 </head>
 <body>
 <div class="container">
-  <div class="d-flex justify-content-center">
-    @if ($errors->any())
-                <div class="alert alert-danger">
-                  @foreach($errors->all() as $err)
-                    {{$err}}<br>
-                  @endforeach
-                </div>
-              @endif
-              @if (session('mess'))
-                <div class="alert alert-success">
-                  {{session('mess')}}
-                </div>
-              @endif
-  </div>
+ 
   <div class="d-flex justify-content-center h-100">
     
     <div class="card">
@@ -47,7 +34,7 @@
         </div>
       </div>
       <div class="card-body">
-        <form action="{{route('post-login')}}" method="POST">
+        <form action="#" method="POST">
           @csrf
           <input type="hidden" name="_token" value="{{csrf_token()}}">
           <div class="input-group form-group">

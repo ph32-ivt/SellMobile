@@ -23,7 +23,6 @@ class CreateProductsTable extends Migration
             $table->integer('status')->default(0);
             $table->integer('pro_hot')->default(0); 
             $table->integer('category_id')->unsigned();
-            $table->integer('brand_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

@@ -1,12 +1,28 @@
+
 @extends('admin.layouts.master')
 @section('content')
+@if(session('sussecc'))
+<div class="alert alert-info">
+	{{session('sussecc')}}
+</div>
+@endif
 <div class="container">
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-10">
-						<h5 class="card-title">Sản Phẩm</h5>
+						<div class="row">
+							<div class="col-md-3" ><h5 class="card-title">Sản Phẩm</h5></div>
+							<div class="col-md-7" style="margin-top: -15px;">
+								<form action="" >
+									<input type="text" placeholder="Tên sản phẩm" name="name" value="{{\Request::get('name')}}">
+									<button class="btn btn-default"><i style="font-size: 25px" class="fas fa-search"></i></button>
+								</form>
+							</div>
+						</div>
+						
+						
 					</div>
 					<div class="col-md-2">
 						<button class="mb-2 btn btn-primary"><a href="{{route('create-product')}}">Thêm mới</a></button>			
@@ -17,7 +33,7 @@
 						<thead>
 							<tr class="text-primary">
 								<th>ID</th>
-								<th>Tên Sản Phẩm</th>
+								<th width="150">Tên Sản Phẩm</th>
 								<th >Mô Tả</th>
 								<th>Hình Ảnh</th>
 								<th>Thể Loại</th>
@@ -28,20 +44,7 @@
 
 							</tr>
 						</thead>
-<<<<<<< HEAD
-						<tbody id="dataCategory">
-							@foreach($products as $product)							
-							<tr>
-							<td>{{$product->id}}</td>
-							<td>{{$product->name}}</td>
-							<td>{{$product->description}}</td>
-							<td> <img src="{{asset($product->image)}}" width="50px" height="50px" alt=""></td>
-							<td>{{$product->category->name}}</td>
-							<td>{{$product->brand->name}}</td>
-							<td>{{$product->status}}</td>
-							<td>{{$product->pro_hot}}</td>
-							<td>{{$product->created_at}}</td>
-=======
+
 						<tbody id="dataProduct">
 							@if(!empty($products)==true)
 
@@ -50,13 +53,24 @@
 
 							<tr>
 								<td>{{$product->id}}</td>
-								<td>{{$product->name}}</td>
+								<td>
+									<h5>{{$product->name}}</h5>
+									<br>
+									@if(!empty($product->productDetail->quantity))
+									<span>SL nhập : <u>{{$product->productDetail->quantity}}</u> SP</span>
+									@endif
+									<br>
+									@if(!empty($product->productDetail->price))
+									<span>Giá : {{number_format($product->productDetail->price)}}đ</span>
+									@endif
+								</td>
 								<td >{!!$product->description!!}</td>
 								<td><img style="width: 80px" src="{{asset("images/$product->image")}}" alt=""></td>
 								@if (!empty($product->category))
 								<td>{{$product->category->name}}</td>
 								@else
 								<td>
+									[N\A]
 								</td>
 								@endif
 								
@@ -68,7 +82,7 @@
 									echo Carbon\Carbon::createFromTimeStamp(strtotime($product->created_at))->diffForHumans();;
 									?>
 								</td>
->>>>>>> 9b36f4662068f2ec6232b0728e0654e03dd8d7d4
+
 								<td>
 									<a href="{{route('show-product',$product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
 									<a href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
@@ -76,10 +90,8 @@
 								</td>    
 							</tr>
 							@endforeach
-<<<<<<< HEAD
-=======
 							@endif
->>>>>>> 9b36f4662068f2ec6232b0728e0654e03dd8d7d4
+
 						</tbody>
 					</table>
 				</div>
