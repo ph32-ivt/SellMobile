@@ -80,7 +80,9 @@ class OrderController extends Controller
     }
     public function view_order(Request $request)
     {
+        // \DB::enableQueryLog();
         $order= Order::with('orderDetails','orderDetails.product.productDetail')->where('email',\Auth::user()->email)->get();
+        // dd(\DB::getQueryLog());
         // dd($order);
         // $order_detail=OrderDetail::where('order_id',$order->id)->get();
         return view('customer.order.view_order_detail',compact('order'));

@@ -12,7 +12,7 @@
 */
 
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'User\HomeController@index')->name('home');
 
 Auth::routes();
 

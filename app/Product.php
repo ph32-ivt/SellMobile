@@ -56,7 +56,7 @@ class Product extends Model
 		return $this->hasMany('App\Comment');
 	}
 	public function orderDetails(){
-		return $this->belongsTo('App\OrderDetail');
+		return $this->hasOne('App\OrderDetail');
 	}
 
 

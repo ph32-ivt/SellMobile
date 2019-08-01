@@ -12,7 +12,7 @@ class ProductDetail extends Model
 		'cpu','display','pin','sim','memory','camera','option','quantity','price','product_id'
 	];
 	public function product(){
-		return $this->hasOne('App\Product');
+		return $this->belongsTo('App\Product');
 	}
 	
 }
