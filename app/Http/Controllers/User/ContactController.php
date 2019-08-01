@@ -92,5 +92,6 @@ class ContactController extends Controller
         $content=$request->get('content');
         \Mail::to($email)->send(new ContactMail($name,$email,$content));
         return redirect()->route('home')->with('success','Send Contact successfull!');
+
     }
 }

@@ -10,6 +10,8 @@
 					<div class="col-md-8">
 						<h1 class="card-title">{{isset($data->name)?$data->name :''}}</h1>
 						<h4>Sản phẩm ({{!empty($data->products)?$data->products->count():'0'}})</h4>
+
+						<a href="{{route('index-category')}}" class="mr-2 btn btn-info"> Quay lại</a>
 					</div>
 				</div>
 				<div class="table-responsive">

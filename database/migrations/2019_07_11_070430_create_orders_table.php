@@ -17,10 +17,12 @@ class CreateOrdersTable extends Migration
             $table->bigIncrements('id');
             $table->string('name');
             $table->string('email');
-            $table->integer('phone')->length(10);
+
+            $table->integer('phone')->length(10)->unsigned();
             $table->string('address');
             $table->string('note');
-            $table->integer('status');
+            $table->tinyInteger('status');
+            $table->integer('user_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();
         });

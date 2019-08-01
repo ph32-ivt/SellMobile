@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Role;
+use DB;
+use App\UserRole;
+use App\Http\Requests\UserRequest;
 
 class UserController extends Controller
 {
@@ -20,6 +23,8 @@ class UserController extends Controller
     }
     public function create()
     {
+        $listRole= Role::all();
+        return view('admin.user.formAddUser',compact('listRole'));
     }
 
     /**
@@ -28,9 +33,23 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        //
+        $dataUser = $request->only('name','gender','email','phone','address');
+        $dataUser['password'] = bcrypt($request->password);
+        $user = User::create($dataUser);
+
+        $roleID = $request->roleID;
+        foreach($roleID as $roleID){
+            \DB::table('user_roles')->insert([
+                'user_id' => $user->id,
+                'role_id' => $roleID
+            ]);
+        }
+        return redirect()->route('index-user')->with('sussecc','them thanh cong');
+
+
+
     }
 
     /**
@@ -41,9 +60,9 @@ class UserController extends Controller
      */
     public function show($id)
     {
-       $users = User::with('roles')->where('id',$id)->get();
-       return view('admin.user.showUser',compact('users'));
-    }
+       $listUser = Role::with('users')->where('id',$id)->get()->toArray();
+       return view('admin.user.showUser',compact('listUser'));
+   }
 
     /**
      * Show the form for editing the specified resource.
@@ -53,7 +72,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        $user = User::find($id);
+        $listRole = Role::all();
+        $listUserOfRole = \DB::table('user_roles')->where('user_id',$id)->pluck('role_id');
+        return view('admin.user.formEditUser',compact('user','listRole','listUserOfRole'));
     }
 
     /**
@@ -63,10 +85,28 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UserRequest $request, $id)
     {
-        //
+       $user = User::find($id);
+       $dataUser = $request->only('name','gender','email','phone','address');
+       if($request->password){
+        $dataUser['password'] = $request->password;
+    }else{
+        $dataUser['password'] = $user->password;
     }
+
+    $user->update($dataUser);
+
+    $roleID = $request->roleID;
+    \DB::table('user_roles')->where('user_id',$id)->delete();
+    foreach($roleID as $roleID){
+        \DB::table('user_roles')->insert([
+            'user_id'=> $user->id,
+            'role_id'=>$roleID
+        ]);
+    }
+    return redirect()->route('index-user')->with('update','đã chỉnh sủa thành công'); 
+}
 
     /**
      * Remove the specified resource from storage.
@@ -76,6 +116,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = user::find($id);
+        UserRole::where('user_id',$id)->delete();
+        $user->delete();
+        return redirect()->back()->with('sussecc','Xóa thành công');
     }
 }

@@ -1,3 +1,4 @@
+
 <div class="container">
                             <div class="row">
                                 <!-- footer-company-links -->
@@ -65,24 +66,25 @@
                                 </div>
                                 <!-- /.footer-social links -->
                             </div>
-                        </div>
-                        <!-- tiny-footer -->
-                        <div class="tiny-footer">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                        <div class="payment-method alignleft">
-                                            <ul>
-                                                <li><a href="#"><i class="fa fa-cc-paypal fa-2x"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-cc-mastercard  fa-2x"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-cc-visa fa-2x"></i></a></li>
-                                                <li><a href="#"><i class="fa fa-cc-discover fa-2x"></i></a></li>
-                                            </ul>
-                                        </div>
-                                        <p class="alignright">Copyright © All Rights Reserved 2020 Template Design by
-                                            <a href="https://easetemplate.com/" target="_blank" class="copyrightlink">EaseTemplate</a></p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- /. tiny-footer -->
-                        </div>
+</div>
+<!-- tiny-footer -->
+<div class="tiny-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="payment-method alignleft">
+                    <ul>
+                        <li><a href="#"><i class="fa fa-cc-paypal fa-2x"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cc-mastercard  fa-2x"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cc-visa fa-2x"></i></a></li>
+                        <li><a href="#"><i class="fa fa-cc-discover fa-2x"></i></a></li>
+                    </ul>
+                </div>
+                <p class="alignright">Copyright © All Rights Reserved 2020 Template Design by
+                    <a href="https://easetemplate.com/" target="_blank" class="copyrightlink">EaseTemplate</a></p>
+                </div>
+            </div>
+        </div>
+        <!-- /. tiny-footer -->
+</div>
+

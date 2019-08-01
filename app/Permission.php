@@ -10,7 +10,7 @@ class Permission extends Model
     protected $fillable = 
     [
     	'name','display_name'
-    ]
+    ];
     public function roles(){
     	return $this->belongsToMany('App\Role','role_permissions');
     }

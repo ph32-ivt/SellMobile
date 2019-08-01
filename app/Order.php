@@ -11,10 +11,26 @@ class Order extends Model
     [
     	'name','email','phone','address','note','status'
     ];
+    const PUBLIC_STATUS = 1;
+    const PUBLIC_PRIVATE = 0;
+
+    protected $status2 = [
+        1 => [
+            'name'=>'Đã Duyệt' 
+        ],
+        0 => [
+            'name'=>'Duyệt'
+        ]
+    ];
+
+    public function getStatus(){
+        return array_get($this->status2,$this->status,'[N\A]');
+    }
+
     public function orderDetails(){
     	return $this->hasMany('App\OrderDetail');
     }
     public function user(){
-    	return $this->belongsTo('App\User');
+    	return $this->hasOne('App\User');
     }
 }

@@ -6,35 +6,33 @@
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-10">
-						<h5 class="card-title">Sản Phẩm</h5>
+						<h5 class="card-title">Đơn Hàng</h5>
+						<a href="{{route('order-show-history')}}">lịch sử xóa</a>
 					</div>
 				</div>
 				<div class="table-responsive">
 					<table class="table center-aligned-table">
 						<thead>
 							<tr class="text-primary">
-								<th>STT</th>
-								<th>Tên khách hàng</th>
-								<th>Số điện thoại</th>
-								<th>Địa chỉ</th>
-								<th>Ngày Đặt</th>
-								<th class="pl-5">Action</th>
+						
+								<th>Đơn hàng đã duyệt(<span style="color:red; font-weight: bold;font-size:14px">{{$agree->count()}}</span>)</th>
+								<td>
+									<a href="{{route('order-da-duyet')}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+								</td>    
+								
+
+							</tr>
+							<tr class="text-primary">
+			
+								<th>Đơn hàng chưa duyệt(<span style="color:red; font-weight: bold;font-size:14px">{{$disagree->count()}}</span>)</th>
+								
+								<td>
+									<a href="{{route('order-disAgree')}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+								</td>    
 
 							</tr>
 						</thead>
-						<tbody id="dataCategory">
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-							<td>a</td>
-								<td>
-									<a href=""><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-									<a href="#"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
-									<a href=""><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
-								</td>    
-							</tr>
-						</tbody>
+						
 					</table>
 				</div>
 			</div>

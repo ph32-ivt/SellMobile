@@ -5,14 +5,16 @@
 		<form action="{{route('update-category',$category->id)}}" method="POST">
 			@csrf
 			@method('PUT')
+
+			<h2 class="text-center">Sửa Danh mục</h2>
 			<div  class="form-group">
-				<label for="">Tên thể loại</label>
+				<label for="">Tên Danh Mục<span style="color:red">**</span></label>
 				<input id="name" name="name" type="text" class="form-control" value="{{$category->name}}">
 			</div>
 			<div class="form-group">
 				<div class="row">
-					<button type="submit" class="mr-2 btn btn-info">Sửa</button>
-					<button class="btn btn-outline-primary">Quay lại</button>
+					<button title="update danh mục" type="submit" class="mr-2 btn btn-info">Sửa</button>
+					<a href="{{route('index-category')}}" class="mr-2 btn btn-info"> Quay lại</a>
 				</div>
 			</div>
 		</form>

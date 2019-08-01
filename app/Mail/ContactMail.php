@@ -22,7 +22,6 @@ class ContactMail extends Mailable
         $this->name=$name;
         $this->email=$dataemail;
         $this->content=$data;
-        
     }
 
     /**

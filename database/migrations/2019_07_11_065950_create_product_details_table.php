@@ -21,7 +21,10 @@ class CreateProductDetailsTable extends Migration
             $table->string('sim');
             $table->string('memory');
             $table->string('camera');
+
+            $table->string('option');
             $table->integer('price');
+            $table->integer('quantity');
             $table->integer('product_id')->unsigned();
             $table->softDeletes();
             $table->timestamps();

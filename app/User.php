@@ -50,9 +50,10 @@ class User extends Authenticatable
     ];
    public function getGender(){
         return array_get($this->gender2,$this->gender,'[N\A]');
+
     }
      public function order(){
-        return $this->belongsTo('App\Order');
+        return $this->hasOne('App\Order');
     }
 
     public function roles(){
