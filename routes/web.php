@@ -16,7 +16,7 @@
 
 
 // });
-Route::get('/','HomeController@index')->name('home');
+Route::get('/','User\HomeController@index')->name('home');
 Route::get('/admin/login','HomeController@getLoginAdmin')->name('admin-login');
 Route::post('/admin/login', 'HomeController@postLoginAdmin')->name('post-login');
 Route::prefix('admin')->group(function(){
@@ -73,13 +73,34 @@ Route::prefix('admin')->group(function(){
 
 
 
-Route::get('contact', 'ContactController@formContact')->name('form-contact');
-Route::post('contact', 'ContactController@sendMail')->name('send-contact');
+Route::get('contact', 'User\ContactController@formContact')->name('form-contact');
+Route::post('contact', 'User\ContactController@sendMail')->name('send-contact');
+
+// Route::get('product_hot','HomeController@prohot')->name('prohot');
+Route::get('products/{id}','User\HomeController@show')->name('show-product');
+Route::get('probycate/{id}','User\HomeController@show_product_by_category')->name('showbycate');
+Route::get('/register', 'User\HomeController@register')->name('register-user');
+Route::post('/register', 'User\HomeController@postRegister')->name('postRegister');
+Route::get('/userlogin','User\HomeController@login')->name('userlogin');
+Route::post('/userlogin','User\HomeController@postLogin')->name('postLoginuser');	
+Route::get('/logout','User\HomeController@logout')->name('logout');
 
 
-Route::get('products/{id}','HomeController@show')->name('show-product');
-Route::get('probycate/{id}','HomeController@show_product_by_category')->name('showbycate');
-Route::get('/register', 'HomeController@register')->name('register-user');
-Route::post('/register', 'HomeController@postRegister')->name('postRegister');
-Route::get('/login','HomeController@login')->name('login');
-Route::post('/login','HomeController@postLogin')->name('postLogin');		
+
+
+Route::get('/cart', 'User\CartController@getCart')->name('getCart');
+Route::post('/addCart/{id}', 'User\CartController@addCart')->name('addCart');
+// Route::post('/addCartOne', 'CartController@addcartOne')->name('addcartOne');
+Route::post('/updateCart', 'User\CartController@updateCart')->name('updateCart');
+Route::post('/removeCart','User\CartController@removeCart')->name('removeCart');
+// Route::get('/orderConfirm', 'CartController@orderConfirm')->name('orderConfirm');
+// Route::post('/orderPay', 'CartController@orderPay')->name('orderPay');
+Route::get('/order','User\OrderController@getorder')->name('getorder');	
+Route::post('order','User\OrderController@store')->name('addorder');
+Route::get('view-order','User\OrderController@view_order')->name('vieworder');
+
+// Route::get('/search', 'SearchController@search');
+Route::get('/search', 'User\SearchController@search')->name('search');
+
+Route::post('/comment','User\CommentController@create')->name('createcmt');
+

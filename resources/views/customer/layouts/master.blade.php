@@ -1,74 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <title>Home | E-Shopper</title>
-    <!-- <base href="{{asset('')}}"> -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="create ecommerce website template for your online store, responsive mobile templates">
+    <meta name="keywords" content="ecommerce website templates, online store,">
+    <title> SellPhone </title>
+    <!-- Bootstrap -->
     <link href="{{asset('customer/css/bootstrap.min.css')}}" rel="stylesheet">
+    <!-- Style CSS -->
+    <link href="{{asset('customer/css/style.css')}}" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,300i,400,400i,700,700i" rel="stylesheet">
+    <!-- owl-carousel -->
+    <link href="{{asset('customer/css/owl.carousel.css')}}" rel="stylesheet">
+    <link href="{{asset('customer/css/owl.theme.default.css')}}" rel="stylesheet">
+    <!-- FontAwesome CSS -->
     <link href="{{asset('customer/css/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('customer/css/prettyPhoto.css')}}" rel="stylesheet">
-    <link href="{{asset('customer/css/price-range.css')}}" rel="stylesheet">
-    <link href="{{asset('customer/css/animate.css')}}" rel="stylesheet">
-    <link href="{{asset('customer/css/main.css')}}" rel="stylesheet">
-    <link href="{{asset('customer/css/responsive.css')}}" rel="stylesheet">
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
-    <script src="js/html5shiv.js"></script>
-    <script src="js/respond.min.js"></script>
-    <![endif]-->       
-    <link rel="shortcut icon" href="{{asset('customer/images/ico/favicon.ico')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{asset('customer/images/ico/apple-touch-icon-144-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{asset('customer/images/ico/apple-touch-icon-114-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{asset('customer/images/ico/apple-touch-icon-72-precomposed.png')}}">
-    <link rel="apple-touch-icon-precomposed" href="{{asset('customer/images/ico/apple-touch-icon-57-precomposed.png')}}">
-</head><!--/head-->
-<body>
-    <header id="header"><!--header-->
-        
-        
-        <div class="header-middle"><!--header-middle-->
-            @include('customer.layouts.header')
-        </div><!--/header-middle-->
-    
-        <div class="header-bottom"><!--header-bottom-->
-             @include('customer.layouts.nav')
-        </div><!--/header-bottom-->
-    </header><!--/header-->
-    
-    <section id="slider"><!--slider-->
-       <!-- @include('customer.layouts.slide') -->
-    </section><!--/slider-->
-    
-    <section>
-        <div class="container">
-            <div class="row">
-                <div class="col-sm-3">
-                    @include('customer.layouts.left_slidebar')
-                </div>
-                
-                <div class="col-sm-9 padding-right">
-                    @yield('content')
-                    
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <footer id="footer"><!--Footer-->
-         @include('customer.layouts.footer')
-        
-    </footer><!--/Footer-->
-    
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+  <![endif]-->
 
+</head>
+
+<body>
+    @if(session('success'))
+    <script type="text/javascript">
+        alert('{{session('success')}}');
+    </script>
+    @endif
+    <!-- header-section-->
+    <div class="header-wrapper">
+        @include('customer.layouts.header')
+    </div>
+    <!-- /. header-section-->
+    <!-- slider -->
+    
+    
+    
+    <!-- /.slider -->
+            <!-- mobile showcase -->
+    
+            <!-- /.mobile showcase -->
+            <!-- latest products -->
+   @yield('content')
+                <!-- /.latest products -->
+                <!-- seller products -->
   
-    <script src="{{asset('customer/js/jquery.js')}}"></script>
-    <script src="{{asset('customer/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('customer/js/jquery.scrollUp.min.js')}}"></script>
-    <script src="{{asset('customer/js/price-range.js')}}"></script>
-    <script src="{{asset('customer/js/jquery.prettyPhoto.js')}}"></script>
-    <script src="{{asset('customer/js/main.js')}}"></script>
-    <script src="{{asset('customer/js/customer.js')}}"></script>
-</body>
-</html>
+                <!-- /.seller products -->
+                <!-- featured products -->
+   
+                    <!-- /.featured products -->
+       
+                    <!-- /.features -->
+                    <!-- footer -->
+    <div class="footer">
+        @include('customer.layouts.footer')               
+    </div>
+                        <!-- /.footer -->
+                        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+                        <script src="{{asset('customer/js/jquery.min.js')}}" type="text/javascript"></script>
+                        <!-- Include all compiled plugins (below), or include individual files as needed -->
+                        <script src="{{asset('customer/js/bootstrap.min.js')}}" type="text/javascript"></script>
+                        <script src="{{asset('customer/js/menumaker.js')}}" type="text/javascript"></script>
+                        <script type="text/javascript" src="{{asset('customer/js/jquery.sticky.js')}}"></script>
+                        <script type="text/javascript" src="{{asset('customer/js/sticky-header.js')}}"></script>
+                        <script type="text/javascript" src="{{asset('customer/js/owl.carousel.min.js')}}"></script>
+                        <script type="text/javascript" src="{{asset('customer/js/multiple-carousel.js')}}"></script>
+                        
+                    </body>
+
+                    </html>

@@ -1,189 +1,211 @@
 @extends('customer.layouts.master')
 @section('content')
-<div class="product-details"><!--product-details-->
-    <div class="col-sm-5">
-        <div class="view-product">
-            <img src="../images/{{$product->image}}" alt="" />
+<div class="content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box">
+                    <!-- product-description -->
+                    <div class="box-body">
+                        <div class="row">
+                            <!-- <div class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                                <ul id="demo1_thumbs" class="slideshow_thumbs">
+                                        <li>
+                                            <a href="./images/thumb_big_1.jpg">
+                                                <div class=" thumb-img"><img src="../images/{{$product->image}}" alt=""></div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./images/thumb_big_2.jpg">
+                                                <div class=" thumb-img"><img src="../images/{{$product->image}}" alt=""></div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="./images/thumb_big_3.jpg" alt="">
+                                                <div class=" thumb-img"><img src="../images/{{$product->image}}" alt=""></div>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div> -->
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div id="slideshow">
+                                        <div class="prodel"><img src="../images/{{$product->image}}" alt=""></div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <div class="product-single">
+                                        <h2>{{$product->name}} </h2>                                    
+                                        <p class="product-price" style="font-size: 38px;">{{number_format($product->productDetail->price)}} VND </p>
+
+                                        <form method="POST" action="{{route('addCart',$product->id)}}">
+                                            <span>
+                                                <label>Quantity:</label> <br>           
+
+                                                <input type="number" value="1" name="quantity" /><br>
+                                                <input type="hidden" name="product_id" value="{{$product->id}}">
+                                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                                <button type="submit" class="btn btn-primary add-to-cart" style="margin-top: 20px;">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                    Add to cart
+                                                </button>
+
+                                            </span> </form>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="box-head scroll-nav">
+                            <div class="head-title"> <a class="page-scroll active" href="#product">Product Details</a>
+                                <a class="page-scroll" href="#rating">Ratings &amp; Reviews</a>
+                                <a class="page-scroll" href="#review">Add Your Reviews</a></div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- highlights -->
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="box" id="product">
+                                <div class="box-body">
+                                    
+                                    <div class="highlights">
+                                        <h4 class="product-small-title">Specification</h4>
+                                        <div class="row">
+                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                <h4>General</h4>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb30">
+                                                <ul>
+                                                    <li>Cpu</li>
+                                                    <li>Display </li>
+                                                    <li>Pin</li>
+                                                    <li>Sim</li>
+                                                    <li>Memory</li>
+                                                    <li>Camera</li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb30">
+                                                <ul>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail->cpu}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail->display}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail->pin}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail->sim}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail->memory}}</li>
+                                                    <li style="color: #1c1e1e;">{{$product->productDetail->camera}}</li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                      
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- rating reviews  -->
+                    <div id="rating">                        
+                        <!-- /.rating reviews  -->
+                        <!-- customers review  -->
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="box">
+                                    <div class="box-head">
+                                        <h3 class="head-title">Customer Reviews</h3>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="row">
+                                            @if(count($comments))
+                                            @foreach($comments as $cmt)
+                                            <div class="customer-reviews">
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="product-rating">
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star"></i></span>
+                                                        <span><i class="fa fa-star-o"></i></span>
+                                                    </div>
+                                                    <p class="reviews-text">By <span class="text-default">{{$cmt->name}}</span> {{$cmt->created_at}}</p>
+                                                    <p>{{$cmt->content}}</p>
+                                                </div>
+                                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                    <div class="divider-line"></div>
+                                                </div>
+                                            </div>
+                                            @endforeach 
+                                            @else
+                                            <p class="alert alert-info">Chưa có bình luận nào cho sản phẩm này</p>
+                                            @endif                                           
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- customers review  -->
+                        <!-- reviews-form -->
+                         <div id="review">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="box">
+                    <div class="box-head">
+                        <h3 class="head-title">Add A Reviews</h3>
+                    </div>
+                    <div class="box-body">
+                        <div class="row">
+                            <div class="review-form">
+                              
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <div class="review-rating">
+                                         <h5>Your Rating : &nbsp;</h5>
+                                            <div class="star-rate" id="rateYo"></div>
+                                       
+                                      
+                                    </div>
+                                </div>
+                                <form action="{{route('createcmt')}}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{$product->id}}">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label sr-only " for="name"></label>
+                                            <input id="name" type="text" class="form-control" placeholder="Name"  name="name">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label sr-only " for="email"></label>
+                                            <input id="email" type="text" class="form-control" placeholder="Email"  title="email">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label sr-only " for="name"></label>
+                                            <input id="name" type="text"  class="form-control" placeholder="Title"  name="title">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12">
+                                        <div class="form-group">
+                                            <label class="control-label sr-only " for="textarea"></label>
+                                            <textarea class="form-control" id="textarea" name="content" rows="4" placeholder="Enter your Reviews"></textarea>
+                                        </div>
+                                        <button id="submit" name="singlebutton" class="btn btn-primary">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div id="similar-product" class="carousel slide" data-ride="carousel" >
-
-          <!-- Wrapper for slides -->
-          <div class="carousel-inner">          
-          <div class="item active">
-            <a href=""><img src="../images/{{$product->image}}" alt="" /></a>
-              <a href=""><img src="../images/{{$product->image}}" alt="" /></a>
-              <a href=""><img src="../images/{{$product->image}}" alt="" /></a>
-          </div>
-          <div class="item">
-            <a href=""><img src="../images/{{$product->image}}" alt="" /></a>
-              <a href=""><img src="../images/{{$product->image}}" alt="" /></a>
-              <a href=""><img src="../images/{{$product->image}}" alt="" /></a>
-          </div>
-          
-
-      </div>
-
-      <!-- Controls -->
-      <a class="left item-control" href="#similar-product" data-slide="prev">
-        <i class="fa fa-angle-left"></i>
-    </a>
-    <a class="right item-control" href="#similar-product" data-slide="next">
-        <i class="fa fa-angle-right"></i>
-    </a>
-</div>
-
-</div>
-<div class="col-sm-7">
-    <div class="product-information"><!--/product-information-->
-        <img src="images/product-details/new.jpg" class="newarrival" alt="" />
-        <h2>{{$product->name}}</h2>                                
-        <img src="images/product-details/rating.png" alt="" />
-        <span>
-            <span>{{number_format($product_del->price,2,'.',',')." VNĐ"}}</span>                                    
-        </span>
-        <span>
-            <label>Quantity:</label>
-            <input type="number" value="1" />
-            <form method="POST" action="">
-                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="btn btn-fefault add-to-cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            Add to cart
-                        </button>
-                    </form>
-        </span>
-        <h4 class="text-success">{{$product->description}}</h4>
-        <a href=""><img src="../images/product-details/share.png" class="share img-responsive"  alt="" /></a>
-    </div><!--/product-information-->
-</div>
-</div><!--/product-details-->
-
-<div class="category-tab shop-details-tab"><!--category-tab-->
-    <div class="col-sm-12">
-        <ul class="nav nav-tabs">
-            <li><a href="#details" data-toggle="tab">Thông số chi tiết</a></li>
-            <li><a href="#companyprofile" data-toggle="tab">Bình luận</a></li>
-            <li><a href="#tag" data-toggle="tab">Tag</a></li>
-            <li class="active"><a href="#reviews" data-toggle="tab">Gởi bình luận</a></li>
-        </ul>
     </div>
-    <div class="tab-content">
-        <div class="tab-pane fade" id="details" >
-            
-                <table class="table table-bordered table-hover">                    
-                    <tbody>
-                        <tr>
-                            <th>Bộ vi xử lí:</th>
-                            <td>{{$product_del->cpu}}</td>
-                        </tr>
-                        <tr>
-                            <th>Màn hình:</th>
-                            <td>{{$product_del->display}}</td>
-                        </tr>
-                         <tr>
-                            <th>Bộ nhớ:</th>
-                            <td>{{$product_del->memory}}</td>
-                        </tr>
-                        <tr>
-                            <th>Sim:</th>
-                            <td>{{$product_del->sim}}</td>
-                        </tr>
-                        <tr>
-                            <th>Dung lượng pin:</th>
-                            <td>{{$product_del->pin}}</td>
-                        </tr>
-                        <tr>
-                            <th>Camera:</th>
-                            <td>{{$product_del->camera}}</td>
-                        </tr>
-                    </tbody>
-                </table>     
-            
-            
-        </div>
 
-        <div class="tab-pane fade" id="companyprofile" >
-           <div class="">
-               
-           </div>
-        </div>
+                        
 
-        <div class="tab-pane fade" id="tag" >
-            <div class="col-sm-3">
-                <div class="product-image-wrapper">
-                    <div class="single-products">
-                        <div class="productinfo text-center">
-                            <img src="images/home/gallery1.jpg" alt="" />
-                            <h2>$56</h2>
-                            <p>Easy Polo Black Edition</p>
-                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="product-image-wrapper">
-                    <div class="single-products">
-                        <div class="productinfo text-center">
-                            <img src="images/home/gallery2.jpg" alt="" />
-                            <h2>$56</h2>
-                            <p>Easy Polo Black Edition</p>
-                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="product-image-wrapper">
-                    <div class="single-products">
-                        <div class="productinfo text-center">
-                            <img src="images/home/gallery3.jpg" alt="" />
-                            <h2>$56</h2>
-                            <p>Easy Polo Black Edition</p>
-                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-3">
-                <div class="product-image-wrapper">
-                    <div class="single-products">
-                        <div class="productinfo text-center">
-                            <img src="images/home/gallery4.jpg" alt="" />
-                            <h2>$56</h2>
-                            <p>Easy Polo Black Edition</p>
-                            <button type="button" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
 
-        <div class="tab-pane fade active in" id="reviews" >
-            <div class="col-sm-12">
-                <ul>
-                    <li><a href=""><i class="fa fa-user"></i>EUGEN</a></li>
-                    <li><a href=""><i class="fa fa-clock-o"></i>12:41 PM</a></li>
-                    <li><a href=""><i class="fa fa-calendar-o"></i>31 DEC 2014</a></li>
-                </ul>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
-                <p><b>Write Your Review</b></p>
-
-                <form action="#">
-                    <span>
-                        <input type="text" placeholder="Your Name"/>
-                        <input type="email" placeholder="Email Address"/>
-                    </span>
-                    <textarea name="" ></textarea>
-                    <b>Rating: </b> <img src="images/product-details/rating.png" alt="" />
-                    <button type="button" class="btn btn-default pull-right">
-                        Submit
-                    </button>
-                </form>
-            </div>
-        </div>
-
-    </div>
-</div><!--/category-tab-->
-@endsection
+                      @endsection

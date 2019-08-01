@@ -1,36 +1,54 @@
 @extends('customer.layouts.master')
 @section('content')
-<div class="features_items"><!--features_items-->
-    <h2 class="title text-center">Danh mục sản phẩm</h2>
-    @foreach($products as $product)
-    @foreach($prodels as $prodel)
-    @if($product->id==$prodel->product_id)
-    <div class="col-sm-4">
-        <div class="product-image-wrapper">
-            <div class="single-products">
-                <div class="productinfo text-center">
-                    <a href="{{route('show-product',$product->id)}}"><img src="images/{{$product->image}}" alt="" /></a>                    
-                    <h2>{{number_format($prodel->price,2,'.',',')." VNĐ"}}</h2>                    
-                    <p>{{$product->name}}</p>
-                    <form method="POST" action="">
-                        <input type="hidden" name="product_id" value="{{$product->id}}">
-                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                        <button type="submit" class="btn btn-fefault add-to-cart">
-                            <i class="fa fa-shopping-cart"></i>
-                            Add to cart
-                        </button>
-                    </form>
+@include('customer.layouts.slide',['slide'=>$slides])
+@include('customer.layouts.product_hot',['pro'=>$products_hot,'prodels'=>$prodels])
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="box">
+                <div class="box-head">
+                    <h3 class="head-title">Sản phẩm</h3>
                 </div>
-                
-            </div>
+                <div class="box-body">
+                    <div class="row">
+                        <!-- product -->
+                        @foreach($products as $product)
+                        @foreach($prodels as $prodel)
+                        @if($product->id==$prodel->product_id)
+                        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                            <div class="product-block">
+                                <div class="product-img"> <a href="{{route('show-product',$product->id)}}"><img src="images/{{$product->image}}" alt="" /></a></div>
+                                <div class="product-content">
+                                    <h5><a href="#" class="product-title">{{$product->name}}</a></h5>
+                                    <div class="product-meta"><a href="#" class="product-price">{{number_format($prodel->price,2,'.',',')." VNĐ"}}</a>
 
+                                    </div>
+                                    <div class="shopping-btn">
+                                        <form method="POST" action="{{route('addCart',$product->id)}}">
+                                            <input type="hidden" name="product_id" value="{{$product->id}}">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="product-btn btn-cart" id="themgiohang" title="Thêm vào giỏ hàng">
+                                                <i class="fa fa-shopping-cart"></i>                                     
+                                            </button>
+
+                                        </form>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+                        @endforeach
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
-    @endif
-    @endforeach
-    @endforeach
+    <div class="text-center">{{$products->links()}}</div>
+</div>
 
-</div><!--features_items-->
-{{$products->links()}}
+
 
 @endsection

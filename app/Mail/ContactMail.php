@@ -16,12 +16,13 @@ class ContactMail extends Mailable
      *
      * @return void
      */
-    public $content,$email;
-    public function __construct($data,$dataemail)//data truyen vao
+    public $content,$email,$name;
+    public function __construct($name,$dataemail,$data)//data truyen vao
     {
-        
-        $this->content=$data;
+        $this->name=$name;
         $this->email=$dataemail;
+        $this->content=$data;
+        
     }
 
     /**

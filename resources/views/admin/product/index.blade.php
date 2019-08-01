@@ -28,20 +28,7 @@
 
 							</tr>
 						</thead>
-<<<<<<< HEAD
-						<tbody id="dataCategory">
-							@foreach($products as $product)							
-							<tr>
-							<td>{{$product->id}}</td>
-							<td>{{$product->name}}</td>
-							<td>{{$product->description}}</td>
-							<td> <img src="{{asset($product->image)}}" width="50px" height="50px" alt=""></td>
-							<td>{{$product->category->name}}</td>
-							<td>{{$product->brand->name}}</td>
-							<td>{{$product->status}}</td>
-							<td>{{$product->pro_hot}}</td>
-							<td>{{$product->created_at}}</td>
-=======
+
 						<tbody id="dataProduct">
 							@if(!empty($products)==true)
 
@@ -68,7 +55,7 @@
 									echo Carbon\Carbon::createFromTimeStamp(strtotime($product->created_at))->diffForHumans();;
 									?>
 								</td>
->>>>>>> 9b36f4662068f2ec6232b0728e0654e03dd8d7d4
+
 								<td>
 									<a href="{{route('show-product',$product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
 									<a href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
@@ -76,10 +63,8 @@
 								</td>    
 							</tr>
 							@endforeach
-<<<<<<< HEAD
-=======
 							@endif
->>>>>>> 9b36f4662068f2ec6232b0728e0654e03dd8d7d4
+
 						</tbody>
 					</table>
 				</div>

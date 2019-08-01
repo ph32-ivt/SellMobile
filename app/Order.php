@@ -9,7 +9,7 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = 
     [
-    	'name','phone','address','user_id'
+    	'name','email','phone','address','note','status'
     ];
     public function orderDetails(){
     	return $this->hasMany('App\OrderDetail');
