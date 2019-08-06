@@ -51,7 +51,8 @@ class OrderController extends Controller
             'phone'=>$request->phone,
             'address'=>$request->address,
             'note'=>$request->note,
-            'status'=>0//trang thai dang cho xu li
+            'status'=>0,//trang thai dang cho xu li
+            'user_id'=>3
         ];
         $order=Order::create($data_order);
         $carts= Cart::content();
@@ -76,7 +77,7 @@ class OrderController extends Controller
             $product->save();
         }
         Cart::destroy();
-        return redirect()->route('home')->with('success','Đặt hàng thành công');
+        return redirect()->route('home');
     }
     public function view_order(Request $request)
     {

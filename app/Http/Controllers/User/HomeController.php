@@ -69,7 +69,7 @@ class HomeController extends Controller
                 'role_id'=>3
            ];
            $user_role=UserRole::create($data_role);
-             return redirect()->route('home')->with('success','Register successfull!');
+             return redirect()->route('home');
         }
         // return redirect()->back()->with('fail', 'Register fail');
 
@@ -82,23 +82,18 @@ class HomeController extends Controller
     public function postLogin(UserLoginRequest $request)
     {   
         $user=User::where('email',$request->email)->first(); 
-        $role=User::find($user->id)->roles()->first(); 
-        if ($role->id==3) 
-        {
+       
               if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) 
                 {         
            
-                    return redirect()->route('home')->with('success','Login successfull!');
+                    return redirect()->route('home');
             
                 }
                 else
                 {
-                    return redirect()->route('login')->with('mess','thatbai');
+                    return redirect()->back()->with('message','Tên đăng nhập hoặc mật khẩu sai');
                 }
-        }else
-        {
-            return redirect()->back();
-        } 
+       
        
         // dd($role->id);
         
@@ -107,7 +102,7 @@ class HomeController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect()->route('home')->with('success','Logout successfull!');
+        return redirect()->route('home');
 
     }
     
@@ -120,32 +115,39 @@ class HomeController extends Controller
 
 
 
-    public function getLoginAdmin()
+    public function profile_manage()
     {
-        return view('admin.login');
+        $user=User::where('id',Auth::id())->first();
+        
+        return view('customer.user.profile_manage',compact('user'));
     }
-    // public function postLoginAdmin(Request $request)
-    // {
-    //     $this->validate($request,
-    //         [
-    //             'email'=>'required',
-    //             'password'=>'required'
-    //         ],
-    //         [
-    //             'email.required'=>'Bạn chưa nhập Email',
-    //             'password.required'=>'Bạn chưa nhập password',
-    //         ]
-    //     );
-    //     if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) {         
-    //         // $id=Auth::id();
-    //         // dd($id);
-    //         $id=Auth::id();
-    //         $user= User::find($id);
-    //         return view('admin.layouts.master',compact('user'));
-            
-    //     }
-    //     else{
-    //         return redirect()->route('getlogin')->with('mess','thatbai');
-    //     }
-    // }
+    public function update_profile(Request $request,$id)
+    {
+        $data = $request->only(['name','phone','address']);
+        $user = User::where('id','=',$id)
+            ->update($data);
+        if (!$user>0){
+            return redirect()->back()->with('error','Cập nhật thất bại!');
+        }
+        return redirect()->back()->with('successs','Cập nhật thành công!');
+    }
+    public function change_password()
+    {
+        $user = \auth()->user();
+        return view('customer.user.change_password',compact('user'));
+    }
+    public function update_change_password(Request $request, $id)
+    {
+        if (!Hash::check($request->current_password,Auth::user()->password)) {
+            return redirect()->back()->with('error','Mật khẩu cũ sai');
+        }else{
+            $user = User::where('id','=',$id)
+            ->update([
+                'password' => bcrypt($request->password),
+            ]);
+        return redirect()->back()->with('successs','Đổi mật khẩu thành công!');
+        }
+        
+        
+    }
 }

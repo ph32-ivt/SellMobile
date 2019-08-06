@@ -35,7 +35,7 @@ class CartController extends Controller
             $product=Product::with('productDetail')->where('id',$id)->first();
            if ($product) {
              \Cart::add($id,$product->name,$qty,$product->productDetail->price,1,['img'=>$product->image]);
-             return redirect()->back()->with('success','Add cart successful!');
+             return redirect()->back();
            }
     }
     public function updateCart(Request $request)
@@ -53,7 +53,7 @@ class CartController extends Controller
          $id=$request->rowId;
          \Cart::remove($id);
           $cart  = \Cart::content();                  
-        return redirect()->back()->with('success','Update successful!');
+        return redirect()->back()->with('success','Remove successful!');
     }
     
 

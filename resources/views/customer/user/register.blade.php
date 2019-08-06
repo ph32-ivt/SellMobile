@@ -20,7 +20,7 @@
                                             	<span style="color:red">{{$errors->first('name')}}</span>
 
                                           
-                                            <input id="name" name="name" type="text" class="form-control" placeholder="Enter Your Name" >
+                                            <input id="name" name="name" type="text" class="form-control" placeholder="Enter Your Name" {{old('name')}}>
                                         </div>
                                     </div>
                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

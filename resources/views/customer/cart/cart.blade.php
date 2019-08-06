@@ -1,6 +1,10 @@
 @extends('customer.layouts.master')
 @section('content')
-
+@if(session('error'))
+    <script type="text/javascript">
+        alert('{{session('error')}}');
+    </script>
+    @endif
 <div class="space-medium">
 	<div class="container">
 		<div class="row">
