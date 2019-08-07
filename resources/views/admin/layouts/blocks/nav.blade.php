@@ -41,17 +41,17 @@
     <li class="nav-item {{\Request::route()->getName()=='index-order'?'active':''}}">
       <a class="nav-link " href="{{route('index-order')}}">
         <img src="{{asset('admin/images/icons/4.png')}}" alt="">
-        <span class="menu-title">Order</span>
+        <span class="menu-title">Đơn Hàng</span>
       </a>
     </li>
-    <li class="nav-item {{\Request::route()->getName()=='index-silder'?'active':''}}">
-      <a class="nav-link " href="{{route('index-silder')}}">
+    <li class="nav-item {{\Request::route()->getName()=='index-slider'?'active':''}}">
+      <a class="nav-link " href="{{route('index-slider')}}">
         <img src="{{asset('admin/images/icons/5.png')}}" alt="">
-        <span class="menu-title">Slider</span>
+        <span class="menu-title">Slide</span>
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="pages/charts/index.html">
+      <a class="nav-link" href="{{route('index-comment')}}">
         <img src="{{asset('admin/images/icons/6.png')}}" alt="">
         <span class="menu-title">Bình luận</span>
       </a>

@@ -10,6 +10,7 @@ use App\Product;
 use App\Category;
 use App\ProductDetail;
 use App\OrderDetail;
+use App\Comment;
 use DB;
 use File;
 class ProductController extends Controller
@@ -22,7 +23,7 @@ class ProductController extends Controller
     public function index(Request $request)
 
     { 
-       $products = Product::with('category','productDetail')->withTrashed()->orderBy('id','DESC')->paginate(5);
+       $products = Product::with('category','productDetail')->orderBy('id','DESC')->paginate(5);
        if($request->name) $products = Product::where('name' ,'like','%'.$request->name.'%')->paginate(5);
 
        return view('admin.product.index',compact('products'));
@@ -66,7 +67,7 @@ class ProductController extends Controller
         }else{
             $data['image'] = "";
         }
-        dd($file);
+
         $data = Product::create($data);
 
         $dataDetail = $request->only('cpu','memory', 'display', 'pin', 'sim', 'camera', 'option','quantity','price');
@@ -168,7 +169,7 @@ class ProductController extends Controller
         }
 
         // File::delete(public_path('/images/'.$product->image));
-
+        Comment::where('product_id',$id)->delete();
         ProductDetail::where('product_id',$id)->delete();
         $product->destroy($id);
         DB::commit();

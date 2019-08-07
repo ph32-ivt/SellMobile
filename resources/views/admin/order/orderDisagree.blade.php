@@ -1,6 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
 <div class="container">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{{route('index-order')}}">Đơn Hàng</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Đơn Hàng Chưa Duyệt</li>
+		</ol>
+	</nav>
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
 			<div class="card-body">
@@ -35,12 +41,12 @@
 								<td>{{$orderDisAgree->address}}</td>
 								<td>{{$orderDisAgree->note}}</td>
 								<td>
-								
-									<a href="{{route('duyet.don.hang',$orderDisAgree->id)}}" class="btn btn-outline-danger">{!!$orderDisAgree->getStatus($orderDisAgree->status)['name']!!}</a>
+
+									<a title="đơn hàng chưa duyệt" href="{{route('duyet.don.hang',$orderDisAgree->id)}}" class="btn btn-outline-danger">{!!$orderDisAgree->getStatus($orderDisAgree->status)['name']!!}</a>
 								</td>
 								<td>
-									<a href="{{route('show-order-detail',$orderDisAgree->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-									<a href="{{route('delete-order',$orderDisAgree->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+									<a title="xem chi tiết" href="{{route('show-order-detail',$orderDisAgree->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+									<a title="xóa đơn hàng" onclick="return confirm('bạn có chắc muốn xóa đơn hàng này không')" href="{{route('delete-order',$orderDisAgree->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
 							

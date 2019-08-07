@@ -22,10 +22,10 @@ class HomeController extends Controller
 {
 	public function index()
     {
-        
+
         $categories=Category::all();
-        $products_hot=Product::with('productDetail')->where('pro_hot','0')->get();
-        $products=Product::with('productDetail')->where('pro_hot','<>','0')->paginate(8);
+        $products_hot=Product::with('productDetail')->where('pro_hot','1')->where('status',1)->get();
+        $products=Product::with('productDetail')->where('pro_hot','<>','1')->where('status',1)->paginate(8);
         // $products=Product::paginate(6);       
         $slides=Slide::all();        
         return view('customer.product.list-product',compact('categories','products','products_hot','slides'));
@@ -35,7 +35,7 @@ class HomeController extends Controller
         $product=Product::with('productDetail')->where('id',$id)->first();
         // $product_del=ProductDetail::where('product_id',$id)->first();
         // $image=Image::where('product_id',$id)->first();
-        $comments=Comment::where('product_id',$id)->get();
+        $comments=Comment::where('product_id',$id)->where('parent_id',NULl)->get();
         // dd($comments);
         return view('customer.product.product-detail',compact('product','comments'));
     }
@@ -52,78 +52,60 @@ class HomeController extends Controller
     }
     public function postRegister(UserRegister $request)
     {
-       $request->except('_token');
-       $data=[
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password),
-            'gender'=>$request->gender,
-            'phone'=>$request->phone,
-            'address'=>$request->address
-        ];
-        $user = User::create($data);
-        if($user)
-        {
-           $data_role=[
-                'user_id'=>$user->id,
-                'role_id'=>3
-           ];
-           $user_role=UserRole::create($data_role);
-             return redirect()->route('home')->with('success','Register successfull!');
-        }
+     $request->except('_token');
+     $data=[
+        'name'=>$request->name,
+        'email'=>$request->email,
+        'password'=>bcrypt($request->password),
+        'gender'=>$request->gender,
+        'phone'=>$request->phone,
+        'address'=>$request->address
+    ];
+    $user = User::create($data);
+
+    return redirect()->route('home')->with('success','Register successfull!');
         // return redirect()->back()->with('fail', 'Register fail');
 
 
-    }
-    public function login()
-    {
-        return view('customer.user.login');
-    }
-    public function postLogin(UserLoginRequest $request)
-    {   
-        $user=User::where('email',$request->email)->first(); 
-        $role=User::find($user->id)->roles()->first(); 
-        if ($role->id==3) 
-        {
-              if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) 
-                {         
-           
-                    return redirect()->route('home')->with('success','Login successfull!');
-            
-                }
-                else
-                {
-                    return redirect()->route('login')->with('mess','thatbai');
-                }
-        }else
-        {
-            return redirect()->back();
-        } 
-       
-        // dd($role->id);
+}
+public function login()
+{
+    return view('customer.user.login');
+}
+public function postLogin(UserLoginRequest $request)
+{   
+    $user=User::where('email',$request->email)->first(); 
+    
+    if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) 
+    {         
+
+        return redirect()->route('home')->with('success','Login successfull!');
         
-
     }
-    public function logout()
+    else
     {
-        Auth::logout();
-        return redirect()->route('home')->with('success','Logout successfull!');
-
+        return redirect()->route('login')->with('mess','thatbai');
     }
     
+    return redirect()->back();
+} 
+
+        // dd($role->id);
 
 
 
+public function logout()
+{
+    Auth::logout();
+    return redirect()->route('home')->with('success','Logout successfull!');
+
+}
 
 
-
-
-
-
-    public function getLoginAdmin()
-    {
-        return view('admin.login');
-    }
+public function getLoginAdmin()
+{
+    return view('admin.login');
+}
     // public function postLoginAdmin(Request $request)
     // {
     //     $this->validate($request,
@@ -142,7 +124,7 @@ class HomeController extends Controller
     //         $id=Auth::id();
     //         $user= User::find($id);
     //         return view('admin.layouts.master',compact('user'));
-            
+
     //     }
     //     else{
     //         return redirect()->route('getlogin')->with('mess','thatbai');

@@ -61,7 +61,7 @@ Route::group([
 
 	Route::get('/product/{action}/{id}','ProductController@action')->middleware('CheckAcl:action-product')->name('get-action-product');
 
-	Route::get('/product/{id}','ProductController@show')->name('show-product');
+	Route::get('/product/{id}','ProductController@show')->name('show-product-admin');
 
 
 
@@ -119,13 +119,14 @@ Route::group([
 
 	Route::get('/order/{id}/restore','OrderController@restore')->name('restore-history-order');
 
-	Route::get('/order/{id}/forceDelete','OrderController@forceDelete')->name('forceDelete-history-order');		
+	Route::get('/order/{id}/forceDelete','OrderController@forceDelete')->name('forceDelete-history-order');	
+	Route::get('/orderDetail/{id}/delete','OrderController@deleteOrderDetail')->name('delete-oderDetail');	
 
 
 
 
 
-	Route::get('/silder/','SlidesController@index')->name('index-silder');
+	Route::get('/silder/','SlidesController@index')->name('index-slider');
 
 	Route::get('/silder/create','SlidesController@create')->middleware('CheckAcl:create-slide')->name('create-slider');
 
@@ -135,6 +136,10 @@ Route::group([
 
 	Route::get('/silder/{id}','SlidesController@destroy')->middleware('CheckAcl:delete-slide')->name('destroy-silder');
 
+
+
+	Route::get('/comment/','CommentController@index')->name('index-comment');
+	Route::get('/comment/{id}','CommentController@destroy')->name('destroy-comment');
 
 });
 
@@ -169,7 +174,10 @@ Route::get('view-order','User\OrderController@view_order')->name('vieworder');
 
 // Route::get('/search', 'SearchController@search');
 Route::get('/search', 'User\SearchController@search')->name('search');
-
+// Route::get('/form-comment','User\CommentController@getLoadFormComment')->name('load-form-comment');
 Route::post('/comment','User\CommentController@create')->name('createcmt');
+
+// Route::get('/reply/{id}','User\CommentController@replyForm')->name('reple-form');
+Route::post('/reply-comment','User\CommentController@replyComment')->name('reply-comment');
 
 

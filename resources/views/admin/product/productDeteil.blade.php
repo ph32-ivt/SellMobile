@@ -1,5 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-category')}}">Sản Phẩm</a></li>
+		<li class="breadcrumb-item active" aria-current="page">{{$product->name}}</li>
+
+	</ol>
+</nav>
 <nav>
 	<div class="nav nav-tabs" id="nav-tab" role="tablist">
 		<a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true">Thông tin sản phẩm</a>
@@ -14,9 +21,8 @@
 				<h2>Giá : <i style="color:red">{{!empty($product->productDetail->price)?number_format($product->productDetail->price):''}} VND</i></h2>
 			</div>
 			<div class="col-md-4 text-right">
-				
-				<a href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i>Sửa</button></a>
-				<a onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-product',$product->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i>Xóa</button></a>
+				<a title="sửa sản phẩm" href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i>Sửa</button></a>
+				<a title="xóa sản phẩm" onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-product',$product->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i>Xóa</button></a>
 			</div>
 		</div>
 		

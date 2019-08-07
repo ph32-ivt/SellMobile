@@ -1,5 +1,11 @@
 @extends('admin.layouts.master')
 @section('content')
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-user')}}">User</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Sửa User</li>
+	</ol>
+</nav>
 <form action="{{route('update-user',$user->id)}}" method="POST" role="form">
 	@csrf
 	@method('PUT')

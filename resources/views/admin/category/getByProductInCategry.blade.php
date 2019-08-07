@@ -3,6 +3,13 @@
 
 
 <div class="container">
+		<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{{route('index-category')}}">Danh Mục</a></li>
+			<li class="breadcrumb-item active" aria-current="page">{{isset($data->name)?$data->name :''}}</li>
+			
+		</ol>
+	</nav>
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
 			<div class="card-body">
@@ -10,8 +17,6 @@
 					<div class="col-md-8">
 						<h1 class="card-title">{{isset($data->name)?$data->name :''}}</h1>
 						<h4>Sản phẩm ({{!empty($data->products)?$data->products->count():'0'}})</h4>
-
-						<a href="{{route('index-category')}}" class="mr-2 btn btn-info"> Quay lại</a>
 					</div>
 				</div>
 				<div class="table-responsive">
@@ -45,9 +50,9 @@
 									?>
 								</td>
 								<td>
-									<a href="{{route('show-product',$product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-									<a href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
-									<a onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-product',$product->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+									<a title="xem chi tiết" href="{{route('show-product',$product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+									<a title="sửa sản phẩm" href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
+									<a title="xóa sản phẩm" onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-product',$product->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    
 							</tr>
 							@endforeach

@@ -54,7 +54,7 @@ class SlidesController extends Controller
             $slide['image'] = $NameImage;
         }
         $slides = Slides::create($slide);
-        return redirect()->route('index-silder');
+        return redirect()->route('index-slider');
     
         
     }

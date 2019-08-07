@@ -5,6 +5,14 @@
 		{{session('sussecc')}}
 	</div>
 @endif
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-user')}}">User</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Admin</li>
+	</ol>
+</nav>
+
 <div class="container">
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
