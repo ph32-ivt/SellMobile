@@ -78,7 +78,7 @@ class OrderController extends Controller
             $product->save();
         }
         Cart::destroy();
-        return redirect()->route('home')->with('success','Đặt hàng thành công');
+        return redirect()->route('home');
     }
     public function view_order(Request $request)
     {

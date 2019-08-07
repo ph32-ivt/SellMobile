@@ -63,7 +63,14 @@
                                 <li><a href="{{route('form-contact')}}">Contact Us</a>
                                 </li> 
                                 <li><a href="#">About</a>
-                                </li>                               
+                                </li> 
+                                  <li class="has-sub"><a href="#">Account</a>
+                                    <ul>
+                                        <li class="{{(Auth::check())?'':'hidden'}}"><a href="{{route('profile_manage')}}">Profile Manager</a></li>
+                                        <li class="{{(Auth::check())?'':'hidden'}}"><a href="{{route('change_password')}}">Change Password</a> </li>
+                                                                                
+                                    </ul>
+                                </li>                              
                             </ul>
                         </div>
                     </div>

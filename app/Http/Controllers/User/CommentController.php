@@ -42,7 +42,7 @@ class CommentController extends Controller
             ];
             
             $comment=Comment::create($data);
-            return redirect()->back()->with('success','Create comments successfull!');
+            return redirect()->back();
     }
 
     public function replyForm(){

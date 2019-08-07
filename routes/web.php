@@ -149,7 +149,7 @@ Route::group([
 Route::get('contact', 'User\ContactController@formContact')->name('form-contact');
 Route::post('contact', 'User\ContactController@sendMail')->name('send-contact');
 
-// Route::get('product_hot','HomeController@prohot')->name('prohot');
+
 Route::get('products/{id}','User\HomeController@show')->name('show-product');
 Route::get('probycate/{id}','User\HomeController@show_product_by_category')->name('showbycate');
 Route::get('/register', 'User\HomeController@register')->name('register-user');
@@ -163,21 +163,28 @@ Route::get('/logout','User\HomeController@logout')->name('logout');
 
 Route::get('/cart', 'User\CartController@getCart')->name('getCart');
 Route::post('/addCart/{id}', 'User\CartController@addCart')->name('addCart');
-// Route::post('/addCartOne', 'CartController@addcartOne')->name('addcartOne');
+
 Route::post('/updateCart', 'User\CartController@updateCart')->name('updateCart');
 Route::post('/removeCart','User\CartController@removeCart')->name('removeCart');
-// Route::get('/orderConfirm', 'CartController@orderConfirm')->name('orderConfirm');
-// Route::post('/orderPay', 'CartController@orderPay')->name('orderPay');
+
 Route::get('/order','User\OrderController@getorder')->name('getorder');	
 Route::post('order','User\OrderController@store')->name('addorder');
 Route::get('view-order','User\OrderController@view_order')->name('vieworder');
 
-// Route::get('/search', 'SearchController@search');
+
 Route::get('/search', 'User\SearchController@search')->name('search');
 // Route::get('/form-comment','User\CommentController@getLoadFormComment')->name('load-form-comment');
 Route::post('/comment','User\CommentController@create')->name('createcmt');
 
+
 // Route::get('/reply/{id}','User\CommentController@replyForm')->name('reple-form');
 Route::post('/reply-comment','User\CommentController@replyComment')->name('reply-comment');
+
+Route::get('profile/','User\HomeController@profile_manage')->name('profile_manage');
+Route::put('/profile/{id}','User\HomeController@update_profile')->name('update_profile');
+
+Route::get('/change_password/','User\HomeController@change_password')->name('change_password');
+Route::put('/change_password/{id}','User\HomeController@update_change_password')->name('update_password');
+
 
 
