@@ -17,21 +17,14 @@
 			<div class="card-body">
 				<div class="row">
 
-<<<<<<< HEAD
+
 					<div class="col-md-6">
 						<h1 class="card-title">Quản trị user</h1>
 					</div>
 					<div class="col-md-6" style="color:#ffffff">
 						
 						<button class="mb-2 btn btn-primary"><a href="{{route('create-role')}}" style="color:#ffffff; text-transform: uppercase; font-size: 20px;"><i class="fas fa-plus-circle" style="font-size: 30px"></i> Thêm mới Group</a></button>
-=======
-					<div class="col-md-7">
-						<h1 class="card-title">Quản trị user</h1>
-					</div>
-					<div class="col-md-5" style="color:#ffffff">
-						
-						<button class="mb-2 btn btn-primary"><a href="{{route('create-role')}}" style="color:#ffffff; text-transform: uppercase; font-size: 20px;"><i class="fas fa-plus-circle" style="font-size: 30px"></i> Thêm mới</a></button>
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
 
 
 						<button class="mb-2 btn btn-primary"><a href="{{route('create-user')}}" style="color:#ffffff; text-transform: uppercase; font-size: 20px;"><i class="fas fa-plus-circle" style="font-size: 30px"></i> Thêm mới User</a></button>
@@ -82,43 +75,6 @@
 		</div>
 	</div>
 </div>
-</div>
-
-<!-- <script  type="text/javascript">
-	
-	$('#showModal').click(function(){
-		// alert('đ');
-		var modal= $(this).attr('data-target');
-		console.log(modal);
-		$( '#form-cate' ).attr({
-			action : '/categories',
-			method : 'POST'
-		}
-		);
-
-		$.ajax({
-			url : 'api/categories',
-			type : 'GET',
-			data : {},
-			success : function(result) {
-				console.log(result);
-			},
-			error: function(error)
-			{
-				console.log(error);
-			}
-
-		});
-	});
-	$('#editCate').click(function(event) {
-		/* Act on the event */
-		$('#form-cate').attr({
-			action: '/categories/'+cateId,
-			method: 'POST'
-		});
-		
-	});
-</script> -->
 @endsection
 
 
