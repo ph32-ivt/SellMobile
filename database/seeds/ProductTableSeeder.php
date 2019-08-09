@@ -14,7 +14,6 @@ class ProductTableSeeder extends Seeder
     {        
         DB::table('products')->insert([
 
-
             ['name'=>'Iphone 7 32G','pro_slug'=>'iphone-7-gold','description'=>'iPhone 7 32GB vẫn mang trên mình thiết kế quen thuộc của từ thời iPhone 6 nhưng có nhiều thay đổi lớn về phần cứng, dàn loa stereo và cấu hình cực mạnh.','image'=>'iphone-7-gold.png','status'=>0,'pro_hot'=>1,'category_id'=>1,'created_at' => now(),'updated_at' => now()],
             ['name'=>'Iphone 8 plus','pro_slug'=>'iphone-8-plus','description'=>'Thừa hưởng những thiết kế đã đạt đến độ chuẩn mực, thế hệ iPhone 8 Plus thay đổi phong cách bóng bẩy hơn và bổ sung hàng loạt tính năng cao cấp cho trải nghiệm sử dụng vô cùng tuyệt vời.','image'=>'iphone-8-plus.png','status'=>1,'pro_hot'=>1,'category_id'=>1,'created_at' => now(),'updated_at' => now()],
             ['name'=>'Iphone X 256GB','pro_slug'=>'iphone-x-256gb','description'=>'iPhone X được đã được Apple cho ra mắt ngày 12/9 vừa rồi đánh dấu chặng đường 10 năm lần đầu tiên iPhone ra đời. iPhone X mang trên mình thiết kế hoàn toàn mới với màn hình Super Retina viền cực mỏng và trang bị nhiều công nghệ hiện đại như nhận diện khuôn mặt Face ID, sạc pin nhanh và sạc không dây cùng khả năng chống nước bụi cao cấp.','image'=>'iphone-x-256gb.png','status'=>1,'pro_hot'=>1,'category_id'=>1,'created_at' => now(),'updated_at' => now()],

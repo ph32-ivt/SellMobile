@@ -28,6 +28,7 @@ class HomeController extends Controller
         $products_hot=Product::with('productDetail')->where('pro_hot','1')->where('status',1)->get();
         $products=Product::with('productDetail')->where('pro_hot','<>','1')->where('status',1)->paginate(8);
 
+
         // $products=Product::paginate(6);       
         $slides=Slide::where('status',1)->get();        
         return view('customer.product.list-product',compact('categories','products','products_hot','slides'));
@@ -54,9 +55,8 @@ class HomeController extends Controller
     }
     public function postRegister(UserRegister $request)
     {
-
-       $request->except('_token');
-       $data=[
+     $request->except('_token');
+     $data=[
         'name'=>$request->name,
         'email'=>$request->email,
         'password'=>bcrypt($request->password),
@@ -66,7 +66,7 @@ class HomeController extends Controller
     ];
     $user = User::create($data);
 
-    return redirect()->route('home')->with('success','Register successfull!');
+    return redirect()->route('userlogin');
         // return redirect()->back()->with('fail', 'Register fail');
 
 
@@ -83,9 +83,9 @@ public function postLogin(UserLoginRequest $request)
     {         
 
 
+
         return redirect()->route('home')->with('success','Login successfull!');
 
-        
     }
     else
     {
@@ -93,15 +93,9 @@ public function postLogin(UserLoginRequest $request)
         return redirect()->route('login')->with('mess','thatbai');
     }
     
-
-
     return redirect()->route('userlogin')->with('message','Tên đăng nhập hoặc mật khẩu sai');
 
 }
-
-
-        // dd($role->id);
-
 
 
 public function logout()
@@ -110,6 +104,7 @@ public function logout()
 
     return redirect()->route('home')->with('success','Logout successfull!');
 }
+
 
 
 
@@ -141,6 +136,7 @@ public function getLoginAdmin()
     //         return redirect()->route('getlogin')->with('mess','thatbai');
     //     }
     // }
+
 
 
 
@@ -177,8 +173,5 @@ public function update_change_password(Request $request, $id)
         return redirect()->back()->with('successs','Đổi mật khẩu thành công!');
     }
 
-
 }
-
-
 }

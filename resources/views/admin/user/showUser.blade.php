@@ -68,7 +68,7 @@
 
 
 							@if(!empty($user['phone']))
-							<td>{{$user['phone']}}</td>
+							<td>0{{$user['phone']}}</td>
 							@else
 							<td></td>
 							@endif

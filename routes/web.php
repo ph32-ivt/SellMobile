@@ -178,8 +178,7 @@ Route::get('/search', 'User\SearchController@search')->name('search');
 // Route::get('/form-comment','User\CommentController@getLoadFormComment')->name('load-form-comment');
 Route::post('/comment','User\CommentController@create')->name('createcmt');
 
-// Route::get('/reply/{id}','User\CommentController@replyForm')->name('reple-form');
-Route::post('/reply-comment','User\CommentController@replyComment')->name('reply-comment');
+
 
 
 // Route::get('/reply/{id}','User\CommentController@replyForm')->name('reple-form');

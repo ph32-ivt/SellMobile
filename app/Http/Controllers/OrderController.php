@@ -29,11 +29,13 @@ public function index(Request $request)
 
 	return view('admin.order.index',compact('disagree','agree'));
 
+
 }
+
 public function show($id)
 {
 	$order      = Order::with('orderDetails','orderDetails.product')->where('id',$id)->first();
-
+	
 	return view('admin.order.showOrderDetail',compact('order'));
 
 }
@@ -139,6 +141,13 @@ public function forceDelete($id)
 	}
 }
 
+
+public function deleteOrderDetail($id)
+{
+	OrderDetail::find($id)->delete();
+	return redirect()->back();
+
+}
 
 
 }

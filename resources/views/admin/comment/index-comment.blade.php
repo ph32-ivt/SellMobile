@@ -47,6 +47,7 @@
 									echo Carbon\Carbon::createFromTimeStamp(strtotime($listComment->created_at))->diffForHumans();;
 									@endphp
 								</td>
+
 								@if(!empty($listComment->parent_id) == $listComment->id)
 								<td>
 									{{$listComment->name}}
@@ -66,5 +67,5 @@
 		</div>
 	</div>
 </div>
-</div>
+
 @endsection

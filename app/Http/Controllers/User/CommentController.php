@@ -45,9 +45,7 @@ class CommentController extends Controller
             return redirect()->back();
     }
 
-    public function replyForm(){
-
-    }
+    
      public function replyComment(CommentRequest $request){
         $dataComment = $request->only('name','email','title','content');
         $dataComment['product_id']=$request->product_id;
@@ -58,16 +56,5 @@ class CommentController extends Controller
         return redirect()->back();
     }
 
-    public function replyForm(){
-
-    }
-     public function replyComment(CommentRequest $request){
-        $dataComment = $request->only('name','email','title','content');
-        $dataComment['product_id']=$request->product_id;
-        $dataComment['parent_id']=$request->comment_id;
-        $dataComment['rate']=0;
-        $dataComment['status']=1;
-        $comment = Comment::create($dataComment);
-        return redirect()->back();
-    }
+    
 }
