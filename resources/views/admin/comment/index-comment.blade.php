@@ -1,12 +1,10 @@
 @extends('admin.layouts.master')
 @section('content')
-
 @if(session('success'))
 <div class="alert alert-info">
 	{{session('success')}}
 </div>
 @endif
-
 <div class="container">
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
@@ -36,57 +34,37 @@
 							@endphp
 							@foreach($listComment as $listComment)
 							<tr>
-
-								<td>{{$stt++}}</td>	
+								<td>{{$stt++}}</td>
 								<td>{{$listComment->product->name}}</td>
 								<td>{{$listComment->name}}</td>
 								<td>{{$listComment->email}}</td>
 								<td>
 									<h4 style="color:red">{{$listComment->title}}</h4>
 									<p>{{$listComment->content}}</p>
-								</td>		
+								</td>
 								<td>
 									@php 
 									echo Carbon\Carbon::createFromTimeStamp(strtotime($listComment->created_at))->diffForHumans();;
 									@endphp
 								</td>
-								<<<<<<< HEAD
 								@if(!empty($listComment->parent_id) == $listComment->id)
 								<td>
 									{{$listComment->name}}
 								</td>
 								@else
-								<td></td>			
+								<td></td>
 								@endif
-								
 								<td><a href="{{route('show-product',$listComment->product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-
-									<a onclick="return confirm('Bạn có chắc muốn xóa bình luận nay không')" href="{{route('destroy-comment',$listComment->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>	
-									
-								</td>    
-							</tr>							
-							@endforeach
-						</tbody>
-					</table>
-				</div>
-				=======
-				<td>
-					{{!empty('$listComment->parent_id')?$listComment->parent_id:'[N\A]'}}
-				</td>
-
-				<td><a href=""><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-
-					<a href="{{route('destroy-comment',$listComment->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>	
-
-				</td>    
-			</tr>							
-			@endforeach
-		</tbody>
-	</table>
-
+									<a onclick="return confirm('Bạn có chắc muốn xóa bình luận nay không')" href="{{route('destroy-comment',$listComment->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+								</td>
+							</td>    
+						</tr>
+						@endforeach
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
 </div>
-
-
+</div>
 @endsection
-
-

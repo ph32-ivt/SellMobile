@@ -88,10 +88,8 @@ class CommentController extends Controller
     public function destroy($id)
     {
        Comment::find($id)->delete();
-<<<<<<< HEAD
+
        return redirect()->back()->with('success','Bạn đã xóa Bình luận thành công');
-=======
-       return redirect()->back();
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
     }
 }

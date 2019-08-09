@@ -24,13 +24,10 @@ class HomeController extends Controller
     {
 
         $categories=Category::all();
-<<<<<<< HEAD
+
         $products_hot=Product::with('productDetail')->where('pro_hot','1')->where('status',1)->get();
         $products=Product::with('productDetail')->where('pro_hot','<>','1')->where('status',1)->paginate(8);
-=======
-        $products_hot=Product::with('productDetail')->where('pro_hot','=','2')->where('status',1)->get();
-        $products=Product::with('productDetail')->where('pro_hot','<>','2')->where('status',1)->paginate(8);
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
         // $products=Product::paginate(6);       
         $slides=Slide::where('status',1)->get();        
         return view('customer.product.list-product',compact('categories','products','products_hot','slides'));
@@ -57,12 +54,9 @@ class HomeController extends Controller
     }
     public function postRegister(UserRegister $request)
     {
-<<<<<<< HEAD
-=======
 
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
-     $request->except('_token');
-     $data=[
+       $request->except('_token');
+       $data=[
         'name'=>$request->name,
         'email'=>$request->email,
         'password'=>bcrypt($request->password),
@@ -87,29 +81,24 @@ public function postLogin(UserLoginRequest $request)
     
     if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) 
     {         
-<<<<<<< HEAD
+
 
         return redirect()->route('home')->with('success','Login successfull!');
-=======
-        return redirect()->route('home');
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
         
     }
     else
     {
-<<<<<<< HEAD
+
         return redirect()->route('login')->with('mess','thatbai');
     }
     
-    return redirect()->back();
-=======
 
-        return redirect()->route('userlogin')->with('message','Tên đăng nhập hoặc mật khẩu sai');
 
-    }
-    
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
-} 
+    return redirect()->route('userlogin')->with('message','Tên đăng nhập hoặc mật khẩu sai');
+
+}
+
 
         // dd($role->id);
 
@@ -118,16 +107,12 @@ public function postLogin(UserLoginRequest $request)
 public function logout()
 {
     Auth::logout();
-<<<<<<< HEAD
-    return redirect()->route('home')->with('success','Logout successfull!');
-=======
-    return redirect()->route('home');
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
 
+    return redirect()->route('home')->with('success','Logout successfull!');
 }
 
 
-<<<<<<< HEAD
+
 public function getLoginAdmin()
 {
     return view('admin.login');
@@ -156,44 +141,44 @@ public function getLoginAdmin()
     //         return redirect()->route('getlogin')->with('mess','thatbai');
     //     }
     // }
-=======
-    
 
-    public function profile_manage()
-    {
-        $user=User::where('id',Auth::id())->first();
-        
-        return view('customer.user.profile_manage',compact('user'));
+
+
+public function profile_manage()
+{
+    $user=User::where('id',Auth::id())->first();
+
+    return view('customer.user.profile_manage',compact('user'));
+}
+public function update_profile(Request $request,$id)
+{
+    $data = $request->only(['name','phone','address']);
+    $user = User::where('id','=',$id)
+    ->update($data);
+    if (!$user>0){
+        return redirect()->back()->with('error','Cập nhật thất bại!');
     }
-    public function update_profile(Request $request,$id)
-    {
-        $data = $request->only(['name','phone','address']);
+    return redirect()->back()->with('successs','Cập nhật thành công!');
+}
+public function change_password()
+{
+    $user = \auth()->user();
+    return view('customer.user.change_password',compact('user'));
+}
+public function update_change_password(Request $request, $id)
+{
+    if (!Hash::check($request->current_password,Auth::user()->password)) {
+        return redirect()->back()->with('error','Mật khẩu cũ sai');
+    }else{
         $user = User::where('id','=',$id)
-            ->update($data);
-        if (!$user>0){
-            return redirect()->back()->with('error','Cập nhật thất bại!');
-        }
-        return redirect()->back()->with('successs','Cập nhật thành công!');
-    }
-    public function change_password()
-    {
-        $user = \auth()->user();
-        return view('customer.user.change_password',compact('user'));
-    }
-    public function update_change_password(Request $request, $id)
-    {
-        if (!Hash::check($request->current_password,Auth::user()->password)) {
-            return redirect()->back()->with('error','Mật khẩu cũ sai');
-        }else{
-            $user = User::where('id','=',$id)
-            ->update([
-                'password' => bcrypt($request->password),
-            ]);
+        ->update([
+            'password' => bcrypt($request->password),
+        ]);
         return redirect()->back()->with('successs','Đổi mật khẩu thành công!');
-        }
-        
-        
     }
 
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
+}
+
+
 }
