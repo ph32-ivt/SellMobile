@@ -41,41 +41,23 @@
     <div class="header-wrapper">
         @include('customer.layouts.header')
     </div>
-    <!-- /. header-section-->
-    <!-- slider -->
-    
-    
-    
-    <!-- /.slider -->
-            <!-- mobile showcase -->
-    
-            <!-- /.mobile showcase -->
-            <!-- latest products -->
-   @yield('content')
-                <!-- /.latest products -->
-                <!-- seller products -->
   
-                <!-- /.seller products -->
-                <!-- featured products -->
-   
-                    <!-- /.featured products -->
-       
-                    <!-- /.features -->
-                    <!-- footer -->
+   @yield('content')
+              
     <div class="footer">
         @include('customer.layouts.footer')               
     </div>
-                        <!-- /.footer -->
-                        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-                        <script src="{{asset('customer/js/jquery.min.js')}}" type="text/javascript"></script>
-                        <!-- Include all compiled plugins (below), or include individual files as needed -->
-                        <script src="{{asset('customer/js/bootstrap.min.js')}}" type="text/javascript"></script>
-                        <script src="{{asset('customer/js/menumaker.js')}}" type="text/javascript"></script>
-                        <script type="text/javascript" src="{{asset('customer/js/jquery.sticky.js')}}"></script>
-                        <script type="text/javascript" src="{{asset('customer/js/sticky-header.js')}}"></script>
-                        <script type="text/javascript" src="{{asset('customer/js/owl.carousel.min.js')}}"></script>
-                        <script type="text/javascript" src="{{asset('customer/js/multiple-carousel.js')}}"></script>
+<!-- /.footer -->
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="{{asset('customer/js/jquery.min.js')}}" type="text/javascript"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="{{asset('customer/js/bootstrap.min.js')}}" type="text/javascript"></script>
+<script src="{{asset('customer/js/menumaker.js')}}" type="text/javascript"></script>
+<script type="text/javascript" src="{{asset('customer/js/jquery.sticky.js')}}"></script>
+<script type="text/javascript" src="{{asset('customer/js/sticky-header.js')}}"></script>
+<script type="text/javascript" src="{{asset('customer/js/owl.carousel.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('customer/js/multiple-carousel.js')}}"></script>
                         
-                    </body>
+</body>
 
-                    </html>
+</html>

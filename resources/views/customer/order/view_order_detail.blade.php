@@ -11,17 +11,17 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>Order name</th>
-					<th>Phone</th>
+					<th>Tên người đặt</th>
+					<th>Số điện thoại</th>
 					<th>Email</th>
-					<th>Address</th>
-					<th>Order day </th>
+					<th>Dịa chỉ/th>
+					<th>ngày đặt </th>
 				</tr>
 			</thead>
 			<tbody>
 				<tr>
 					<td>{{$item->name}}</td>
-					<td>{{$item->phone}}</td>
+					<td>0{{$item->phone}}</td>
 					<td>{{$item->email}}</td>
 					<td>{{$item->address}}</td>
 					<td>{{$item->created_at}}</td>
@@ -32,10 +32,10 @@
 						<legend>order detail</legend>
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Quantity</th>
-						<th>Price</th>
-						<th>Day order</th>
+						<th>Tên sản phẩm</th>
+						<th>Số lượng</th>
+						<th>Giá</th>
+						<th>Ngày đặt</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -43,7 +43,7 @@
 						<tr>
 							<td>{{$detail->product->name}}</td>
 							<td>{{$detail->quantity}}</td>
-							<td>{{$detail->product->productDetail->price}}</td>
+							<td>{{number_format($detail->product->productDetail->price)}} VND</td>
 							<td>{{$detail->created_at}}</td>
 						</tr>
 					@endforeach

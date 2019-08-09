@@ -10,8 +10,8 @@
                         <div class="box-body">
                             <div class="row">
                                 <div class="col-lg-12 col-md-12 col-sm-6 col-xs-12 mb20">
-                                    <h3 class="mb10">Create Your Account</h3>
-                                    <p>Please fill all Resgister form Fields Below. </p>
+                                    <h3 class="mb10">Đăng kí tài khoản</h3>
+                                    <p>Vui lòng điền vào chổ trống bên dưới  </p>
                                 </div>
                                 <form action="{{route('postRegister')}}" method="POST">
                                 	@csrf
@@ -20,7 +20,7 @@
                                             	<span style="color:red">{{$errors->first('name')}}</span>
 
                                           
-                                            <input id="name" name="name" type="text" class="form-control" placeholder="Enter Your Name" >
+                                            <input id="name" name="name" type="text" class="form-control" placeholder="Nhập tên của bạn" {{old('name')}}>
                                         </div>
                                     </div>
                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -36,7 +36,7 @@
                                            
                                             	<span style="color:red">{{$errors->first('phone')}}</span>
                                            
-                                            <input id="phone" name="phone" type="text" class="form-control" placeholder=" Number"  >
+                                            <input id="phone" name="phone" type="text" class="form-control" placeholder="Số diện thoại"  >
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -44,7 +44,7 @@
                                             
                                             	<span style="color:red">{{$errors->first('email')}}</span>
                                            
-                                            <input id="email" name="email" type="text" class="form-control" placeholder="Enter your email id"  >
+                                            <input id="email" name="email" type="text" class="form-control" placeholder="Nhập địa chỉ email"  >
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -52,7 +52,7 @@
                                            
                                             	<span style="color:red">{{$errors->first('password')}}</span>
                                           
-                                            <input id="password" name="password" type="password" class="form-control" placeholder="create your password" >
+                                            <input id="password" name="password" type="password" class="form-control" placeholder="Mật khẩu" >
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -64,7 +64,7 @@
                                         </div>
                                     </div>
                                      <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
-                                        <button type="submit" class="btn btn-primary btn-block mb10">Register</button>
+                                        <button type="submit" class="btn btn-primary btn-block mb10">Đăng kí</button>
                                         
                                     </div>
 

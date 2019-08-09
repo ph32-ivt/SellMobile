@@ -10,6 +10,7 @@
 	<ol class="breadcrumb">
 		<li class="breadcrumb-item"><a href="{{route('index-user')}}">User</a></li>
 		<li class="breadcrumb-item active" aria-current="page">{{$listUser[0]['name']}}</li>
+
 	</ol>
 </nav>
 

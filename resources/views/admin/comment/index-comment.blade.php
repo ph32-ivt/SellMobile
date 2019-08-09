@@ -1,10 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
+
 @if(session('success'))
 <div class="alert alert-info">
 	{{session('success')}}
 </div>
 @endif
+
 <div class="container">
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
@@ -48,6 +50,7 @@
 									echo Carbon\Carbon::createFromTimeStamp(strtotime($listComment->created_at))->diffForHumans();;
 									@endphp
 								</td>
+								<<<<<<< HEAD
 								@if(!empty($listComment->parent_id) == $listComment->id)
 								<td>
 									{{$listComment->name}}
@@ -66,10 +69,24 @@
 						</tbody>
 					</table>
 				</div>
-			</div>
-		</div>
-	</div>
+				=======
+				<td>
+					{{!empty('$listComment->parent_id')?$listComment->parent_id:'[N\A]'}}
+				</td>
+
+				<td><a href=""><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+
+					<a href="{{route('destroy-comment',$listComment->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>	
+
+				</td>    
+			</tr>							
+			@endforeach
+		</tbody>
+	</table>
+
 </div>
+
+
 @endsection
 
 

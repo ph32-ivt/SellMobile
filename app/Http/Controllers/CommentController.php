@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 use App\Comment;
-use App\User;
 use Illuminate\Http\Request;
 
 class CommentController extends Controller
@@ -14,11 +13,13 @@ class CommentController extends Controller
      */
     public function index()
     {
+
        $listComment  = Comment::with('product')->orderBy('id','DESC')->get();
 
        $data         = [
-        'listComment'=>$listComment,
+        'listComment'=>$listComment
        ];
+
 
        return view('admin.comment.index-comment',$data);
     }
@@ -87,6 +88,10 @@ class CommentController extends Controller
     public function destroy($id)
     {
        Comment::find($id)->delete();
+<<<<<<< HEAD
        return redirect()->back()->with('success','Bạn đã xóa Bình luận thành công');
+=======
+       return redirect()->back();
+>>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
     }
 }

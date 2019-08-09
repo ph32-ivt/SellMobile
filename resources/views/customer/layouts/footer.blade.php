@@ -5,7 +5,7 @@
                                 <!-- footer-contact links -->
                                 <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <div class="footer-widget">
-                                        <h3 class="footer-title">Contact Info </h3>
+                                        <h3 class="footer-title">Thông tin liên hệ  </h3>
                                         <div class="contact-info">
                                             <span class="contact-icon"><i class="fa fa-map-marker"></i></span>
                                             <span class="contact-text">92 Quang Trung ,Hải Châu ,Đà Nẵng</span>
@@ -35,7 +35,7 @@
                                 <!-- footer-social links -->
                                 <div class=" col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                     <div class="footer-widget">
-                                        <h3 class="footer-title">Connect With Us</h3>
+                                        <h3 class="footer-title">Kết nối với chúng tôi bằng:</h3>
                                         <div class="ft-social">
                                             <span><a href="#" class="btn-social btn-facebook" ><i class="fa fa-facebook"></i></a></span>
                                             <span><a href="#" class="btn-social btn-twitter"><i class="fa fa-twitter"></i></a></span>

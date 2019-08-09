@@ -23,7 +23,9 @@ class ProductController extends Controller
     public function index(Request $request)
 
     { 
+
         $products = Product::with('category','productDetail')->orderBy('id','DESC')->paginate(5);
+
 
      if($request->name) $products = Product::where('name' ,'like','%'.$request->name.'%')->paginate(5);
 

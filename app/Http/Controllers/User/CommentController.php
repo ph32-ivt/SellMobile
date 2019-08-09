@@ -42,7 +42,20 @@ class CommentController extends Controller
             ];
             
             $comment=Comment::create($data);
-            return redirect()->back()->with('success','Create comments successfull!');
+            return redirect()->back();
+    }
+
+    public function replyForm(){
+
+    }
+     public function replyComment(CommentRequest $request){
+        $dataComment = $request->only('name','email','title','content');
+        $dataComment['product_id']=$request->product_id;
+        $dataComment['parent_id']=$request->comment_id;
+        $dataComment['rate']=0;
+        $dataComment['status']=1;
+        $comment = Comment::create($dataComment);
+        return redirect()->back();
     }
 
     public function replyForm(){

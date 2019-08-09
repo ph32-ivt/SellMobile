@@ -19,13 +19,17 @@
                         <p class="product-price" style="font-size: 38px;">{{number_format($product->productDetail['price'])}} VND </p>
                         <form method="POST" action="{{route('addCart',$product->id)}}">
                            <span>
-                           <label>Quantity:</label> <br>           
+
+                           <label>Số lượng:</label> <br>           
+
                            <input type="number" value="1" name="quantity" /><br>
                            <input type="hidden" name="product_id" value="{{$product->id}}">
                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            <button type="submit" class="btn btn-primary add-to-cart" style="margin-top: 20px;">
                            <i class="fa fa-shopping-cart"></i>
-                           Add to cart
+
+                           Thêm vào giỏ hàng
+
                            </button>
                            </span> 
                         </form>
@@ -41,9 +45,11 @@
 <div class="row">
    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="box-head scroll-nav">
-         <div class="head-title"> <a class="page-scroll active" href="#product">Product Details</a>
-            <a class="page-scroll" href="#rating">Ratings &amp; Reviews</a>
-            <a class="page-scroll" href="#review">Add Your Reviews</a>
+
+         <div class="head-title"> <a class="page-scroll active" href="#product">Cấu hình</a>
+            <a class="page-scroll" href="#rating">Đánh giá</a>
+            <a class="page-scroll" href="#review">Thêm đánh giá của bạn</a>
+
          </div>
       </div>
    </div>
@@ -53,11 +59,12 @@
    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="box" id="product">
          <div class="box-body">
-            <div class="highlights">
-               <h4 class="product-small-title">Specification</h4>
+
+            <div class="highlights">               
                <div class="row">
                   <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                     <h4>General</h4>
+                     <h4>Cấu hình chi tiết</h4>
+
                   </div>
                   <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12 mb30">
                      <ul>
@@ -93,7 +100,9 @@
    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
       <div class="box">
          <div class="box-head">
-            <h3 class="head-title">Customer Reviews</h3>
+
+            <h3 class="head-title">Đánh giá của khách hàng</h3>
+
          </div>
          <div class="box-body">
             <div class="row">
@@ -148,7 +157,9 @@
                                                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                    <div class="form-group">
                                                       <label class="control-label sr-only " for="name"></label>
-                                                      <input id="name" type="text" class="form-control" placeholder="Name"  name="name">
+
+                                                      <input id="name" type="text" class="form-control" placeholder="Nhập tên"  name="name">
+
                                                       <span style="color: red">{{$errors->first('name')}}</span>
                                                    </div>
                                                 </div>
@@ -156,7 +167,9 @@
                                                    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                                                       <div class="form-group">
                                                          <label class="control-label sr-only " for="email"></label>
-                                                         <input id="email" type="text" class="form-control" placeholder="Email"  title="email" name="email">
+
+                                                         <input id="email" type="text" class="form-control" placeholder="Nhập email"  title="email" name="email">
+
                                                          <span style="color: red">{{$errors->first('email')}}</span>
                                                       </div>
                                                    </div>
@@ -165,7 +178,9 @@
                                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                       <div class="form-group">
                                                          <label class="control-label sr-only " for="name"></label>
-                                                         <input id="title" type="text"  class="form-control" placeholder="Title"  name="title">
+
+                                                         <input id="title" type="text"  class="form-control" placeholder="Tiêu đề"  name="title">
+
                                                          <span style="color: red">{{$errors->first('title')}}</span>
                                                       </div>
                                                    </div>
@@ -173,10 +188,12 @@
                                                 <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                                    <div class="form-group">
                                                       <label class="control-label sr-only " for="textarea"></label>
-                                                      <textarea class="form-control" id="textarea" name="content" rows="4" placeholder="Enter your Reviews"></textarea>
+
+                                                      <textarea class="form-control" id="textarea" name="content" rows="4" placeholder="Nội dung nhận xét"></textarea>
                                                       <span style="color: red">{{$errors->first('content')}}</span>
                                                    </div>
-                                                   <button id="submit" name="singlebutton" class="btn btn-primary">Submit</button>
+                                                   <button id="submit" name="singlebutton" class="btn btn-primary">Hoàn thành</button>
+
                                                 </div>
                                              </form>
                                           </div>

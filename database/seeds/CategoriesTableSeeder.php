@@ -13,8 +13,8 @@ class CategoriesTableSeeder extends Seeder
     {
       DB::table('categories')->insert([
         /*phone*/
-        ['name'=>'Samsung','cate_slug'=>'sam-sung','created_at' => now(),'updated_at' => now()],
         ['name'=>'Iphone', 'cate_slug'=>'iphone','created_at' => now(),'updated_at' => now()],
+        ['name'=>'Samsung','cate_slug'=>'sam-sung','created_at' => now(),'updated_at' => now()],       
         ['name'=>'Oppo', 'cate_slug'=>'oppo','created_at' => now(),'updated_at' => now()],
         ['name'=>'Xiaomi', 'cate_slug'=>'xiaomi','created_at' => now(),'updated_at' => now()],
         ['name'=>'Huawai', 'cate_slug'=>'huawai','created_at' => now(),'updated_at' => now()],

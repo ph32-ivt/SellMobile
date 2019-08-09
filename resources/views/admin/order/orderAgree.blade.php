@@ -31,9 +31,12 @@
 							</tr>
 						</thead>
 						<tbody>
+							@php
+								$stt = 1;
+							@endphp
 							@foreach($agree as $orderAgree)
 							<tr>
-								<td>1</td>
+								<td>{{$stt++}}</td>
 								<td>{{$orderAgree->name}}</td>
 								<td>{{$orderAgree->email}}</td>
 								<td>{{$orderAgree->phone}}</td>
@@ -45,10 +48,25 @@
 									</button>
 								</td>
 								@foreach($user as $us)
+<<<<<<< HEAD
 									@if($orderAgree->user_id == $us->id)
 								<td>{{$us->name}}</td>
 									@endif
 								@endforeach
+=======
+										@if($us->id === $orderAgree->user_id)
+											<td>
+												{{$us->name}}
+											</td>
+											
+
+										@endif
+									@endforeach
+
+
+
+								
+>>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
 								<td>
 									
 									<a title="xem chi tiết" href="{{route('show-order-detail',$orderAgree->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>

@@ -51,6 +51,7 @@
 								</td>
 								<td>
 									<a title="xem chi tiết" href="{{route('show-product-admin',$product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+
 									<a title="sửa sản phẩm" href="{{route('edit-product',$product->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
 									<a title="xóa sản phẩm" onclick="return confirm('Bạn có muốn xóa không')" href="{{route('delete-product',$product->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 								</td>    

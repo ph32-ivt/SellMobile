@@ -54,7 +54,9 @@ class SlidesController extends Controller
             $slide['image'] = $NameImage;
         }
         $slides = Slides::create($slide);
+
         return redirect()->route('index-slider')->with('success','Bạn đã thêm slide thành công');
+
     
         
     }
