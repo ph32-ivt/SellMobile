@@ -61,6 +61,7 @@ class UserController extends Controller
     public function show($id)
     {
        $listUser = Role::with('users')->where('id',$id)->get()->toArray();
+      /* dd($listUser);*/
        return view('admin.user.showUser',compact('listUser'));
    }
 

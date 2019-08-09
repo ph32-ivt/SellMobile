@@ -20,15 +20,7 @@ class CategoriesTableSeeder extends Seeder
         ['name'=>'Huawai', 'cate_slug'=>'huawai','created_at' => now(),'updated_at' => now()],
         ['name'=>'Nokia', 'cate_slug'=>'nokia','created_at' => now(),'updated_at' => now()],
         ['name'=>'Mobile', 'cate_slug'=>'mobile','created_at' => now(),'updated_at' => now()]
-                /*
-                */
-
-        		// ['name'=>'Máy tính bảng','cate_slug'=>'may-tinh-bang'],
-          //       /*
-          //       */
-        		// ['name'=>'Ốp lưng','cate_slug'=>'op-lung'],
-          //       ['name'=>'Ốp lưng da','cate_slug'=>'op-lung-da'],
-          //       ['name'=>'Ốp lưng vải','cate_slug'=>'op-lung-vai']
+    
               ]);
     }
   }

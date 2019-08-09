@@ -1,5 +1,11 @@
 @extends('admin.layouts.master')
 @section('content')
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-user')}}">User</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Thêm User</li>
+	</ol>
+</nav>
 <form action="{{route('store-user')}}" method="POST" role="form">
 	@csrf
 	<legend>Tạo mới User</legend>
@@ -12,11 +18,11 @@
 	<div class="form-group">
 		<label for="">Giới tính <span style="color: red">**</span>:</label>
 		<div class="custom-control custom-radio custom-control-inline">
-			<input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="1" >
+			<input type="radio" id="customRadioInline1" name="gender" class="custom-control-input" value="1" {{old('gender')==1?'checked':''}} >
 			<label class="custom-control-label" for="customRadioInline1">Nam</label>
 		</div>
 		<div class="custom-control custom-radio custom-control-inline">
-			<input type="radio" id="customRadioInline2" name="gender" class="custom-control-input" value="0">
+			<input type="radio" id="customRadioInline2" name="gender" class="custom-control-input" value="0" {{old('gender')==0?'checked':''}}>
 			<label class="custom-control-label" for="customRadioInline2">Nữ</label>
 		</div>
 		<br>	
@@ -45,11 +51,11 @@
 	<div class="form-group"> 
 		<label for="">Chức vụ <span style="color: red">**</span></label>
 		<select name="roleID[]" id="input" class="mdb-select md-form form-control" multiple>
-		@foreach($listRole as $role)
-		<option  value="{{$role->id}}"{{old('roleID')==$role->id?'selected':''}}>{{$role->name}}</option>
-		@endforeach
-	</select>
-	<span style="color:red">{{$errors->first('roleID')}}</span>
+			@foreach($listRole as $role)
+			<option  value="{{$role->id}}"{{old('roleID')==$role->id?'selected':''}}>{{$role->name}}</option>
+			@endforeach
+		</select>
+		<span style="color:red">{{$errors->first('roleID')}}</span>
 	</div>
 	
 	<br>	

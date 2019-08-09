@@ -1,12 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Comment;
 use App\User;
-use Illuminate\Support\Facades\Auth;
-class AdminController extends Controller
+use Illuminate\Http\Request;
+
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +14,13 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //
+       $listComment  = Comment::with('product')->orderBy('id','DESC')->get();
+
+       $data         = [
+        'listComment'=>$listComment,
+       ];
+
+       return view('admin.comment.index-comment',$data);
     }
 
     /**
@@ -81,7 +86,7 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+       Comment::find($id)->delete();
+       return redirect()->back()->with('success','Bạn đã xóa Bình luận thành công');
     }
-    
 }

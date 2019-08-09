@@ -5,13 +5,21 @@
 		{{session('sussecc')}}
 	</div>
 @endif
+
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-user')}}">User</a></li>
+		<li class="breadcrumb-item active" aria-current="page">{{$listUser[0]['name']}}</li>
+	</ol>
+</nav>
+
 <div class="container">
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-10">
-						<h5 class="card-title">Quản trị user</h5>
+						<h2 class="card-title">{{$listUser[0]['name']}}</h2>
 					</div>
 
 				</div>
@@ -78,7 +86,10 @@
 									@if(\Auth::user()->id == $user['id'] || $role->role_id==1)
 									<a title="Sửa user" href="{{route('edit-user',$user['id'])}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
 									@endif
+
+									@if(\Auth::user()->id == $user['id'] &&  $role->role_id==1)
 									<a href="{{route('delete-user',$user['id'])}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+									@endif
 								</td>    
 							</tr>
 							@endforeach

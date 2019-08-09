@@ -18,7 +18,6 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->string('pro_slug');
             $table->text('description')->nullable();
-            $table->text('content')->nullable();
             $table->string('image')->nullable();
             $table->integer('status')->default(0);
             $table->integer('pro_hot')->default(0); 

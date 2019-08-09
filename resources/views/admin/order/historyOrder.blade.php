@@ -1,6 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
 <div class="container">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{{route('index-order')}}">Đơn Hàng</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Lịch sử xóa</li>
+		</ol>
+	</nav>
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
 			<div class="card-body">

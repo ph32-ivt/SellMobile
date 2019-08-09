@@ -1,6 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
 
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-slider')}}">Slide</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Thêm Slide</li>
+	</ol>
+</nav>
 <div class=" row">
 	<div class="col-md-4">
 		<form action="{{route('store-slider')}}" method="POST" enctype="multipart/form-data">

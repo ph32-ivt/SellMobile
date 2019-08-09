@@ -1,6 +1,10 @@
 @extends('admin.layouts.master')
 @section('content')
-
+@if(session('success'))
+<div class="alert alert-info">
+	{{session('success')}}
+</div>
+@endif
 
 <div class="container">
 	<div class="card-deck">
@@ -9,11 +13,11 @@
 				<div class="row">
 					<div class="col-md-8">
 
-						<h5 class="card-title">DANH MỤC</h5>
+						<h1 class="card-title">DANH MỤC</h1>
 						<a href="{{route('history-category')}}">Lịch sử xóa</a>
 					</div>
 					<div class="col-md-2">
-						<button class="mb-2 btn btn-primary"><a href="{{route('create-category')}}" style="color:#ffffff;">Thêm mới</a></button>
+						<button class="mb-2 btn btn-primary"><a href="{{route('create-category')}}" style="color:#ffffff; text-transform: uppercase; font-size: 20px;"><i class="fas fa-plus-circle" style="font-size: 30px"></i> Thêm mới</a></button>
 					</div>
 				</div>
 				<div class="table-responsive">

@@ -10,6 +10,7 @@ use App\Product;
 use App\Category;
 use App\ProductDetail;
 use App\OrderDetail;
+use App\Comment;
 use DB;
 use File;
 class ProductController extends Controller
@@ -22,12 +23,13 @@ class ProductController extends Controller
     public function index(Request $request)
 
     { 
-       $products = Product::with('category','productDetail')->withTrashed()->orderBy('id','DESC')->paginate(5);
-       if($request->name) $products = Product::where('name' ,'like','%'.$request->name.'%')->paginate(5);
+        $products = Product::with('category','productDetail')->orderBy('id','DESC')->paginate(5);
 
-       return view('admin.product.index',compact('products'));
+     if($request->name) $products = Product::where('name' ,'like','%'.$request->name.'%')->paginate(5);
 
-   }
+     return view('admin.product.index',compact('products'));
+
+ }
 
     /**
      * Show the form for creating a new resource.
@@ -48,16 +50,16 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        $data = $request->except('_token');
+        $data             = $request->except('_token');
         $data['pro_slug'] = str_slug($request->name);
-        $data['pro_hot'] =$request->pro_hot ? $request->pro_hot :0;
-        $data['status'] =$request->status ? $request->status : 0;
+        $data['pro_hot']  = $request->pro_hot ? $request->pro_hot :0;
+        $data['status']   =$request->status ? $request->status : 0;
 
         if($request->hasFile('image'))
         {
-            $file = $request->file('image');
-            $NameImage = $file->getClientOriginalName();
-            $NameImage = str_random(4)."-".$NameImage;
+            $file          = $request->file('image');
+            $NameImage     = $file->getClientOriginalName();
+            $NameImage     = str_random(4)."-".$NameImage;
             while(file_exists("/images/".$NameImage)){
                 $NameImage = str_radom(4)."-".$NameImage;
             }
@@ -66,12 +68,13 @@ class ProductController extends Controller
         }else{
             $data['image'] = "";
         }
-        dd($file);
-        $data = Product::create($data);
 
-        $dataDetail = $request->only('cpu','memory', 'display', 'pin', 'sim', 'camera', 'option','quantity','price');
+        $data              = Product::create($data);
+
+        $dataDetail        = $request->only('cpu','memory', 'display', 'pin', 'sim', 'camera', 'option','quantity','price');
         $dataDetail['product_id'] = $data->id;
-        $dataDetail = ProductDetail::create($dataDetail);
+        $dataDetail        = ProductDetail::create($dataDetail);
+
         return redirect()->route('index-product')->with('sussecc','Thêm mới sản phẩm mới thành công');
     }
 
@@ -113,22 +116,21 @@ class ProductController extends Controller
 
     {
 
-       try {
+     try {
         DB::beginTransaction();
-        $product = Product::find($id);
-
-        $dataProduct = $request->except('_token');
+        $product                 = Product::find($id);
+        $dataProduct             = $request->except('_token');
         $dataProduct['pro_slug'] = str_slug($request->name);
-        $dataProduct['pro_hot'] =$request->pro_hot ? $request->pro_hot :0;
-        $dataProduct['status'] =$request->status ? $request->status : 0;
+        $dataProduct['pro_hot']  = $request->pro_hot ? $request->pro_hot :0;
+        $dataProduct['status']   = $request->status ? $request->status : 0;
 
         if($request->hasFile('image'))
         {
-            $file = $request->file('image');
-            $NameImage = $file->getClientOriginalName();
-            $NameImage = str_random(4)."-".$NameImage;
+            $file                = $request->file('image');
+            $NameImage           = $file->getClientOriginalName();
+            $NameImage           = str_random(4)."-".$NameImage;
             while(file_exists("/images/".$NameImage)){
-                $NameImage = str_radom(4)."-".$NameImage;
+                $NameImage       = str_radom(4)."-".$NameImage;
             }
             $file->move(public_path('/images/'),$NameImage);
             $dataProduct['image'] = $NameImage;
@@ -156,7 +158,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {  
-     try {
+       try {
         DB::beginTransaction();
         $product = Product::find($id);
 
@@ -168,7 +170,7 @@ class ProductController extends Controller
         }
 
         // File::delete(public_path('/images/'.$product->image));
-
+        Comment::where('product_id',$id)->delete();
         ProductDetail::where('product_id',$id)->delete();
         $product->destroy($id);
         DB::commit();
@@ -180,10 +182,10 @@ class ProductController extends Controller
 
 public function action($action,$id){
     if($action){
-       $product = Product::find($id);
-       switch ($action) {
+     $product = Product::find($id);
+     switch ($action) {
         case 'status':
-        $product->status = $product->status ? 0 : 1;
+        $product->status  = $product->status ? 0 : 1;
         break;
         case 'pro_hot':
         $product->pro_hot = $product->pro_hot ? 0 : 1;

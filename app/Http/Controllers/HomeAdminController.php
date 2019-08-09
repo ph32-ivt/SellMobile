@@ -17,15 +17,15 @@ class HomeAdminController extends Controller
     public function index()
     {
 
-        $sumUser = User::all()->count();
-        $sumOrder = Order::all()->count();
+        $sumUser    = User::all()->count();
+        $sumOrder   = Order::all()->count();
         $sumProduct = Product::all()->count();
         $sumComment = Comment::all()->count();
 
 
-        $dataView = [
-            'sumUser' => $sumUser,
-            'sumOrder' => $sumOrder,
+        $dataView       = [
+            'sumUser'   => $sumUser,
+            'sumOrder'  => $sumOrder,
             'sumProduct'=>$sumProduct,
             'sumComment'=>$sumComment
         ];

@@ -25,17 +25,17 @@ class CategoryController extends Controller
 	public function show($id)
 	{
 		
-		$data = Category::with('products')->where('id',$id)->first();
+		$data     = Category::with('products')->where('id',$id)->first();
 		return view('admin.category.getByProductInCategry',compact('data'));
 	}
 
 	public function store(CategroyRequest $request)
 	{
-		$category = new Category();
-		$category->name = strtoupper($request->name);
+		$category            = new Category();
+		$category->name      = strtoupper($request->name);
 		$category->cate_slug = $request->name;
 		$category->save();
-		return redirect()->route('index-category');
+		return redirect()->route('index-category')->with('success','Bạn đã thêm danh mục mới thành công');
 	}
 	public function edit($id)
 	{
@@ -44,17 +44,17 @@ class CategoryController extends Controller
 	}
 	public function update(CategroyRequest $request,$id)
 	{
-		$category = Category::find($id);
-		$category->name = $request->name;
+		$category            = Category::find($id);
+		$category->name      = $request->name;
 		$category->cate_slug = $request->name;
 		$category->update();
-		return redirect()->route('index-category');
+		return redirect()->route('index-category')->with('success','Bạn đã chỉnh sửa Danh Mục thành công');
 	}
 
 	public function destroy($id)
 	{
 		Category::destroy($id);
-		return redirect()->route('index-category');
+		return redirect()->route('index-category')->with('success','Bạn đã Xóa Danh Mục thành công');;
 	}
 
 	public function history()

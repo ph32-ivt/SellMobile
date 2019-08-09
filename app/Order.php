@@ -9,7 +9,7 @@ class Order extends Model
     protected $table = 'orders';
     protected $fillable = 
     [
-    	'name','email','phone','address','note','status'
+    	'name','email','phone','address','note','status','user_id'
     ];
     const PUBLIC_STATUS = 1;
     const PUBLIC_PRIVATE = 0;
@@ -31,6 +31,6 @@ class Order extends Model
     	return $this->hasMany('App\OrderDetail');
     }
     public function user(){
-    	return $this->hasOne('App\User');
+    	return $this->belongTo('App\User','user_id');
     }
 }

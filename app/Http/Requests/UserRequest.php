@@ -42,7 +42,7 @@ class UserRequest extends FormRequest
             'password.required'=>'**Vui lòng nhập Họ tên',
             'address.required'=>'**Vui lòng nhập Họ tên',
             'phone.required'=>'**Vui lòng nhập Số điên thoại',
-            'phone.integer'=>'**Vui lòng nhập số nguyên',
+            'phone.integer'=>'**Số điện thoại không chính xác',
              'roleID.required'=>'**Vui lòng chọn quyền'
         ];
 

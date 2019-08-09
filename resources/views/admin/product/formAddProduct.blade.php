@@ -1,6 +1,12 @@
 @extends('admin.layouts.master')
 @section('content')
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-category')}}">Sản Phẩm</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Thêm Mới Sản Phẩm</li>
 
+	</ol>
+</nav>
 
 
 <form action="{{route('store-product')}}" method="POST" enctype="multipart/form-data">
@@ -11,7 +17,7 @@
 			<div  class="form-group">
 				<div class="row">
 					<div class="col-md-6">
-						<label for="">Danh mục</label>
+						<label for="">Danh mục<span style="color: red">**</span></label>
 						<select class="form-control" name="category_id" id="">
 							<option value="">--Chọn thương hiệu--</option>
 							@foreach($category as $category)
@@ -36,10 +42,6 @@
 			<div class="form-group">
 				<label for="">Mô tả</label>
 				<textarea name="description" id="description" class="form-control cheditor" rows="3" value="{{old('description')}}"></textarea>
-			</div>
-			<div class="form-group">
-				<label for="">Nội dung</label>
-				<textarea name="content" class="form-control cheditor"  id="content" value="{{old('content')}}" ></textarea>
 			</div>
 			<div class="form-group ml-2">
 				<div class="custom-control custom-switch">
@@ -113,6 +115,6 @@
 @endsection
 
 @section('js')
-<script type="text/javascript"> CKEDITOR.replace('content'); </script>
+
 <script type="text/javascript"> CKEDITOR.replace('description'); </script>
 @endsection

@@ -17,12 +17,16 @@
 			<div class="card-body">
 				<div class="row">
 
-					<div class="col-md-8">
-						<h5 class="card-title">Quản trị user</h5>
+					<div class="col-md-6">
+						<h1 class="card-title">Quản trị user</h1>
 					</div>
-					<div class="col-md-4" style="color:#ffffff">
-						<button class="mb-2 btn btn-primary"><a href="{{route('create-role')}}">Thêm nhóm</a></button>	
-						<button class="mb-2 btn btn-primary"><a href="{{route('create-user')}}">Thêm mới user</a></button>			
+					<div class="col-md-6" style="color:#ffffff">
+						
+						<button class="mb-2 btn btn-primary"><a href="{{route('create-role')}}" style="color:#ffffff; text-transform: uppercase; font-size: 20px;"><i class="fas fa-plus-circle" style="font-size: 30px"></i> Thêm mới Group</a></button>
+
+
+						<button class="mb-2 btn btn-primary"><a href="{{route('create-user')}}" style="color:#ffffff; text-transform: uppercase; font-size: 20px;"><i class="fas fa-plus-circle" style="font-size: 30px"></i> Thêm mới User</a></button>
+
 					</div>
 				</div>
 				<div class="table-responsive">
@@ -53,11 +57,11 @@
 							@else
 							<td></td>
 							@endif
-						
+
 							<td>
-								<a href="{{route('show-user',$groupUser->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-								<a href="{{route('edit-role',$groupUser->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
-								<a href="{{route('destroy-role',$groupUser->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
+								<a title="xem chi tiết" href="{{route('show-user',$groupUser->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
+								<a title="sửa quyền" href="{{route('edit-role',$groupUser->id)}}"><button class="btn btn-outline-info"><i class="fas fa-pencil-alt"></i></button></a>
+								<a title="xóa" onclick="return confirm('bạn có chắc muốn xóa quyền này k')" href="{{route('destroy-role',$groupUser->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a>
 							</td>  
 							
 						</tr>

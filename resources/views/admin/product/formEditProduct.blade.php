@@ -1,6 +1,13 @@
 @extends('admin.layouts.master')
 @section('content')
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-category')}}">Sản Phẩm</a></li>
+		<li class="breadcrumb-item"><a href="{{route('show-product-admin',$data->id)}}">{{$data->name}}</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Sửa Sản Phẩm</li>
 
+	</ol>
+</nav>
 
 
 	<form action="{{route('update-product',$data->id)}}" method="POST" enctype="multipart/form-data">

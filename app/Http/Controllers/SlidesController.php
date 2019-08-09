@@ -39,13 +39,13 @@ class SlidesController extends Controller
      */
     public function store(ImageRequest $request)
     {
-        $slide = $request->except('_token');
-        $slide['status'] = 0;
+        $slide             = $request->except('_token');
+        $slide['status']   = 0;
         if($request->hasFile('image'))
         {
-            $file = $request->file('image');
-            $NameImage = $file->getClientOriginalName();
-            $NameImage = str_random(4)."-".$NameImage;
+            $file          = $request->file('image');
+            $NameImage     = $file->getClientOriginalName();
+            $NameImage     = str_random(4)."-".$NameImage;
             while(file_exists("/images/slides/".$NameImage)){
                 $NameImage = str_radom(4)."-".$NameImage;
             }
@@ -54,7 +54,7 @@ class SlidesController extends Controller
             $slide['image'] = $NameImage;
         }
         $slides = Slides::create($slide);
-        return redirect()->route('index-silder');
+        return redirect()->route('index-slider')->with('success','Bạn đã thêm slide thành công');
     
         
     }
@@ -109,7 +109,7 @@ class SlidesController extends Controller
             }
         }
         $slide->destroy($id);
-        return redirect()->back();
+        return redirect()->back()->with('success','Bạn đã Xóa slide thành công');;
     }
 
     public function upadateStatusSlide($id){

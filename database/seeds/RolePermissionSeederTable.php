@@ -35,8 +35,6 @@ class RolePermissionSeederTable extends Seeder
     		['role_id'=>1,'permission_id'=>21],
     		['role_id'=>1,'permission_id'=>22],	
     		['role_id'=>1,'permission_id'=>23]
-
-
     	]);
     	
     }

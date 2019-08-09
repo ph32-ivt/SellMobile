@@ -7,13 +7,19 @@
 </div>
 @endif
 <div class="container">
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="{{route('index-category')}}">Danh Mục</a></li>
+			<li class="breadcrumb-item active" aria-current="page">Lịch sử xóa</li>
+		</ol>
+	</nav>
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
 			<div class="card-body">
 				<div class="row">
 					<div class="col-md-8">
 						<h5 class="card-title">Lịch sử xóa Thể loại</h5>
-						<a href="{{route('index-category')}}" class="mr-2 btn btn-info"> Quay lại</a>
+						
 					</div>
 					
 				</div>

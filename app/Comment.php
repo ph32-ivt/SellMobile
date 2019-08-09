@@ -9,7 +9,7 @@ class Comment extends Model
     protected $table = 'comments';
     protected $fillable = 
     [
-    	'name','email','title','content','rate','status','product_id'
+    	'name','email','title','content','rate','status','product_id','parent_id'
     ];
     public function product(){
     	return $this->belongsTo('App\Product');

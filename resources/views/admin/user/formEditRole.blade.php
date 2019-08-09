@@ -1,5 +1,11 @@
 @extends('admin.layouts.master')
 @section('content')
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-user')}}">User</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Sửa Nhóm</li>
+	</ol>
+</nav>
 <div class=" row">
 	<div class="col-md-6 push-2">
 		<form action="{{route('update-role',$role->id)}}" method="POST">
@@ -13,7 +19,6 @@
 			</div>
 			<label for="">Phân quyền cho nhóm</label>
 			<div  class="form-group">
-				
 				<div class="form-group">
 					@foreach($listPermission as $permission)
 					<label  style="width: 200px; ">

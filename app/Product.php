@@ -9,7 +9,7 @@ class Product extends Model
 	protected $table = 'products';
 	protected $fillable = 
 	[
-		'name','pro_slug','description','content','image','status','pro_hot','category_id'
+		'name','pro_slug','description','image','status','pro_hot','category_id'
 	];
 	const STATUS_PUBLIC = 1;
 	const STATUS_PRIVATE = 0;

@@ -1,5 +1,11 @@
 @extends('admin.layouts.master')
 @section('content')
+<nav aria-label="breadcrumb">
+	<ol class="breadcrumb">
+		<li class="breadcrumb-item"><a href="{{route('index-user')}}">User</a></li>
+		<li class="breadcrumb-item active" aria-current="page">Sửa User</li>
+	</ol>
+</nav>
 <form action="{{route('update-user',$user->id)}}" method="POST" role="form">
 	@csrf
 	@method('PUT')
@@ -36,6 +42,7 @@
 		<label for="">Địa chỉ<span style="color: red">**</span></label>
 		<input name="address" type="text" class="form-control" id="" value="{{!empty($user->address)?$user->address:''}}" >
 	</div>
+	@if($user->id != \Auth::user()->id)
 	<div class="form-group">
 		<label for="">Phân quyền thành viên</label>
 		<select name="roleID[]" id="input" class="mdb-select md-form form-control" multiple>
@@ -44,6 +51,8 @@
 			@endforeach
 		</select>
 	</div>
+	@endif
+
 	
 
 	<button title="Update" type="submit" class="btn btn-primary">Lưu Lại</button>

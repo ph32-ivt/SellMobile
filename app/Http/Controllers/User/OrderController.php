@@ -45,13 +45,15 @@ class OrderController extends Controller
      */
     public function store(OrderRequest $request)
     {
+          $data_order = $request->except('_token');
         $data_order=[
             'name'=>$request->name,
             'email'=>$request->email,
             'phone'=>$request->phone,
             'address'=>$request->address,
             'note'=>$request->note,
-            'status'=>0//trang thai dang cho xu li
+            'status'=>0,//trang thai dang cho xu li
+            'user_id'=>0
         ];
         $order=Order::create($data_order);
         $carts= Cart::content();
