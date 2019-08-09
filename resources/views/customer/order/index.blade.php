@@ -84,7 +84,7 @@
 											<tr>
 												<th>
 													<span>{{$item->name}}</span></th>
-													<td>{{$item->price}}</td>
+													<td>{{number_format($item->price)}} VND</td>
 												</tr>
 												@endforeach
 											</tbody>

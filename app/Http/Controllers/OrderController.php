@@ -51,7 +51,8 @@ return redirect()->back();
 //show ra đơn hàng đẵ đã duyệt
 public function getAgree(){
 $agree = Order::where('status',1)->get();
-return view('admin.order.orderAgree',compact('agree'));
+$user =User::all();
+return view('admin.order.orderAgree',compact('agree','user'));
 }
 
 public function getDisAgree(){

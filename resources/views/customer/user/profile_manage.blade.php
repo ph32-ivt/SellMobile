@@ -42,7 +42,7 @@
                                         <div class="col-sm-9">
                                             <input type="text"
                                                    class="form-control "
-                                                   id="inputtel3" name="phone" value="{{$user->phone}}">
+                                                   id="inputtel3" name="phone" value="0{{$user->phone}}">
                                             @if ($errors->has('tel'))
                                                 <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('tel') }}</strong>

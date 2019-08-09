@@ -41,6 +41,7 @@
             </div>
         </div>
     </div>
+    <div class="text-center">{{$products->links()}}</div>
 </div>
 
 

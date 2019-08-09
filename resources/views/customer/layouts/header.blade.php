@@ -1,5 +1,10 @@
 <div class="container">
             <div class="row">
+                @if(session('message'))
+                <p class="alert-warning"> {{session('message')}}</p>
+                @endif
+            </div>
+            <div class="row">
                 <!-- logo -->
                 <div class="col-lg-3 col-md-3 col-sm-3 col-xs-8">
                     <div class="logo">
@@ -64,10 +69,10 @@
                                 </li> 
                                 <li><a href="#">About</a>
                                 </li> 
-                                  <li class="has-sub"><a href="#">Account</a>
+                                  <li class="has-sub {{(Auth::check())?'':'hidden'}}"><a href="#">Account</a>
                                     <ul>
-                                        <li class="{{(Auth::check())?'':'hidden'}}"><a href="{{route('profile_manage')}}">Profile Manager</a></li>
-                                        <li class="{{(Auth::check())?'':'hidden'}}"><a href="{{route('change_password')}}">Change Password</a> </li>
+                                        <li ><a href="{{route('profile_manage')}}">Profile Manager</a></li>
+                                        <li ><a href="{{route('change_password')}}">Change Password</a> </li>
                                                                                 
                                     </ul>
                                 </li>                              

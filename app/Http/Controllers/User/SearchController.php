@@ -15,9 +15,14 @@ class SearchController extends Controller
     public function search(Request $request)
     {
         $key=$request->key;
-        $products =Product::with('productDetail')->where('name','like','%'.$key.'%')->get();
+        if ($key!='') {
+           $products =Product::with('productDetail')->where('name','like','%'.$key.'%')->get();
         // dd($products);
-        return view('customer.search.index',compact('products','key'));
+        return view('customer.search.index',compact('products','key')); 
+        }else{
+            return redirect()->back()->with('message','Bạn chưa nhập từ khóa vui lòng nhập bên dưới!');
+        }
+        
     }
     
 }

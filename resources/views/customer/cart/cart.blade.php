@@ -98,7 +98,7 @@
 																	</tr>
 																	<tr>
 																		<th>
-																			<span>Delivery Charges</span></th>
+																			<span>VAT</span></th>
 																			<td><strong class="text-green">Free</strong></td>
 																		</tr>
 																	</tbody>

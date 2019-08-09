@@ -36,7 +36,7 @@
                                            
                                             	<span style="color:red">{{$errors->first('phone')}}</span>
                                            
-                                            <input id="phone" name="phone" type="text" class="form-control" placeholder=" Number"  >
+                                            <input id="phone" name="phone" type="text" class="form-control" placeholder="Phone Number"  >
                                         </div>
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">

@@ -21,7 +21,7 @@
 			<tbody>
 				<tr>
 					<td>{{$item->name}}</td>
-					<td>{{$item->phone}}</td>
+					<td>0{{$item->phone}}</td>
 					<td>{{$item->email}}</td>
 					<td>{{$item->address}}</td>
 					<td>{{$item->created_at}}</td>
@@ -43,7 +43,7 @@
 						<tr>
 							<td>{{$detail->product->name}}</td>
 							<td>{{$detail->quantity}}</td>
-							<td>{{$detail->product->productDetail->price}}</td>
+							<td>{{number_format($detail->product->productDetail->price)}} VND</td>
 							<td>{{$detail->created_at}}</td>
 						</tr>
 					@endforeach

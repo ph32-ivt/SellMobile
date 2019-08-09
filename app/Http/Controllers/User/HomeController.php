@@ -24,8 +24,8 @@ class HomeController extends Controller
     {
 
         $categories=Category::all();
-        $products_hot=Product::with('productDetail')->where('pro_hot','1')->where('status',1)->get();
-        $products=Product::with('productDetail')->where('pro_hot','<>','1')->where('status',1)->paginate(8);
+        $products_hot=Product::with('productDetail')->where('pro_hot','=','2')->where('status',1)->get();
+        $products=Product::with('productDetail')->where('pro_hot','<>','2')->where('status',1)->paginate(8);
         // $products=Product::paginate(6);       
         $slides=Slide::where('status',1)->get();        
         return view('customer.product.list-product',compact('categories','products','products_hot','slides'));
@@ -41,7 +41,7 @@ class HomeController extends Controller
     }
     public function show_product_by_category($id)
     {
-        $products=Product::with('productDetail')->where('category_id',$id)->get();
+        $products=Product::with('productDetail')->where('category_id',$id)->paginate(8);
         // $products=Product::where('category_id',$id)->get();
          // $product_del=ProductDetail::where('product_id',$id)->get();
         return view('customer.product.listpro_by_cate',compact('products'));
@@ -85,7 +85,7 @@ public function postLogin(UserLoginRequest $request)
     else
     {
 
-        return redirect()->route('login')->with('message','Tên đăng nhập hoặc mật khẩu sai');
+        return redirect()->route('userlogin')->with('message','Tên đăng nhập hoặc mật khẩu sai');
 
     }
     
