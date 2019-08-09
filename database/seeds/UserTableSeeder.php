@@ -15,5 +15,9 @@ class UserTableSeeder extends Seeder
         	['name'=>'hoangkha','email'=>'hoangkha0164@gmail.com','password'=>bcrypt('123456'),'gender'=>'1','phone'=>'0378635050','address'=>'Xã Quế Châu,Huyện Quế Sơn ,Tỉnh Quảng Nam']
 
         ]);
+        DB::table('users')->insert([
+            ['name'=>'minh hai','email'=>'admin@gmail.com','password'=>bcrypt('123456'),'gender'=>'1','phone'=>'0378635050','address'=>'Đà nẵng']
+
+        ]);
     }
 }
