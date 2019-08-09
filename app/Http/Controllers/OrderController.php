@@ -28,12 +28,12 @@ public function index(Request $request)
 	}
 
 	return view('admin.order.index',compact('disagree','agree'));
-
+}
 
 public function show($id)
 {
 	$order      = Order::with('orderDetails','orderDetails.product')->where('id',$id)->first();
-
+	
 	return view('admin.order.showOrderDetail',compact('order'));
 
 }
@@ -143,7 +143,7 @@ public function deleteOrderDetail($id)
 {
 	OrderDetail::find($id)->delete();
 	return redirect()->back();
-=======
+}
 //show ra đơn hàng đẵ đã duyệt
 public function getAgree(){
 $agree = Order::where('status',1)->get();
@@ -203,7 +203,7 @@ return redirect()->back();
 public function deleteOrderDetail($id){
 OrderDetail::find($id)->delete();
 return redirect()->back();
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
 }
 
 }

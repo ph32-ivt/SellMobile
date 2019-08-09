@@ -24,13 +24,10 @@ class HomeController extends Controller
     {
 
         $categories=Category::all();
-<<<<<<< HEAD
-        $products_hot=Product::with('productDetail')->where('pro_hot','1')->where('status',1)->get();
-        $products=Product::with('productDetail')->where('pro_hot','<>','1')->where('status',1)->paginate(8);
-=======
+
         $products_hot=Product::with('productDetail')->where('pro_hot','=','2')->where('status',1)->get();
         $products=Product::with('productDetail')->where('pro_hot','<>','2')->where('status',1)->paginate(8);
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
         // $products=Product::paginate(6);       
         $slides=Slide::where('status',1)->get();        
         return view('customer.product.list-product',compact('categories','products','products_hot','slides'));
@@ -57,10 +54,9 @@ class HomeController extends Controller
     }
     public function postRegister(UserRegister $request)
     {
-<<<<<<< HEAD
-=======
 
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
+
      $request->except('_token');
      $data=[
         'name'=>$request->name,
@@ -72,7 +68,7 @@ class HomeController extends Controller
     ];
     $user = User::create($data);
 
-    return redirect()->route('home')->with('success','Register successfull!');
+    return redirect()->route('userlogin');
         // return redirect()->back()->with('fail', 'Register fail');
 
 
@@ -87,28 +83,20 @@ public function postLogin(UserLoginRequest $request)
     
     if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) 
     {         
-<<<<<<< HEAD
 
-        return redirect()->route('home')->with('success','Login successfull!');
-=======
         return redirect()->route('home');
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
         
     }
     else
     {
-<<<<<<< HEAD
-        return redirect()->route('login')->with('mess','thatbai');
-    }
-    
-    return redirect()->back();
-=======
+
 
         return redirect()->route('userlogin')->with('message','Tên đăng nhập hoặc mật khẩu sai');
 
     }
     
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
 } 
 
         // dd($role->id);
@@ -118,45 +106,14 @@ public function postLogin(UserLoginRequest $request)
 public function logout()
 {
     Auth::logout();
-<<<<<<< HEAD
-    return redirect()->route('home')->with('success','Logout successfull!');
-=======
+
     return redirect()->route('home');
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
 
 }
 
 
-<<<<<<< HEAD
-public function getLoginAdmin()
-{
-    return view('admin.login');
-}
-    // public function postLoginAdmin(Request $request)
-    // {
-    //     $this->validate($request,
-    //         [
-    //             'email'=>'required',
-    //             'password'=>'required'
-    //         ],
-    //         [
-    //             'email.required'=>'Bạn chưa nhập Email',
-    //             'password.required'=>'Bạn chưa nhập password',
-    //         ]
-    //     );
-    //     if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) {         
-    //         // $id=Auth::id();
-    //         // dd($id);
-    //         $id=Auth::id();
-    //         $user= User::find($id);
-    //         return view('admin.layouts.master',compact('user'));
 
-    //     }
-    //     else{
-    //         return redirect()->route('getlogin')->with('mess','thatbai');
-    //     }
-    // }
-=======
     
 
     public function profile_manage()
@@ -195,5 +152,5 @@ public function getLoginAdmin()
         
     }
 
->>>>>>> a6b2954e0b073c5d2fde4ba899986d8b21732a13
+
 }

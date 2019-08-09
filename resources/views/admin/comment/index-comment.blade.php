@@ -50,26 +50,7 @@
 									echo Carbon\Carbon::createFromTimeStamp(strtotime($listComment->created_at))->diffForHumans();;
 									@endphp
 								</td>
-								<<<<<<< HEAD
-								@if(!empty($listComment->parent_id) == $listComment->id)
-								<td>
-									{{$listComment->name}}
-								</td>
-								@else
-								<td></td>			
-								@endif
 								
-								<td><a href="{{route('show-product',$listComment->product->id)}}"><button class="btn btn-outline-info"><i class="far fa-eye"></i></button></a>
-
-									<a onclick="return confirm('Bạn có chắc muốn xóa bình luận nay không')" href="{{route('destroy-comment',$listComment->id)}}"><button class="btn btn-outline-danger"><i class="far fa-trash-alt"></i></button></a></td>	
-									
-								</td>    
-							</tr>							
-							@endforeach
-						</tbody>
-					</table>
-				</div>
-				=======
 				<td>
 					{{!empty('$listComment->parent_id')?$listComment->parent_id:'[N\A]'}}
 				</td>

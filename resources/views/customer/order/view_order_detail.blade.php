@@ -14,8 +14,8 @@
 					<th>Tên người đặt</th>
 					<th>Số điện thoại</th>
 					<th>Email</th>
-					<th>Dịa chỉ/th>
-					<th>ngày đặt </th>
+					<th>Địa chỉ</th>
+					<th>Ngày đặt </th>
 				</tr>
 			</thead>
 			<tbody>
