@@ -11,7 +11,7 @@
 			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
 				<div class="box">
 					<div class="box-head">
-						<h3 class="head-title">My Cart ({{count(Cart::content())}})</h3>
+						<h3 class="head-title">Giỏ hàng ({{count(Cart::content())}})</h3>
 					</div>
 					<!-- cart-table-section -->
 					<div class="box-body">
@@ -22,13 +22,13 @@
 									<thead>
 										<tr>
 											<th>
-												<span>Item</span></th>
+												<span>Tên sản phẩm</span></th>
 												<th>
-													<span>Price</span></th>
+													<span>Đơn giá</span></th>
 													<th >
-														<span>Quantity</span></th>
+														<span>Số lượng</span></th>
 														
-														<th colspan="2"><span>Action</span>
+														<th colspan="2"><span>Cập nhật - Xóa</span>
 														</th>
 
 													</tr>
@@ -78,13 +78,13 @@
 												</div>
 											</div>
 										</div>
-										<a href="{{route('home')}}" class="btn-link"><i class="fa fa-angle-left"></i> back to shopping</a>
+										<a href="{{route('home')}}" class="btn-link"><i class="fa fa-angle-left"></i> Quay lại trang chủ</a>
 									</div>
 									<!-- cart-total -->
 									<div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
 										<div class="box mb30">
 											<div class="box-head">
-												<h3 class="head-title">Price Details</h3>
+												<h3 class="head-title">Chi tiết</h3>
 											</div>
 											<div class="box-body">
 												<div class=" table-responsive">
@@ -93,7 +93,7 @@
 															<tbody>
 																<tr>
 																	<th>
-																		<span>Price ({{count(Cart::content())}} items)</span></th>
+																		<span>Giá tổng sản phẩm</span></th>
 																		<td>{{Cart::subtotal()}} VND</td>
 																	</tr>
 																	<tr>
@@ -105,14 +105,14 @@
 																	<tbody>
 																		<tr>
 																			<th>
-																				<span class="mb0" style="font-weight: 700;">Amount Payable</span></th>
+																				<span class="mb0" style="font-weight: 700;">Tổng cộng</span></th>
 																				<td style="font-weight: 700; color: #1c1e1e; ">{{Cart::subtotal()}} VND</td>
 																			</tr>
 																		</tbody>
 																	</table>
 																</div>
 																<form action="{{route('getorder')}}" method="GET">			
-																	<button class="btn btn-primary btn-block {{(count(\Cart::content()) == 0)?'hidden':'' }} " href="">Checkout</button>
+																	<button class="btn btn-primary btn-block {{(count(\Cart::content()) == 0)?'hidden':'' }} " href="">Đặt hàng</button>
 																</form>	
 															</button>
 														</div>

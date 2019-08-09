@@ -11,11 +11,11 @@
 		<table class="table table-bordered table-hover">
 			<thead>
 				<tr>
-					<th>Order name</th>
-					<th>Phone</th>
+					<th>Tên người đặt</th>
+					<th>Số điện thoại</th>
 					<th>Email</th>
-					<th>Address</th>
-					<th>Order day </th>
+					<th>Dịa chỉ/th>
+					<th>ngày đặt </th>
 				</tr>
 			</thead>
 			<tbody>
@@ -32,10 +32,10 @@
 						<legend>order detail</legend>
 				<thead>
 					<tr>
-						<th>Name</th>
-						<th>Quantity</th>
-						<th>Price</th>
-						<th>Day order</th>
+						<th>Tên sản phẩm</th>
+						<th>Số lượng</th>
+						<th>Giá</th>
+						<th>Ngày đặt</th>
 					</tr>
 				</thead>
 				<tbody>

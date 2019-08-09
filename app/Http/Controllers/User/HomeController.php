@@ -98,7 +98,7 @@ public function postLogin(UserLoginRequest $request)
 public function logout()
 {
     Auth::logout();
-    return redirect()->route('home')->with('success','Logout successfull!');
+    return redirect()->route('home');
 
 }
 
