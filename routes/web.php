@@ -66,5 +66,12 @@ Route::prefix('admin')->group(function(){
 
 });
 
+Route::get('contact-us', 'ContactController@formContact')->name('form-contact');
+Route::post('contact-us', 'ContactController@sendMail')->name('send-contact');
 
 
+
+Route::get('/cate/{id}/product', 'HomeController@listCate');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

@@ -3,45 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
-use App\User;
-use Illuminate\Support\Facades\Auth;
+use App\Category;
 
 class HomeController extends Controller
 {
-	public function index(){
-		return view('admin.layouts.master');
-	}
-    // public function getLoginAdmin()
-    // {
-    // 	return view('admin.login');
-    // }
-    public function getLoginAdmin()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-        return view('admin.login');
+        $this->middleware('auth');
     }
-    public function postLoginAdmin(Request $request)
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
     {
-        $this->validate($request,
-            [
-                'email'=>'required',
-                'password'=>'required'
-            ],
-            [
-                'email.required'=>'Bạn chưa nhập Email',
-                'password.required'=>'Bạn chưa nhập password',
-            ]
-        );
-        if (Auth::attempt(['email'=>$request->email, 'password'=>$request->password])) {         
-            // $id=Auth::id();
-            // dd($id);
-            $id=Auth::id();
-            $user= User::find($id);
-            return view('admin.layouts.master',compact('user'));
-            
-        }
-        else{
-            return redirect()->route('getlogin')->with('mess','thatbai');
-        }
+        return view('home');
+    }
+    public function listCate($id)
+    {
+        
     }
 }

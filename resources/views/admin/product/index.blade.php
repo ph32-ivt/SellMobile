@@ -1,6 +1,9 @@
 @extends('admin.layouts.master')
 @section('content')
 <div class="container">
+	@php
+	dd($latestMovie);
+	@endphp
 	<div class="card-deck">
 		<div class="card col-lg-12 px-0 mb-4">
 			<div class="card-body">
